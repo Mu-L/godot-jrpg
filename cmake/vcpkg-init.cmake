@@ -6,8 +6,8 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/vcpkg/ports")
         COMMAND git submodule update --init extern/vcpkg
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMAND_ERROR_IS_FATAL ANY
-    )
-endif()
+        )
+    endif()
 
 # =======================================================================
 # VCPKG triplet definition (should enforce static linkage for all deps)
@@ -21,7 +21,7 @@ if (NOT VCPKG_TARGET_TRIPLET)
         # static-md enforces static linkage to all dependencies,
         # as well as dynamic linkage to the C runtime for consistency.
         # if this gives you trouble change to "x64-windows-static".
-        set(VCPKG_TARGET_TRIPLET "x64-windows-static-md")
+        set(VCPKG_TARGET_TRIPLET "x64-mingw-dynamic")
     elseif(APPLE)
         if ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "arm64")
             set(VCPKG_TARGET_TRIPLET "arm64-osx")
