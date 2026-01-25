@@ -114,7 +114,8 @@ namespace rl::inline utils
         using object_t = std::type_identity_t<TObject>;
         using signal_t = std::type_identity_t<signal_binding<object_t, SignalName>>;
         static inline constexpr std::string_view signal_name{ SignalName };
-        static inline std::vector<godot::PropertyInfo> signal_params{};
+        //static inline std::vector<godot::PropertyInfo> signal_params{};
+        static inline godot::LocalVector<godot::PropertyInfo> signal_params{};
 
         // even though we know what TObject is here (the class type adding the signal binding)
         // we can't call TObject::get_class_static() yet since this struct is instantiated before
@@ -149,7 +150,7 @@ namespace rl::inline utils
 
                     std::apply(
                         [&](auto&&... arg) {
-                            signal_params = {
+                            signal_params = godot::LocalVector<godot::PropertyInfo>{
                                 variant_traits<decltype(arg)>::type_info::get_class_info()...
                             };
                         },
