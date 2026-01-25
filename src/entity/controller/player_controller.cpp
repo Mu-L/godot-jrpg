@@ -45,29 +45,29 @@ namespace rl
     //     CharacterController::_notification(notification);
     // }
 
-    PlayerController::InputMode PlayerController::get_input_mode(godot::Input* const input)
-    {
-        switch (m_input_mode)
-        {
+    PlayerController::InputMode PlayerController::get_input_mode(godot::Input* const input) {
+
+        switch (m_input_mode) {
             default:
                 [[fallthrough]];
             case InputMode::MouseAndKeyboard:
-            {
-                bool controller_input_detected{ input->is_action_pressed("controller_any") };
-                if (controller_input_detected)
-                    m_input_mode = InputMode::Controller;
-                break;
-            }
+                {
+                    bool controller_input_detected{ input->is_action_pressed("controller_any") };
+                    if (controller_input_detected)
+                        m_input_mode = InputMode::Controller;
+                    break;
+                }
             case InputMode::Controller:
-            {
-                godot::Vector2 mouse_velocity{ input->get_last_mouse_velocity() };
-                if (!mouse_velocity.is_zero_approx())
-                    m_input_mode = InputMode::MouseAndKeyboard;
-                break;
-            }
+                {
+                    godot::Vector2 mouse_velocity{ input->get_last_mouse_velocity() };
+                    if (!mouse_velocity.is_zero_approx())
+                        m_input_mode = InputMode::MouseAndKeyboard;
+                    break;
+                }
         }
 
         return m_input_mode;
+
     }
 
     void PlayerController::process_rotation_input(godot::Input* const input, double delta_time)

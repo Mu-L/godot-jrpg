@@ -2,10 +2,9 @@
 
 #include "entity/controller/character_controller.hpp"
 
-namespace rl
-{
-    class PlayerController : public CharacterController
-    {
+namespace rl {
+
+    class PlayerController : public CharacterController {
         GDCLASS(PlayerController, CharacterController);
 
     public:
@@ -18,8 +17,8 @@ namespace rl
         InputMode get_input_mode(godot::Input* const input);
 
     protected:
-        static void _bind_methods()
-        {
+        static void _bind_methods() {
         }
     };
+
 }
