@@ -15,17 +15,20 @@ namespace rl
         m_main_dialog = dialog.instantiate();
         runtime_assert(m_main_dialog != nullptr);
 
-        if (m_main_dialog != nullptr)
-        {
+        if (m_main_dialog != nullptr) {
             m_canvas_layer = gdcast<godot::CanvasLayer>(
                 m_main_dialog->find_child(name::dialog::canvas_layer, true, false));
 
             runtime_assert(m_canvas_layer != nullptr);
-            if (m_active_level != nullptr && m_canvas_layer != nullptr)
+            if (m_active_level != nullptr && m_canvas_layer != nullptr) {
                 m_canvas_layer->add_child(m_active_level);
+                m_active_level->set_owner(m_canvas_layer);
+            }
 
-            if (m_main_dialog != nullptr)
+            if (m_main_dialog != nullptr) {
                 this->add_child(m_main_dialog);
+                m_main_dialog->set_owner(this);
+            }
         }
     }
 

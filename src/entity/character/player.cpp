@@ -3,20 +3,17 @@
 #include "entity/character/player.hpp"
 #include "util/scene.hpp"
 
-namespace rl
-{
+namespace rl {
     Player::Player()
-        : Character()
-    {
+        : Character() {
         scene::node::set_unique_name(this, name::character::player);
     }
 
-    void Player::_ready()
-    {
+    void Player::_ready() {
+        //TODO: why is this called?
         Character::_ready();
     }
 
-    void Player::_bind_methods()
-    {
+    void Player::_bind_methods() {
     }
 }

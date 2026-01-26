@@ -3,15 +3,13 @@
 #include "entity/character/enemy.hpp"
 #include "util/scene.hpp"
 
-namespace rl
-{
+namespace rl {
     Enemy::Enemy()
-        : Character()
-    {
+        : Character() {
         scene::node::set_unique_name(this, name::character::enemy);
     }
 
-    void Enemy::_bind_methods()
-    {
+    void Enemy::_bind_methods() {
+
     }
 }

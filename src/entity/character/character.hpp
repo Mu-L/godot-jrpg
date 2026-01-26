@@ -10,22 +10,19 @@
 #include "singletons/console.hpp"
 #include "util/bind.hpp"
 
-namespace godot
-{
+namespace godot {
     class Marker2D;
     class Object;
     struct Vector2;
 }
 
-namespace rl
-{
+namespace rl {
     class CharacterController;
 }
 
-namespace rl
-{
-    class Character : public godot::CharacterBody2D
-    {
+namespace rl {
+
+    class Character : public godot::CharacterBody2D {
         GDCLASS(Character, godot::CharacterBody2D);
 
     public:
@@ -43,18 +40,16 @@ namespace rl
         [[property]] double get_movement_friction() const;
         [[property]] double get_rotation_speed() const;
 
-        [[property]] void set_movement_speed(const double move_speed);
-        [[property]] void set_movement_friction(const double move_friction);
-        [[property]] void set_rotation_speed(const double rotation_speed);
+        [[property]] void set_movement_speed(double move_speed);
+        [[property]] void set_movement_friction(double move_friction);
+        [[property]] void set_rotation_speed(double rotation_speed);
 
         [[signal_slot]] void on_character_shoot();
         [[signal_slot]] void on_character_rotate(double rotation_angle, double delta_time);
-        [[signal_slot]] void on_character_movement(godot::Vector2 movement_velocity,
-                                                   double delta_time);
+        [[signal_slot]] void on_character_movement(godot::Vector2 movement_velocity, double delta_time);
 
     protected:
-        static void _bind_methods()
-        {
+        static void _bind_methods() {
             bind_member_function(Character, on_character_movement);
             bind_member_function(Character, on_character_rotate);
             bind_member_function(Character, on_character_shoot);
@@ -81,7 +76,7 @@ namespace rl
         Camera* m_camera{ memnew(Camera) };
         // handles all input related player controls
         CharacterController* m_character_controller{ nullptr };
-        // marker identifying location where to spwwn projectiles
+        // marker identifying location where to spawn projectiles
         godot::Marker2D* m_firing_point{ nullptr };
     };
 }

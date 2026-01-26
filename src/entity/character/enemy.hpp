@@ -4,10 +4,8 @@
 #include "entity/character/character.hpp"
 #include "util/bind.hpp"
 
-namespace rl
-{
-    class Enemy : public Character
-    {
+namespace rl {
+    class Enemy : public Character {
         GDCLASS(Enemy, Character);
 
     public:
@@ -18,4 +16,5 @@ namespace rl
     protected:
         static void _bind_methods();
     };
+
 }

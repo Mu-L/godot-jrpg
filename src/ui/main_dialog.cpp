@@ -8,10 +8,10 @@
 #include "util/conversions.hpp"
 #include "util/engine.hpp"
 
-namespace rl::inline ui
-{
-    void MainDialog::_ready()
-    {
+namespace rl::inline ui {
+
+    void MainDialog::_ready() {
+
         if (engine::editor_active())
             return;
 
