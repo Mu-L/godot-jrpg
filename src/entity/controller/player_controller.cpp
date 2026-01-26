@@ -24,27 +24,6 @@ namespace rl
         this->emit_signal(event::character_move, velocity, delta_time);
     }
 
-    // void PlayerController::_notification(int notification)
-    // {
-    //     switch (notification)
-    //     {
-    //         case NOTIFICATION_PREDELETE:
-    //             [[fallthrough]];
-    //         case NOTIFICATION_UNPARENTED:
-    //         {
-    //             console::get()->clear_context();
-    //             console::get()->stop_logging();
-    //             break;
-    //         }
-    //         default:
-    //             break;
-    //     }
-
-    //     auto console{ console::get() };
-    //     console->print("PlayerController: {}", notification);
-    //     CharacterController::_notification(notification);
-    // }
-
     PlayerController::InputMode PlayerController::get_input_mode(godot::Input* const input)
     {
         switch (m_input_mode)
@@ -103,4 +82,28 @@ namespace rl
 
         this->emit_signal(event::character_rotate, m_rotation_angle, delta_time);
     }
+
+    // void PlayerController::_notification(int notification)
+    // {
+    //     switch (notification)
+    //     {
+    //         case NOTIFICATION_PREDELETE:
+    //             [[fallthrough]];
+    //         case NOTIFICATION_UNPARENTED:
+    //         {
+    //             console::get()->clear_context();
+    //             console::get()->stop_logging();
+    //             break;
+    //         }
+    //         default:
+    //             break;
+    //     }
+
+    //     auto console{ console::get() };
+    //     console->print("PlayerController: {}", notification);
+    //     CharacterController::_notification(notification);
+    // }
+
 }
+
+
