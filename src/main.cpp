@@ -6,8 +6,7 @@
 
 namespace rl
 {
-    Main::Main()
-    {
+    Main::Main() {
         resource::preload::packed_scene<Level> level{ path::scene::Level1 };
         resource::preload::packed_scene<MainDialog> dialog{ path::ui::MainDialog };
 
@@ -30,13 +29,11 @@ namespace rl
         }
     }
 
-    void Main::_ready()
-    {
+    void Main::_ready() {
         this->apply_default_settings();
     }
 
-    void Main::_physics_process(double delta)
-    {
+    void Main::_physics_process(double delta) {
         if (engine::editor_active())
             return;
 
@@ -48,8 +45,7 @@ namespace rl
         }
     }
 
-    void Main::apply_default_settings()
-    {
+    void Main::apply_default_settings() {
         engine::set_fps(60);
         input::use_accumulated_inputs(false);
 
