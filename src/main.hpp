@@ -22,8 +22,7 @@ namespace rl
     protected:
         void apply_default_settings();
 
-        static void _bind_methods()
-        {
+        static void _bind_methods() {
             signal_binding<Main, event::signal_example>::add<double>();
         }
 
