@@ -59,6 +59,11 @@ namespace rl
         this->queue_redraw();
     }
 
+    void Level::_enter_tree() {
+        //Node2D::_enter_tree();
+        console::get()->print("BRUH IM LOADING THE LEVEL RIGHT NOW MAN!");
+    }
+
     void Level::_draw()
     {
         if (this->active()) [[likely]]

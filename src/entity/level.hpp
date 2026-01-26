@@ -33,6 +33,7 @@ namespace rl
         virtual void _ready() override;
         void _draw() override;
         void _process(double delta_time) override;
+        void _enter_tree() override;
 
         void activate(bool active = true);
         bool active() const;
