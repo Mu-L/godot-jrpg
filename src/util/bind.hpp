@@ -133,8 +133,8 @@ namespace rl::inline utils {
                 if constexpr (arg_count == 0)
                     godot::ClassDB::add_signal(class_name.data(), godot::MethodInfo(signal_name.data()));
                 else {
-                    arg_types signal_args{};
 
+                    arg_types signal_args{};
                     std::apply(
                         [&](auto&&... arg) { signal_params = godot::LocalVector<godot::PropertyInfo>{
                             variant_traits<decltype(arg)>::type_info::get_class_info()...
