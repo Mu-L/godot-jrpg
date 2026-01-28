@@ -4,9 +4,32 @@
 #include "util/engine.hpp"
 #include "util/input.hpp"
 
-namespace rl
-{
+namespace rl {
+
     Main::Main() {
+
+        //load the scene from disk
+        resource::preload::packed_scene<godot::Control> main_menu{ path::ui::MainMenu };
+        m_main_menu = main_menu.instantiate();
+
+        if (m_main_menu != nullptr) {
+
+            this->add_child(m_main_menu);
+            m_main_menu->set_owner(this);
+            this->set_editable_instance(m_main_menu, true);
+
+            auto playButtonNode = gdcast<godot::Button>(m_main_menu->find_child(name::main_menu::player, true, false));
+            signal<event::buttonPressed>::connect<godot::Button>(playButtonNode) <=> signal_callback(this, loadPlayScene);
+
+            auto quitButtonNode = gdcast<godot::Button>(m_main_menu->find_child(name::main_menu::quit, true, false));
+            signal<event::buttonPressed>::connect<godot::Button>(quitButtonNode) <=> signal_callback(this, quitGame);
+            //godot::Callable loadPlaySceneCB(this, );
+
+
+
+        }
+
+        /*
         resource::preload::packed_scene<Level> level{ path::scene::Level1 };
         resource::preload::packed_scene<MainDialog> dialog{ path::ui::MainDialog };
 
@@ -33,7 +56,10 @@ namespace rl
                 m_active_level->set_owner(m_canvas_layer);
                 m_canvas_layer->set_editable_instance(m_active_level, true);
             }
+
         }
+        */
+
     }
 
     void Main::_ready() {
@@ -46,9 +72,30 @@ namespace rl
 
         m_signal_timer += delta;
         if (m_signal_timer > 1.0) {
-            this->emit_signal(event::signal_example, delta);
+            //this->emit_signal(event::signal_example, delta);
             m_signal_timer -= 1.0;
         }
+    }
+
+    [[signal_slot]]
+    void Main::loadPlayScene() {
+        console->print("Loading Play Scene...");
+    }
+
+    [[signal_slot]]
+    void Main::loadSettingsScene() {
+        console->print("Loading Settings Scene...");
+    }
+
+    [[signal_slot]]
+    void Main::loadCreditsScene() {
+        console->print("Loading Credits Scene...");
+    }
+
+    [[signal_slot]]
+    void Main::quitGame() {
+        console->print("Quitting...");
+        get_tree()->quit(0);
     }
 
     void Main::apply_default_settings() {

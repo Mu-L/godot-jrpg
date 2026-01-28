@@ -84,26 +84,24 @@ namespace rl
     }
 
     [[signal_slot]]
-    void Level::on_physics_box_entered(godot::Node* node) const
-    {
+    void Level::on_physics_box_entered(godot::Node* node) const {
         console::get()->print("{} > {}", io::yellow("projectile"), to<std::string>(node->get_name()));
     }
 
     [[signal_slot]]
-    void Level::on_physics_box_exited(godot::Node* node) const
-    {
+    void Level::on_physics_box_exited(godot::Node* node) const {
         console::get()->print("{} < {}", io::red("projectile"), to<std::string>(node->get_name()));
     }
 
     [[signal_slot]]
-    void Level::on_player_spawn_projectile(godot::Node* obj)
-    {
+    void Level::on_player_spawn_projectile(godot::Node* obj) {
+
         Projectile* projectile{ m_projectile_spawner->spawn_projectile() };
-        if (projectile != nullptr)
-        {
+        if (projectile != nullptr) {
+
             godot::Marker2D* firing_pt{ gdcast<godot::Marker2D>(obj) };
-            if (firing_pt != nullptr)
-            {
+
+            if (firing_pt != nullptr) {
                 projectile->set_position(firing_pt->get_global_position());
                 projectile->set_rotation(firing_pt->get_global_rotation());
 
@@ -113,15 +111,12 @@ namespace rl
                 signal<event::body_exited>::connect<Projectile>(projectile) <=>
                     signal_callback(this, on_physics_box_exited);
             }
-
             this->add_child(projectile);
         }
     }
 
     [[signal_slot]]
-    void Level::on_character_position_changed(const godot::Object* const node,
-                                              godot::Vector2 location) const
-    {
+    void Level::on_character_position_changed(const godot::Object* const node, godot::Vector2 location) const {
         runtime_assert(node != nullptr);
         auto console{ console::get() };
         console->print("{} ({},{})", io::green(to<std::string>(node->get_class()) + " location: "),

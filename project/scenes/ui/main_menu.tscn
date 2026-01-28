@@ -1,20 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnkuqurpj3lqs"]
+[gd_scene format=3 uid="uid://cnkuqurpj3lqs"]
 
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_sl1te"]
 
-[node name="main_menu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=956611327]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="main_menu_background" type="TextureRect" parent="."]
+[node name="MainMenuBackground" type="TextureRect" parent="." unique_id=975002471]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_sl1te")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=117788443]
 layout_mode = 0
 offset_left = 840.0
 offset_top = 540.0
@@ -22,10 +22,20 @@ offset_right = 1080.0
 offset_bottom = 1040.0
 alignment = 1
 
-[node name="play_button" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1516345949]
 layout_mode = 2
 text = "Play"
 
-[node name="setting_button" type="Button" parent="VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=639128353]
 layout_mode = 2
 text = "Settings"
+
+[node name="CreditButton" type="Button" parent="VBoxContainer" unique_id=1391705786]
+layout_mode = 2
+text = "Credits
+"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=895946517]
+layout_mode = 2
+text = "Quit
+"

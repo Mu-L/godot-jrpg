@@ -3,25 +3,28 @@
 #include <cstdint>
 #include <string>
 
-namespace rl::inline constants
-{
-    namespace name
-    {
-        namespace level
-        {
+namespace rl::inline constants {
+
+    namespace name {
+
+        namespace level {
             constexpr inline auto level1{ "Level1" };
             constexpr inline auto physics_box{ "PhysicsBox" };
         }
 
-        namespace dialog
-        {
+        namespace dialog {
             constexpr inline auto console{ "ConsolePanel" };
             constexpr inline auto canvas_layer{ "MainCanvasLayer" };
-
         }
 
-        namespace character
-        {
+        namespace main_menu {
+            constexpr inline auto player{ "PlayButton" };
+            constexpr inline auto settings{ "SettingsButton" };
+            constexpr inline auto credit{ "CreditButton" };
+            constexpr inline auto quit{ "QuitButton" };
+        }
+
+        namespace character {
             constexpr inline auto player{ "Player" };
             constexpr inline auto enemy{ "Enemy" };
             constexpr inline auto firing_pt{ "FiringPoint" };
@@ -29,8 +32,7 @@ namespace rl::inline constants
 
     }
 
-    namespace event
-    {
+    namespace event {
         constexpr inline auto position_changed{ "position_changed" };
         constexpr inline auto entered_area{ "entered_area" };
         constexpr inline auto exited_area{ "exited_area" };
@@ -41,6 +43,10 @@ namespace rl::inline constants
         constexpr inline auto body_entered{ "body_entered" };
         constexpr inline auto body_exited{ "body_exited" };
         constexpr inline auto signal_example{ "custom_signal_example" };
+
+        constexpr inline auto buttonPressed{ "pressed" };
+
+        constexpr inline auto changeToPlayScene{ "change_to_play_scene" };
     }
 
     enum class LayerID : uint32_t {
@@ -62,19 +68,20 @@ namespace rl::inline constants
         Layer16 = 0x00008000,
     };
 
-    namespace path
+    namespace path {
 
-    {
-        namespace scene
-        {
+        namespace scene {
             constexpr inline auto Level1{ "res://scenes/levels/level1.tscn" };
             constexpr inline auto Player{ "res://scenes/characters/player.tscn" };
             constexpr inline auto Bullet{ "res://scenes/projectiles/bullet.tscn" };
         }
 
-        namespace ui
-        {
+        namespace ui{
             constexpr inline auto MainDialog{ "res://scenes/ui/main_dialog.tscn" };
+            constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
+
         }
+
     }
+
 }

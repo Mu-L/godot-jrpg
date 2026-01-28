@@ -131,7 +131,7 @@ namespace rl::inline utils {
                 }
 
                 if constexpr (arg_count == 0)
-                    godot::ClassDB::add_signal(class_name.data(), godot::MethodInfo(signal_name.data()));
+                    godot::ClassDB::add_signal(class_name.data(), godot::MethodInfo(signal_name.data()) );
                 else {
 
                     arg_types signal_args{};
@@ -141,10 +141,8 @@ namespace rl::inline utils {
                         };},
                         signal_args);
 
-                    godot::ClassDB::add_signal(
-                        class_name.data(),
-                        godot::MethodInfo(signal_name.data(),
-                        std::forward<decltype(signal_params)>(signal_params)));
+                    godot::ClassDB::add_signal(class_name.data(),
+                                        godot::MethodInfo(signal_name.data(), std::forward<decltype(signal_params)>(signal_params)) );
 
                 }
 
