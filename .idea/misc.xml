@@ -9,6 +9,7 @@
       <file path="$PROJECT_DIR$/src" />
     </sourceRoots>
     <excludeRoots>
+      <file path="$PROJECT_DIR$/.out" />
       <file path="$PROJECT_DIR$/project" />
     </excludeRoots>
   </component>
