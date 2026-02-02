@@ -21,11 +21,8 @@ namespace rl {
         void _physics_process(double delta) override;
 
         [[signal_slot]] void loadPlayScene();
-
         [[signal_slot]] void loadSettingsScene();
-
         [[signal_slot]] void loadCreditsScene();
-
         [[signal_slot]] void quitGame();
 
 
@@ -39,7 +36,6 @@ namespace rl {
             bind_member_function(Main, loadSettingsScene);
             bind_member_function(Main, loadCreditsScene);
             bind_member_function(Main, quitGame);
-            //signal_binding<Main, event::changeToPlayScene>::add();
         }
 
     private:

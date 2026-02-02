@@ -7,13 +7,11 @@
 namespace rl {
 
     Main::Main() {
-
         //load the scene from disk
         resource::preload::packed_scene<godot::Control> main_menu{ path::ui::MainMenu };
         m_main_menu = main_menu.instantiate();
 
         if (m_main_menu != nullptr) {
-
             this->add_child(m_main_menu);
             m_main_menu->set_owner(this);
             this->set_editable_instance(m_main_menu, true);
@@ -23,10 +21,6 @@ namespace rl {
 
             auto quitButtonNode = gdcast<godot::Button>(m_main_menu->find_child(name::main_menu::quit, true, false));
             signal<event::buttonPressed>::connect<godot::Button>(quitButtonNode) <=> signal_callback(this, quitGame);
-            //godot::Callable loadPlaySceneCB(this, );
-
-
-
         }
 
         /*
@@ -80,6 +74,9 @@ namespace rl {
     [[signal_slot]]
     void Main::loadPlayScene() {
         console->print("Loading Play Scene...");
+        //deattach the "main_menu" scene and then load the player creator
+
+
     }
 
     [[signal_slot]]

@@ -2,8 +2,7 @@
 
 #include <cstdint>
 
-namespace godot
-{
+namespace godot {
     class Engine;
     class MainLoop;
     class Node;
@@ -11,10 +10,8 @@ namespace godot
     class Window;
 }
 
-namespace rl::inline utils
-{
-    struct engine
-    {
+namespace rl::inline utils {
+    struct engine {
         static godot::Engine* get();
         static godot::MainLoop* main_loop();
         static godot::SceneTree* scene_tree();
