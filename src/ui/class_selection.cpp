@@ -1,4 +1,4 @@
-#include "classSelection.h"
+#include "class_selection.hpp"
 #include "core/assert.hpp"
 #include "util/conversions.hpp"
 #include "util/engine.hpp"

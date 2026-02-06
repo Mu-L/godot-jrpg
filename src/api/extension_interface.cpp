@@ -16,29 +16,27 @@
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
 #include "main.hpp"
+#include "resources/class_stats.hpp"
 #include "singletons/console.hpp"
+#include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
-#include "ui/classSelection.h"
 #include "util/engine.hpp"
 
-namespace rl
-{
+namespace rl {
+
     static inline console* console_singleton{ nullptr };
 
-    void initialize_static_objects()
-    {
+    void initialize_static_objects() {
         console_singleton = memnew(console);
         rl::engine::get()->register_singleton("Console", console::get());
     }
 
-    void teardown_static_objects()
-    {
+    void teardown_static_objects() {
         rl::engine::get()->unregister_singleton("Console");
         memdelete(console_singleton);
     }
 
-    void initialize_extension_module(godot::ModuleInitializationLevel init_level)
-    {
+    void initialize_extension_module(godot::ModuleInitializationLevel init_level) {
         if (init_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE)
             return;
 
@@ -56,10 +54,15 @@ namespace rl
 
         godot::ClassDB::register_class<rl::Level>();
         godot::ClassDB::register_class<rl::MainDialog>();
+
+        //UI Related
         godot::ClassDB::register_class<tog::ClassSelection>();
         godot::ClassDB::register_class<rl::Main>();
 
         godot::ClassDB::register_class<console>();
+
+        //Resources
+        godot::ClassDB::register_class<tog::ClassStats>();
 
         initialize_static_objects();
     }

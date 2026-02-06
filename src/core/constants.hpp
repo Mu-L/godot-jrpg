@@ -47,6 +47,7 @@ namespace rl::inline constants {
         constexpr inline auto buttonPressed{ "pressed" };
 
         constexpr inline auto changeToPlayScene{ "change_to_play_scene" };
+        constexpr inline auto quitGame{ "quit_game" };
     }
 
     enum class LayerID : uint32_t {

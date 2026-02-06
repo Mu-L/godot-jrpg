@@ -17,9 +17,7 @@ namespace tog {
         void _physics_process(double delta) override;
 
     protected:
-
-        static void _bind_methods() {
-        }
+        static void _bind_methods() {}
 
     private:
 

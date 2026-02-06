@@ -75,8 +75,6 @@ namespace rl {
     void Main::loadPlayScene() {
         console->print("Loading Play Scene...");
         //deattach the "main_menu" scene and then load the player creator
-
-
     }
 
     [[signal_slot]]

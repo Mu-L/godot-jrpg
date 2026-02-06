@@ -1,11 +1,10 @@
 #pragma once
-
 #include <godot_cpp/classes/canvas_layer.hpp>
 #include <godot_cpp/classes/node.hpp>
-#include "godot_cpp/classes/button.hpp"
-
+#include <utility>
 
 #include "entity/level.hpp"
+#include "godot_cpp/classes/button.hpp"
 #include "ui/main_dialog.hpp"
 
 namespace rl {
@@ -25,6 +24,14 @@ namespace rl {
         [[signal_slot]] void loadCreditsScene();
         [[signal_slot]] void quitGame();
 
+        //test
+        [[property]] godot::String get_test_string() const {
+            return test_string;
+        };
+
+        [[property]] void set_test_string(godot::String test_str) {
+            test_string = std::move(test_str);
+        };
 
     protected:
         void apply_default_settings();
@@ -36,11 +43,19 @@ namespace rl {
             bind_member_function(Main, loadSettingsScene);
             bind_member_function(Main, loadCreditsScene);
             bind_member_function(Main, quitGame);
+
+            signal_binding<Main, constants::event::quitGame>::add<>();
+            signal_binding<Main, constants::event::changeToPlayScene>::add<>();
+            //signal_binding<Character, "">::add<>();
+
+            bind_property(Main, test_string, godot::String);
         }
 
     private:
         godot::Control* m_main_menu;
         Console<godot::RichTextLabel>* console{ console::get() };
+
+        godot::String test_string{"Default"};
 
         //keep for testing
         double m_signal_timer{ 0.0 };

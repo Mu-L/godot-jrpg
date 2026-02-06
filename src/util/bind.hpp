@@ -26,8 +26,7 @@
     std::forward_as_tuple(godot::Callable(slot_owner, #slot_callback), slot_owner)
 
 #define bind_property(class_name, prop_name, prop_type)                \
-    node_property<class_name, prop_type, &class_name::get_##prop_name, \
-                  &class_name::set_##prop_name>::add(#prop_name)
+    node_property<class_name, prop_type, &class_name::get_##prop_name, &class_name::set_##prop_name>::add(#prop_name)
 
 namespace rl::inline utils {
 
