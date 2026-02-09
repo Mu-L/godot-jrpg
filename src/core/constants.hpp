@@ -47,7 +47,7 @@ namespace rl::inline constants {
         constexpr inline auto buttonPressed{ "pressed" };
 
         constexpr inline auto changeToPlayScene{ "change_to_play_scene" };
-        constexpr inline auto quitGame{ "quit_game" };
+        constexpr inline auto quitGame{ "change_to_quit_scene" };
     }
 
     enum class LayerID : uint32_t {
@@ -80,6 +80,7 @@ namespace rl::inline constants {
         namespace ui{
             constexpr inline auto MainDialog{ "res://scenes/ui/main_dialog.tscn" };
             constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
+            constexpr inline auto PlayScene{ "res://scenes/ui/play_scene.tscn" };
 
         }
 

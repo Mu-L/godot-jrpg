@@ -1,8 +1,16 @@
 #pragma once
 
+#include <ranges>
+
 #include <godot_cpp/classes/canvas_layer.hpp>
 #include <godot_cpp/classes/node.hpp>
 #include "godot_cpp/classes/button.hpp"
+
+#include "util/scene.hpp"
+#include "util/bind.hpp"
+#include "core/constants.hpp"
+#include "resources/class_stats.hpp"
+
 
 namespace tog {
 
@@ -20,6 +28,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        godot::LocalVector<godot::Ref<ClassStats>> roles;
 
     };
 

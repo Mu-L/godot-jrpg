@@ -1,13 +1,15 @@
 #include "class_selection.hpp"
-#include "core/assert.hpp"
-#include "util/conversions.hpp"
-#include "util/engine.hpp"
-#include "util/input.hpp"
 
 namespace tog {
 
     ClassSelection::ClassSelection() {
-        //attach the player creation screen
+        using namespace rl;
+
+        //create a resource for each class
+        for (const int i : std::views::iota(0, static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))) {
+            roles.push_back(memnew(ClassStats));
+            roles[i]->set_class_name(i);
+        }
 
     }
 

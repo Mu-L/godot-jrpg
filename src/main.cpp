@@ -1,5 +1,5 @@
-#include "core/assert.hpp"
 #include "main.hpp"
+#include "core/assert.hpp"
 #include "util/conversions.hpp"
 #include "util/engine.hpp"
 #include "util/input.hpp"
@@ -64,17 +64,19 @@ namespace rl {
         if (engine::editor_active())
             return;
 
-        m_signal_timer += delta;
+        /* m_signal_timer += delta;
         if (m_signal_timer > 1.0) {
             //this->emit_signal(event::signal_example, delta);
             m_signal_timer -= 1.0;
-        }
+        } */
     }
 
     [[signal_slot]]
     void Main::loadPlayScene() {
         console->print("Loading Play Scene...");
         //deattach the "main_menu" scene and then load the player creator
+        godot::SceneTree *tree = get_tree();
+        const godot::Error err = tree->change_scene_to_file(path::ui::PlayScene);
     }
 
     [[signal_slot]]
