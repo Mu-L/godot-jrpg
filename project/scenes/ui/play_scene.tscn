@@ -107,10 +107,11 @@ offset_top = 300.0
 offset_right = 660.0
 offset_bottom = 900.0
 
-[node name="HSlider" type="HSlider" parent="ClassPanel" unique_id=971256160]
-layout_mode = 0
-offset_right = 680.0
-offset_bottom = 230.0
+[node name="HSlider" type="Control" parent="ClassPanel" unique_id=1493907145]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.24700001
+offset_bottom = 0.2899933
 
 [node name="RoleIcon" type="TextureRect" parent="." unique_id=1145218582]
 layout_mode = 0
@@ -138,3 +139,5 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Name Here"
+
+[node name="ClassSelection" type="ClassSelection" parent="." unique_id=719836684]

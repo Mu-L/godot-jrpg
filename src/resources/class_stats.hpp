@@ -49,6 +49,8 @@ namespace tog {
         [[property]] int get_spirit_power()                 { return m_spirit_power; }
         [[property]] int get_class_name()                   { return static_cast<int>(m_class_name); }
 
+        std::string get_class_name_str() { return names[static_cast<int>(m_class_name)]; }
+
     protected:
         static void _bind_methods() {
             using namespace rl;
@@ -77,7 +79,21 @@ namespace tog {
         int m_magic_power = 10;
         int m_defence = 10;
         int m_spirit_power = 10;
-
+        std::vector<std::string> names = {
+            "FISHERMAN",
+            "SPEAR_BEARER",
+            "SCOUT",
+            "LIGHT_BEARER",
+            "WAVE_CONTROLLER",
+            "JEONSULSA",
+            "HWAYEOMSA",
+            "DANSULSA",
+            "WONSULSA",
+            "ANIMA",
+            "DEFENDER",
+            "GUIDE",
+            "ERROR"
+        };
         ClassName m_class_name{ClassName::MAX_CLASS_COUNT};
     };
 }

@@ -24,9 +24,11 @@ namespace rl {
         [[signal_slot]] void loadCreditsScene();
         [[signal_slot]] void quitGame();
 
+        //TODO: remove later
         [[property]] godot::String get_test_string() const {
             return test_string;
         };
+        //TODO: remove later
         [[property]] void set_test_string(godot::String test_str) {
             test_string = std::move(test_str);
         };
@@ -35,9 +37,6 @@ namespace rl {
         void apply_default_settings();
 
         static void _bind_methods() {
-            //this actually creates the binding
-            //signal_binding<Main, event::signal_example>::add<double>();
-
             bind_member_function(Main, loadPlayScene);
             bind_member_function(Main, loadSettingsScene);
             bind_member_function(Main, loadCreditsScene);
@@ -53,13 +52,8 @@ namespace rl {
         godot::Control* m_main_menu;
         Console<godot::RichTextLabel>* console{ console::get() };
 
+        //TODO: remove later
         godot::String test_string{"Default"};
-
-        //keep for testing
-        //double m_signal_timer{ 0.0 };
-        //godot::CanvasLayer* m_canvas_layer{ nullptr };
-        //MainDialog* m_main_dialog{ nullptr };
-        //Level* m_active_level{ nullptr };
     };
 
 }

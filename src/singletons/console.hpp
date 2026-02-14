@@ -14,49 +14,39 @@
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/classes/rich_text_label.hpp>
 
-namespace rl
-{
-    template <typename TContext>
-    class Console : public godot::Object
-    {
-        GDCLASS(Console, godot::Object);
+namespace rl {
 
+    template <typename TContext>
+    class Console : public godot::Object {
+        GDCLASS(Console, godot::Object);
     public:
-        Console()
-        {
+        Console() {
             m_static_inst = this;
             init_loggers();
         }
 
-        ~Console()
-        {
+        ~Console() override {
             m_static_inst = nullptr;
         }
 
-        static inline rl::Console<TContext>* get()
-        {
+        static inline rl::Console<TContext>* get() {
             return m_static_inst;
         }
 
-        void set_context(TContext* context)
-        {
+        void set_context(TContext* context) {
             m_gui_console = context;
         }
 
-        void clear_context()
-        {
+        void clear_context() {
             m_gui_console = nullptr;
         }
 
-        void stop_logging()
-        {
+        void stop_logging() {
             m_logger->flush();
             m_stop = true;
         }
 
-        void init_loggers()
-            requires std::same_as<TContext, godot::RichTextLabel>
-        {
+        void init_loggers() requires std::same_as<TContext, godot::RichTextLabel> {
             auto stdout_sink{ std::make_shared<spdlog::sinks::stdout_color_sink_mt>() };
             auto stderr_sink{ std::make_shared<spdlog::sinks::stderr_color_sink_mt>() };
             auto callbk_sink{ std::make_shared<spdlog::sinks::callback_sink_mt>(
@@ -90,15 +80,12 @@ namespace rl
         }
 
         template <typename... TArgs>
-        void print(fmt::format_string<TArgs...> format_str, TArgs&&... args)
-        {
+        void print(fmt::format_string<TArgs...> format_str, TArgs&&... args) {
             m_logger->info(format_str, std::forward<TArgs>(args)...);
         }
 
     protected:
-        static void _bind_methods()
-        {
-        }
+        static void _bind_methods() {}
 
     private:
         std::unique_ptr<spdlog::logger> m_logger{ nullptr };
