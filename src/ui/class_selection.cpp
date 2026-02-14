@@ -24,7 +24,11 @@ namespace tog {
     }
 
     void ClassSelection::_ready() {
-        m_console->print("{}", rl::io::red("Class Selection Ready"));
+        m_console->print("Class Selection Ready");
+
+        auto* role_selector = rl::gdcast<godot::Control>(this->get_parent()->find_child("RoleSelector", true, false));
+
+
 
         //compute slot positions around in a circle
         compute_slots();
@@ -56,12 +60,15 @@ namespace tog {
 
     void ClassSelection::assign_items_to_slots(int offset) {
 
-        for (int i{0-2}; i < m_visible_slots-2; i++) {
-
-
+        for (int i{0}; i < m_visible_slots; i++) {
+            int role_index = (offset + i) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+            m_items[i]->set_text(m_roles[role_index]->get_class_name_str().data());
+            m_items[i]->set_position(m_slots[i].position);
+            m_items[i]->set_scale(godot::Vector2(m_slots[i].scale, m_slots[i].scale));
+            m_items[i]->set_z_index(m_slots[i].z);
         }
 
-
+        m_curr_role_index = (offset + 2) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
     }
 
     void ClassSelection::update_stats_display() {

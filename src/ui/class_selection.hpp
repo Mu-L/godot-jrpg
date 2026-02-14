@@ -1,8 +1,6 @@
 #pragma once
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/panel.hpp>
-
-#include "../../extern/godot-engine/modules/gdscript/language_server/godot_lsp.h"
 #include "resources/class_stats.hpp"
 #include "singletons/console.hpp"
 
@@ -38,11 +36,9 @@ namespace tog {
     private:
         //how many items can be shown
         int m_visible_slots = 5;
-        int m_curr_item_index = static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT)/2;
+        int m_curr_role_index = 0;
         float m_radius = 120.0f;
-
         godot::Panel* m_class_panel = nullptr;
-
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
         std::vector<Slot> m_slots;
         std::vector<godot::Button*> m_items;
