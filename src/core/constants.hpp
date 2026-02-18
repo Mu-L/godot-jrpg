@@ -46,6 +46,8 @@ namespace rl::inline constants {
 
         constexpr inline auto buttonPressed{ "pressed" };
 
+        constexpr inline auto role_scroll{ "role_scroll" };
+        constexpr inline auto gui_input{ "gui_input" };
         constexpr inline auto changeToPlayScene{ "change_to_play_scene" };
         constexpr inline auto quitGame{ "change_to_quit_scene" };
     }

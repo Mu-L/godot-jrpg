@@ -108,6 +108,7 @@ offset_right = 660.0
 offset_bottom = 900.0
 
 [node name="RoleSelector" type="Control" parent="ClassPanel" unique_id=1493907145]
+clip_contents = true
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.24700001

@@ -32,6 +32,7 @@ namespace rl::inline utils {
 
     template <auto Method> requires std::is_member_function_pointer_v<decltype(Method)>
     struct method : public function_traits<decltype(Method)> {
+
         using traits_t = function_traits<decltype(Method)>;
 
         static constexpr void bind(std::string_view&& func_name) {
