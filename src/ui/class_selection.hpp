@@ -48,6 +48,7 @@ namespace tog {
         //how many items can be shown
         int m_visible_slots = 5;
         int m_curr_role_index = 0;
+        int m_selected_role_index = 0;
         float m_radius = 120.0f;
         godot::Control* m_role_selector = nullptr;
         godot::GridContainer* m_stat_container = nullptr;
