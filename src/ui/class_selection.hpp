@@ -1,12 +1,16 @@
 #pragma once
 #include <ranges>
-#include <godot_cpp/classes/input_event.hpp>
+
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/grid_container.hpp>
+#include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/input_event_mouse_button.hpp>
+#include <godot_cpp/classes/label.hpp>
+
 #include "core/constants.hpp"
 #include "resources/class_stats.hpp"
 #include "singletons/console.hpp"
+#include "util/engine.hpp"
 #include "util/io.hpp"
 
 namespace tog {
@@ -52,6 +56,12 @@ namespace tog {
         float m_radius = 120.0f;
         godot::Control* m_role_selector = nullptr;
         godot::GridContainer* m_stat_container = nullptr;
+        godot::Label* hp_value_label = nullptr;
+        godot::Label* mp_value_label = nullptr;
+        godot::Label* attack_value_label = nullptr;
+        godot::Label* magic_value_label = nullptr;
+        godot::Label* defense_value_label = nullptr;
+        godot::Label* spirit_value_label = nullptr;
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
         std::vector<Slot> m_slots;
         std::vector<godot::Button*> m_items;

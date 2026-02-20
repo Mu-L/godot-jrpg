@@ -15,18 +15,18 @@ namespace tog {
     public:
         enum class ClassName {
             FISHERMAN = 0,
-            SPEAR_BEARER,
-            SCOUT,
-            LIGHT_BEARER,
-            WAVE_CONTROLLER,
-            JEONSULSA,
-            HWAYEOMSA,
-            DANSULSA,
-            WONSULSA,
-            ANIMA,
-            DEFENDER,
-            GUIDE,
-            MAX_CLASS_COUNT
+            SPEAR_BEARER = 1,
+            SCOUT = 2,
+            LIGHT_BEARER = 3,
+            WAVE_CONTROLLER = 4,
+            JEONSULSA = 5,
+            HWAYEOMSA = 6,
+            DANSULSA = 7,
+            WONSULSA = 8,
+            ANIMA = 9,
+            DEFENDER = 10,
+            GUIDE = 11,
+            MAX_CLASS_COUNT = 12
         };
 
     public:

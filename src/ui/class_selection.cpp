@@ -1,4 +1,5 @@
 #include "class_selection.hpp"
+#include "util/engine.hpp"
 
 namespace tog {
 
@@ -18,6 +19,14 @@ namespace tog {
         m_role_selector = rl::gdcast<godot::Control>(this->get_parent()->find_child("RoleSelector", true, false));
         m_stat_container = rl::gdcast<godot::GridContainer>(this->get_parent()->find_child("StatsContainer", true, false));
 
+        //cache
+        hp_value_label = m_stat_container->get_node<godot::Label>("%HealthValue");
+        mp_value_label = m_stat_container->get_node<godot::Label>("%ShinsuValue");
+        attack_value_label = m_stat_container->get_node<godot::Label>("%AttackValue");
+        magic_value_label = m_stat_container->get_node<godot::Label>("%PowerValue");
+        defense_value_label = m_stat_container->get_node<godot::Label>("%DefenseValue");
+        spirit_value_label = m_stat_container->get_node<godot::Label>("%SpiritValue");
+
         //bind the signal for "gui_input" to be called our function
         rl::signal<rl::event::gui_input>::connect<godot::Control>(m_role_selector) <=> signal_callback(this, role_scroll);
 
@@ -32,6 +41,7 @@ namespace tog {
         //compute slot positions around in a semi circle along y
         compute_slots();
         assign_items_to_slots(0);
+        update_stats_display();
     }
 
     void ClassSelection::_physics_process(double delta) {
@@ -67,7 +77,13 @@ namespace tog {
     }
 
     void ClassSelection::update_stats_display() {
-
+        int selected_index = (m_curr_role_index + 2) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+        hp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_hp()));
+        mp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_mp()));
+        attack_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_attack()));
+        magic_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_magic_power()));
+        defense_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_defense()));
+        spirit_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_spirit_power()));
     }
 
     void ClassSelection::rotate_right() {
@@ -75,19 +91,20 @@ namespace tog {
         int new_offset = (m_curr_role_index + 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
         //animate_rotation(new_offset);
         //assign role to items with respect to offset
+        m_curr_role_index = new_offset % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
         assign_items_to_slots(new_offset);
         //update the position of the role we are currently at now
-        m_curr_role_index = new_offset % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
     }
 
     void ClassSelection::rotate_left() {
         //compute new offset going to the left
-        int new_offset = (static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT) + m_curr_role_index - 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+        int new_offset = (m_curr_role_index - 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
         //animate_rotation(new_offset);
+        if (new_offset <= -1)
+            new_offset = static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT) - 1;
         //assign role to items with respect to offset
+        m_curr_role_index = new_offset;
         assign_items_to_slots(new_offset);
-        //update the position of the role we are currently at now
-        m_curr_role_index = std::abs(new_offset % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT));
     }
 
     void ClassSelection::animate_rotation() {

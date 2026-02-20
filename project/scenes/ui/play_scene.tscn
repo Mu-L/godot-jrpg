@@ -43,9 +43,11 @@ columns = 2
 [node name="HealthLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=973439453]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Health:"
 horizontal_alignment = 1
 
 [node name="HealthValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=186396674]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -53,9 +55,11 @@ horizontal_alignment = 1
 [node name="ShinsuLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=426927908]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Shinsu:"
 horizontal_alignment = 1
 
 [node name="ShinsuValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=1332467115]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -63,9 +67,11 @@ horizontal_alignment = 1
 [node name="AttackLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=1193954767]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Attack:"
 horizontal_alignment = 1
 
 [node name="AttackValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=302060672]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -73,9 +79,11 @@ horizontal_alignment = 1
 [node name="PowerLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=399061375]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Magic Power:"
 horizontal_alignment = 1
 
 [node name="PowerValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=1198285978]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -83,9 +91,11 @@ horizontal_alignment = 1
 [node name="DefenseLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=56159614]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Defense:"
 horizontal_alignment = 1
 
 [node name="DefenseValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=745184224]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -93,9 +103,11 @@ horizontal_alignment = 1
 [node name="SpiritLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=1882516549]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Spirit:"
 horizontal_alignment = 1
 
 [node name="SpiritValue" type="Label" parent="ClassPanel/StatsContainer" unique_id=911158526]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
