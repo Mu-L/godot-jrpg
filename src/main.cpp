@@ -58,6 +58,8 @@ namespace rl {
 
     void Main::_ready() {
         this->apply_default_settings();
+        //set the windows minimum size
+        engine::root_window()->set_min_size(godot::Vector2i(1920, 1080));
     }
 
     void Main::_physics_process(double delta) {
@@ -92,13 +94,17 @@ namespace rl {
     [[signal_slot]]
     void Main::quitGame() {
         console->print("Quitting...");
+        get_tree()->get_root()->propagate_notification(godot::Window::NOTIFICATION_WM_CLOSE_REQUEST);
         get_tree()->quit(0);
     }
 
     void Main::apply_default_settings() {
         engine::set_fps(60);
         input::use_accumulated_inputs(false);
-        if (not engine::editor_active())
+        if (not engine::editor_active()) {
             engine::root_window()->set_size({ 1920, 1080 });
+            engine::root_window()->set_content_scale_mode(godot::Window::CONTENT_SCALE_MODE_VIEWPORT);
+            engine::root_window()->set_content_scale_aspect(godot::Window::ContentScaleAspect::CONTENT_SCALE_ASPECT_IGNORE);
+        }
     }
 }

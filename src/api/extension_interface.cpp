@@ -20,6 +20,7 @@
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
+#include "ui/home_controller.h++"
 #include "util/engine.hpp"
 
 namespace rl {
@@ -58,7 +59,9 @@ namespace rl {
         //UI Related
         godot::ClassDB::register_class<tog::ClassSelection>();
         godot::ClassDB::register_class<rl::Main>();
+        godot::ClassDB::register_class<tog::HomeController>();
 
+        //Util
         godot::ClassDB::register_class<console>();
 
         //Resources
