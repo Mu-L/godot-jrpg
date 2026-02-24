@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://b74vh8sp86qfc"]
+
+[ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_rui7c"]
+
+[node name="HomeScene" type="HomeController" unique_id=1052583600]
+
+[node name="MainMenuBackground" type="TextureRect" parent="." unique_id=807746248]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_rui7c")
+
+[node name="SceneControl" type="Control" parent="." unique_id=308131693]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatsPanel" type="Panel" parent="SceneControl" unique_id=983830352]
+custom_minimum_size = Vector2(320, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LifePanel" type="Panel" parent="SceneControl" unique_id=1894159449]
+custom_minimum_size = Vector2(320, 360)
+layout_mode = 0
+offset_top = 720.0
+offset_right = 320.0
+offset_bottom = 1080.0
+
+[node name="SpecialContainer" type="VBoxContainer" parent="SceneControl" unique_id=657692886]
+custom_minimum_size = Vector2(320, 1080)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SpecialControl1" type="Control" parent="SceneControl/SpecialContainer" unique_id=1562759803]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="SpecialButton1" type="Button" parent="SceneControl/SpecialContainer/SpecialControl1" unique_id=481471242]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 31.0
+rotation = 0.7853982
+pivot_offset = Vector2(70, 70)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Special 1"
+
+[node name="SpecialControl2" type="Control" parent="SceneControl/SpecialContainer" unique_id=15513652]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="SpecialButton2" type="Button" parent="SceneControl/SpecialContainer/SpecialControl2" unique_id=514010485]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 31.0
+rotation = 0.7853982
+pivot_offset = Vector2(70, 70)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Special 2"
+
+[node name="SpecialControl3" type="Control" parent="SceneControl/SpecialContainer" unique_id=2040025114]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="SpecialButton3" type="Button" parent="SceneControl/SpecialContainer/SpecialControl3" unique_id=1707549778]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 31.0
+rotation = 0.7853982
+pivot_offset = Vector2(70, 70)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Special 3"
+
+[node name="SpecialControl4" type="Control" parent="SceneControl/SpecialContainer" unique_id=114665198]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="SpecialButton4" type="Button" parent="SceneControl/SpecialContainer/SpecialControl4" unique_id=1966245279]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 31.0
+rotation = 0.7853982
+pivot_offset = Vector2(70, 70)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Special 4"
+
+[node name="SpecialControl5" type="Control" parent="SceneControl/SpecialContainer" unique_id=1528211419]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="SpecialButton5" type="Button" parent="SceneControl/SpecialContainer/SpecialControl5" unique_id=1312436303]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 31.0
+rotation = 0.7853982
+pivot_offset = Vector2(70, 70)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Special 5"
+
+[node name="CharacterPanel" type="Panel" parent="SceneControl" unique_id=1466349605]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="OptionsContainer" type="HBoxContainer" parent="SceneControl" unique_id=1654013772]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 900.0
+offset_right = 1600.0
+offset_bottom = 1080.0
+alignment = 1
+
+[node name="BattleButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=736387377]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Battle"
+
+[node name="InventoryButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=557987738]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Inventory"
+
+[node name="SpellsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=1484910593]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Spells"
+
+[node name="CraftingButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=647462218]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Crafting"
+
+[node name="JobsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=285002353]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Jobs"
+
+[node name="ExcaliberButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=1920293116]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Excaliber"
+
+[node name="SettingsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=980816738]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Settings"

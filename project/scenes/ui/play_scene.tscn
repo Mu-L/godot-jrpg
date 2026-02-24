@@ -50,6 +50,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "10"
 horizontal_alignment = 1
 
 [node name="ShinsuLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=426927908]
@@ -62,6 +63,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "12"
 horizontal_alignment = 1
 
 [node name="AttackLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=1193954767]
@@ -74,6 +76,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "11"
 horizontal_alignment = 1
 
 [node name="PowerLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=399061375]
@@ -86,6 +89,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "12"
 horizontal_alignment = 1
 
 [node name="DefenseLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=56159614]
@@ -98,6 +102,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "10"
 horizontal_alignment = 1
 
 [node name="SpiritLabel" type="Label" parent="ClassPanel/StatsContainer" unique_id=1882516549]
@@ -110,6 +115,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = "12"
 horizontal_alignment = 1
 
 [node name="TraitsContainer" type="VBoxContainer" parent="ClassPanel" unique_id=1889248927]
@@ -152,5 +158,13 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Name Here"
+
+[node name="StartButton" type="Button" parent="." unique_id=916211019]
+layout_mode = 0
+offset_left = 1320.0
+offset_top = 945.0
+offset_right = 1560.0
+offset_bottom = 1005.0
+text = "START"
 
 [node name="ClassSelection" type="ClassSelection" parent="." unique_id=719836684]

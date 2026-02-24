@@ -1,17 +1,19 @@
 #pragma once
-#include <ranges>
-
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/grid_container.hpp>
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/input_event_mouse_button.hpp>
+#include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/label.hpp>
+#include <godot_cpp/classes/scene_tree.hpp>
 
 #include "core/constants.hpp"
 #include "resources/class_stats.hpp"
 #include "singletons/console.hpp"
 #include "util/engine.hpp"
 #include "util/io.hpp"
+
+#include <ranges>
 
 namespace tog {
 
@@ -38,15 +40,26 @@ namespace tog {
         static void _bind_methods() {
             //expose callback to godot system
             godot::ClassDB::bind_method(godot::D_METHOD("role_scroll", "event"), &ClassSelection::role_scroll);
+            //let godot engine know we can call this function
+            rl::bind_member_function(ClassSelection, create_world);
         }
 
     private:
+        //initialize buttons to be used as role selectors
         void compute_slots();
+        //assign the roles to the buttons
         void assign_items_to_slots(int offset);
+        //updates the stats panel and its child nodes with their respective values
         void update_stats_display();
+        //rotate the roles selector to the right
         void rotate_right();
+        //rotate the roles selector to the left
         void rotate_left();
+        //animation for switching between roles
         void animate_rotation();
+
+        //change to "home_scene" (creates the game world)
+        void create_world();
 
     private:
         //how many items can be shown

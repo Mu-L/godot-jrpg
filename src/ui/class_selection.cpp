@@ -1,5 +1,4 @@
 #include "class_selection.hpp"
-#include "util/engine.hpp"
 
 namespace tog {
 
@@ -19,6 +18,13 @@ namespace tog {
         m_role_selector = rl::gdcast<godot::Control>(this->get_parent()->find_child("RoleSelector", true, false));
         m_stat_container = rl::gdcast<godot::GridContainer>(this->get_parent()->find_child("StatsContainer", true, false));
 
+        //bind button to appropriate callback functions
+        auto* startButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("StartButton", true, false));
+        if ( !startButtonNode ) {
+            m_console->print("ref to button did not exist");
+        }
+        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(startButtonNode) <=> signal_callback(this, create_world);
+
         //cache
         hp_value_label = m_stat_container->get_node<godot::Label>("%HealthValue");
         mp_value_label = m_stat_container->get_node<godot::Label>("%ShinsuValue");
@@ -29,6 +35,7 @@ namespace tog {
 
         //bind the signal for "gui_input" to be called our function
         rl::signal<rl::event::gui_input>::connect<godot::Control>(m_role_selector) <=> signal_callback(this, role_scroll);
+
 
         //initialize buttons to be used as selectables
         for (int i{0}; i < m_visible_slots; i++) {
@@ -109,6 +116,14 @@ namespace tog {
 
     void ClassSelection::animate_rotation() {
         //todo: animate the rotation?
+    }
+
+    void ClassSelection::create_world() {
+        //save player data to a resource
+        //change the scene to the
+        m_console->print("Changing Scene to home_scene");
+        godot::SceneTree* tree = get_tree();
+        const godot::Error err = tree->change_scene_to_file(rl::path::ui::HomeScene);
     }
 
     [[signal_slot]]

@@ -83,6 +83,7 @@ namespace rl::inline constants {
             constexpr inline auto MainDialog{ "res://scenes/ui/main_dialog.tscn" };
             constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
             constexpr inline auto PlayScene{ "res://scenes/ui/play_scene.tscn" };
+            constexpr inline auto HomeScene{ "res://scenes/ui/home_scene.tscn" };
 
         }
 
