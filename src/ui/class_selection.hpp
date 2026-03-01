@@ -12,8 +12,10 @@
 #include "singletons/console.hpp"
 #include "util/engine.hpp"
 #include "util/io.hpp"
+#include "util/scene.hpp"
 
 #include <ranges>
+#include <filesystem>
 
 namespace tog {
 
@@ -57,6 +59,12 @@ namespace tog {
         void rotate_left();
         //animation for switching between roles
         void animate_rotation();
+        //callback function for when the "next" button is click for selecting character
+        void on_next_character();
+        //callback function for when the "prev" button is click for selecting character
+        void on_prev_character();
+        //load character images into an array from files
+        void load_character_images();
 
         //change to "home_scene" (creates the game world)
         void create_world();
@@ -65,7 +73,6 @@ namespace tog {
         //how many items can be shown
         int m_visible_slots = 5;
         int m_curr_role_index = 0;
-        int m_selected_role_index = 0;
         float m_radius = 120.0f;
         godot::Control* m_role_selector = nullptr;
         godot::GridContainer* m_stat_container = nullptr;
@@ -76,6 +83,7 @@ namespace tog {
         godot::Label* defense_value_label = nullptr;
         godot::Label* spirit_value_label = nullptr;
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
+        godot::Array m_char_port_container;
         std::vector<Slot> m_slots;
         std::vector<godot::Button*> m_items;
         godot::LocalVector<godot::Ref<ClassStats>> m_roles;

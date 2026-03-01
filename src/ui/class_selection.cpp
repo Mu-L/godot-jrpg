@@ -1,5 +1,9 @@
 #include "class_selection.hpp"
 
+#include <godot_cpp/classes/dir_access.hpp>
+
+#include "resources/character_portrait.hpp"
+
 namespace tog {
 
     ClassSelection::ClassSelection() {
@@ -20,9 +24,6 @@ namespace tog {
 
         //bind button to appropriate callback functions
         auto* startButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("StartButton", true, false));
-        if ( !startButtonNode ) {
-            m_console->print("ref to button did not exist");
-        }
         rl::signal<rl::event::buttonPressed>::connect<godot::Button>(startButtonNode) <=> signal_callback(this, create_world);
 
         //cache
@@ -36,7 +37,6 @@ namespace tog {
         //bind the signal for "gui_input" to be called our function
         rl::signal<rl::event::gui_input>::connect<godot::Control>(m_role_selector) <=> signal_callback(this, role_scroll);
 
-
         //initialize buttons to be used as selectables
         for (int i{0}; i < m_visible_slots; i++) {
             auto* new_button = memnew(godot::Button);
@@ -49,6 +49,9 @@ namespace tog {
         compute_slots();
         assign_items_to_slots(0);
         update_stats_display();
+
+        //container to store the array of itmes
+        load_character_images();
     }
 
     void ClassSelection::_physics_process(double delta) {
@@ -116,6 +119,53 @@ namespace tog {
 
     void ClassSelection::animate_rotation() {
         //todo: animate the rotation?
+    }
+
+    void ClassSelection::on_next_character() {
+        //advance the currently selected offset by 1
+    }
+
+    void ClassSelection::load_character_images() {
+        godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
+
+        //todo: find a better way to do a look up the project directory from anywhere
+        const std::filesystem::path character_resource_path{"/Users/abi/CLionProjects/godot-jrpg/project/assets/resources/characters"};
+
+        //iterate through the directory and load "character images" from the file
+        for (const auto& file : std::filesystem::directory_iterator{character_resource_path}) {
+            auto file_name = std::string(file.path());
+            m_console->print("Found file: {}", file_name);
+
+            //check if resource loaded correctly
+            godot::Ref<tog::CharacterPortraitSheet> loaded_char_sheet = resource_loader->load(file_name.c_str());
+            loaded_char_sheet.instantiate();
+
+            assertion(loaded_char_sheet != nullptr, "Character Portrait Sheet Does Not Exist");
+
+            //load character images into container
+            auto ids = loaded_char_sheet->get_ids();
+            int character_count = loaded_char_sheet->get_count();
+
+            godot::UtilityFunctions::print("ids = ", ids);
+            godot::UtilityFunctions::print("ids.size() = ", ids.size());
+
+            for (int i{0}; i < character_count; i++) {
+                /*
+                //treating a "godot::directory" like a pair
+                godot::Dictionary d;
+                d["image"] = loaded_char_sheet->build_portrait_texture(i);
+                //d["id"] = ids[i];
+                m_char_port_container.append(d);
+                */
+            }
+        }
+
+        //we are passing in a variant type to contruct the godot::dictionary object
+        /*
+        for (godot::Dictionary x : m_char_port_container) {
+            //m_console->print("Character name loaded: {}", std::string(godot::String(x["id"]).utf8()));
+        }
+        */
     }
 
     void ClassSelection::create_world() {

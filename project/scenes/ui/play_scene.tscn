@@ -159,6 +159,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Name Here"
 
+[node name="PrevCharButton" type="Button" parent="." unique_id=1468240901]
+layout_mode = 0
+offset_left = 1230.0
+offset_top = 945.0
+offset_right = 1290.0
+offset_bottom = 1005.0
+text = "<"
+
 [node name="StartButton" type="Button" parent="." unique_id=916211019]
 layout_mode = 0
 offset_left = 1320.0
@@ -166,5 +174,13 @@ offset_top = 945.0
 offset_right = 1560.0
 offset_bottom = 1005.0
 text = "START"
+
+[node name="NextCharButton" type="Button" parent="." unique_id=518603094]
+layout_mode = 0
+offset_left = 1590.0
+offset_top = 945.0
+offset_right = 1650.0
+offset_bottom = 1005.0
+text = ">"
 
 [node name="ClassSelection" type="ClassSelection" parent="." unique_id=719836684]

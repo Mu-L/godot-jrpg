@@ -1,0 +1,7 @@
+[gd_resource type="CharacterPortraitSheet" format=3 uid="uid://bisqjwked80h8"]
+
+[ext_resource type="Texture2D" uid="uid://b5xueyngjp0p5" path="res://assets/art/character_tilesets/character_set_3.png" id="1_2udrm"]
+
+[resource]
+sheet = ExtResource("1_2udrm")
+ids = ["Chris", "Kakara", "Anak", "Vincent", "Megan", "Joshua"]

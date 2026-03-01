@@ -1,11 +1,11 @@
-#include <type_traits>
-
 #include <gdextension_interface.h>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/memory.hpp>
 #include <godot_cpp/variant/string_name.hpp>
+#include <godot_cpp/core/class_db.hpp>
 
 #include "api/extension_interface.hpp"
+
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -16,12 +16,16 @@
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
 #include "main.hpp"
+#include "resources/character_portrait.hpp"
 #include "resources/class_stats.hpp"
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
 #include "ui/home_controller.h++"
 #include "util/engine.hpp"
+
+#include <type_traits>
+
 
 namespace rl {
 
@@ -66,6 +70,7 @@ namespace rl {
 
         //Resources
         godot::ClassDB::register_class<tog::ClassStats>();
+        godot::ClassDB::register_class<tog::CharacterPortraitSheet>();
 
         initialize_static_objects();
     }

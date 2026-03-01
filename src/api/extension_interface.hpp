@@ -1,7 +1,5 @@
 #pragma once
 
-#include <godot_cpp/core/class_db.hpp>
-
 namespace godot {
     void initialize_static_objects();
     void teardown_static_objects();
