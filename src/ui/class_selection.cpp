@@ -133,39 +133,28 @@ namespace tog {
 
         //iterate through the directory and load "character images" from the file
         for (const auto& file : std::filesystem::directory_iterator{character_resource_path}) {
-            auto file_name = std::string(file.path());
-            m_console->print("Found file: {}", file_name);
-
             //check if resource loaded correctly
-            godot::Ref<tog::CharacterPortraitSheet> loaded_char_sheet = resource_loader->load(file_name.c_str());
-            loaded_char_sheet.instantiate();
-
+            godot::Ref<tog::CharacterPortraitSheet> loaded_char_sheet = resource_loader->load(file.path().c_str());
             assertion(loaded_char_sheet != nullptr, "Character Portrait Sheet Does Not Exist");
 
             //load character images into container
             auto ids = loaded_char_sheet->get_ids();
             int character_count = loaded_char_sheet->get_count();
 
-            godot::UtilityFunctions::print("ids = ", ids);
-            godot::UtilityFunctions::print("ids.size() = ", ids.size());
-
             for (int i{0}; i < character_count; i++) {
-                /*
                 //treating a "godot::directory" like a pair
                 godot::Dictionary d;
                 d["image"] = loaded_char_sheet->build_portrait_texture(i);
-                //d["id"] = ids[i];
+                d["id"] = ids[i];
                 m_char_port_container.append(d);
-                */
             }
         }
 
         //we are passing in a variant type to contruct the godot::dictionary object
-        /*
         for (godot::Dictionary x : m_char_port_container) {
-            //m_console->print("Character name loaded: {}", std::string(godot::String(x["id"]).utf8()));
+            m_console->print("Character name loaded: {}", std::string(x["id"].stringify().utf8()) );
         }
-        */
+
     }
 
     void ClassSelection::create_world() {
