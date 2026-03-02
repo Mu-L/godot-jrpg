@@ -6,9 +6,10 @@
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/label.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/texture_rect.hpp>
 
 #include "core/constants.hpp"
-#include "resources/class_stats.hpp"
+#include "../resources/game/class_stats.hpp"
 #include "singletons/console.hpp"
 #include "util/engine.hpp"
 #include "util/io.hpp"
@@ -40,10 +41,16 @@ namespace tog {
 
     protected:
         static void _bind_methods() {
-            //expose callback to godot system
+            //expose callback to godot system and let godot system know how to call it
             godot::ClassDB::bind_method(godot::D_METHOD("role_scroll", "event"), &ClassSelection::role_scroll);
-            //let godot engine know we can call this function
             rl::bind_member_function(ClassSelection, create_world);
+
+            godot::ClassDB::bind_method(godot::D_METHOD("on_next_character"), &ClassSelection::on_next_character);
+            rl::bind_member_function(ClassSelection, on_next_character);
+
+            godot::ClassDB::bind_method(godot::D_METHOD("on_prev_character"), &ClassSelection::on_prev_character);
+            rl::bind_member_function(ClassSelection, on_prev_character);
+
         }
 
     private:
@@ -63,6 +70,8 @@ namespace tog {
         void on_next_character();
         //callback function for when the "prev" button is click for selecting character
         void on_prev_character();
+        //update character display
+        void update_character_display();
         //load character images into an array from files
         void load_character_images();
 
@@ -71,8 +80,9 @@ namespace tog {
 
     private:
         //how many items can be shown
-        int m_visible_slots = 5;
-        int m_curr_role_index = 0;
+        int m_visible_slots         = 5;
+        int m_curr_role_index       = 0;
+        int m_curr_char_image_index = 0;
         float m_radius = 120.0f;
         godot::Control* m_role_selector = nullptr;
         godot::GridContainer* m_stat_container = nullptr;
@@ -82,7 +92,10 @@ namespace tog {
         godot::Label* magic_value_label = nullptr;
         godot::Label* defense_value_label = nullptr;
         godot::Label* spirit_value_label = nullptr;
+        godot::Label* m_char_name_label = nullptr;
+        godot::TextureRect* m_char_image = nullptr;
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
+        //stores Dictionary entries like {"image": <Ref<Texture2D>, "id": <StringName>}
         godot::Array m_char_port_container;
         std::vector<Slot> m_slots;
         std::vector<godot::Button*> m_items;

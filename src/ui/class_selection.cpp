@@ -2,7 +2,7 @@
 
 #include <godot_cpp/classes/dir_access.hpp>
 
-#include "resources/character_portrait.hpp"
+#include "../resources/character/character_portrait.hpp"
 
 namespace tog {
 
@@ -13,7 +13,6 @@ namespace tog {
         for (const int i : std::views::iota(0, static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))) {
             m_roles.push_back(memnew(ClassStats));
             m_roles[i]->set_class_name(i);
-            m_console->print("Role attack is {} ", m_roles[i]->get_class_name_str());
         }
     }
 
@@ -21,10 +20,20 @@ namespace tog {
         //grab references to the related nodes needed
         m_role_selector = rl::gdcast<godot::Control>(this->get_parent()->find_child("RoleSelector", true, false));
         m_stat_container = rl::gdcast<godot::GridContainer>(this->get_parent()->find_child("StatsContainer", true, false));
+        m_char_name_label = rl::gdcast<godot::Label>(this->get_parent()->find_child("CharNameLabel", true, false));
+        m_char_name_label->add_theme_font_size_override("font_size", 64);
+        m_char_image = rl::gdcast<godot::TextureRect>(this->get_parent()->find_child("CharImage", true, false));
 
         //bind button to appropriate callback functions
+        //bind callback to transition to the player home screen
         auto* startButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("StartButton", true, false));
         rl::signal<rl::event::buttonPressed>::connect<godot::Button>(startButtonNode) <=> signal_callback(this, create_world);
+        //bind callback to advance to the next character image from button press down event
+        auto* nextCharacterButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("NextCharButton", true, false));
+        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(nextCharacterButtonNode) <=> signal_callback(this, on_next_character);
+        //bind callback to decrease to the prev character image from button press down event
+        auto* prevCharacterButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("PrevCharButton", true, false));
+        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(prevCharacterButtonNode) <=> signal_callback(this, on_prev_character);
 
         //cache
         hp_value_label = m_stat_container->get_node<godot::Label>("%HealthValue");
@@ -52,6 +61,7 @@ namespace tog {
 
         //container to store the array of itmes
         load_character_images();
+        update_character_display();
     }
 
     void ClassSelection::_physics_process(double delta) {
@@ -123,6 +133,31 @@ namespace tog {
 
     void ClassSelection::on_next_character() {
         //advance the currently selected offset by 1
+        if (m_char_port_container.is_empty()) {
+            return;
+        }
+        // advance index and wrap around, similar to rotate_right()
+        m_curr_char_image_index = ( m_curr_char_image_index + 1 ) % static_cast<int>(m_char_port_container.size());
+        update_character_display();
+    }
+
+    void ClassSelection::on_prev_character() {
+        //decrease the currently selected offset by 1
+        if (m_char_port_container.is_empty()) {
+            return;
+        }
+        // decrement and wrap around; add size before modulo to avoid negatives
+        m_curr_char_image_index = (m_curr_char_image_index - 1 + static_cast<int>(m_char_port_container.size())) % static_cast<int>(m_char_port_container.size());
+        update_character_display();
+    }
+
+    void ClassSelection::update_character_display() {
+        m_console->print("The current character image index is: {} ", m_curr_char_image_index);
+        godot::Dictionary entry = m_char_port_container[m_curr_char_image_index];
+        if (m_char_image) {
+            m_char_image->set_texture(entry["image"]);
+            m_char_name_label->set_text(entry["id"]);
+        }
     }
 
     void ClassSelection::load_character_images() {

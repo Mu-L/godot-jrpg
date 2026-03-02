@@ -16,12 +16,12 @@
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
 #include "main.hpp"
-#include "resources/character_portrait.hpp"
-#include "resources/class_stats.hpp"
+#include "../resources/character/character_portrait.hpp"
+#include "../resources/game/class_stats.hpp"
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
-#include "ui/home_controller.h++"
+#include "ui/home_controller.hpp"
 #include "util/engine.hpp"
 
 #include <type_traits>

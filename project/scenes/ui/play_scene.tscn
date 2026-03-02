@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://ds7xlvn05m4p2"]
 
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_b8fgm"]
+[ext_resource type="Texture2D" uid="uid://b5xueyngjp0p5" path="res://assets/art/character_tilesets/character_set_3.png" id="2_cjka1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wroo0"]
+atlas = ExtResource("2_cjka1")
+region = Rect2(0, 0, 341, 512)
 
 [node name="PlayScene" type="Control" unique_id=956611327]
 layout_mode = 3
@@ -132,32 +137,24 @@ anchor_right = 1.0
 anchor_bottom = 0.24700001
 offset_bottom = 0.2899933
 
-[node name="RoleIcon" type="TextureRect" parent="." unique_id=1145218582]
+[node name="CharImage" type="TextureRect" parent="." unique_id=1145218582]
 layout_mode = 0
-offset_left = 1300.0
-offset_top = 420.0
-offset_right = 1540.0
-offset_bottom = 660.0
+offset_left = 1260.0
+offset_top = 130.0
+offset_right = 1620.0
+offset_bottom = 790.0
+texture = SubResource("AtlasTexture_wroo0")
 
-[node name="NameContainer" type="HBoxContainer" parent="." unique_id=804806106]
+[node name="CharNameLabel" type="Label" parent="." unique_id=518328899]
 layout_mode = 0
-offset_left = 960.0
-offset_top = 70.0
-offset_right = 1800.0
-offset_bottom = 210.0
-
-[node name="NameLabel" type="Label" parent="NameContainer" unique_id=447607719]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 38
-text = "Name:"
+offset_left = 1260.0
+offset_top = 840.0
+offset_right = 1620.0
+offset_bottom = 900.0
+text = "Chris"
+horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="NameValue" type="TextEdit" parent="NameContainer" unique_id=1513879965]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Name Here"
 
 [node name="PrevCharButton" type="Button" parent="." unique_id=1468240901]
 layout_mode = 0
