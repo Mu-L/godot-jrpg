@@ -10,6 +10,10 @@ namespace tog::inline constants {
 
         namespace scene {
 
+            namespace ui {
+                constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
+            }
+
         }
 
         namespace resource {
@@ -22,9 +26,20 @@ namespace tog::inline constants {
 
         namespace signal {
 
+            namespace BaseButton {
+                constexpr inline auto pressed   { "pressed" };
+            }
+
         }
 
         namespace name {
+
+            namespace MainMenu {
+                constexpr inline auto PlayButton    { "%PlayButton" };
+                constexpr inline auto SettingsButton{ "%SettingsButton" };
+                constexpr inline auto CreditButton  { "%CreditButton" };
+                constexpr inline auto QuitButton    { "%QuitButton" };
+            }
 
         }
 

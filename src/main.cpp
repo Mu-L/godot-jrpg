@@ -7,53 +7,32 @@
 namespace rl {
 
     Main::Main() {
-        //load the scene from disk
-        resource::preload::packed_scene<godot::Control> main_menu{ path::ui::MainMenu };
+        //load the scene from disk - is a packed scene resource, not a node at this point
+        resource::preload::packed_scene<godot::Control> main_menu{ tog::path::scene::ui::MainMenu };
+        //returns a tree of nodes that you can use as a child of your current node
         m_main_menu = main_menu.instantiate();
 
-        if (m_main_menu != nullptr) {
+        if (m_main_menu) {
+            //attach scene to current node as sub child
             this->add_child(m_main_menu);
+            //set the owner of the newly loaded scene to the current node
             m_main_menu->set_owner(this);
+            //makes the newly loaded scene show up in the editor for debugging
             this->set_editable_instance(m_main_menu, true);
 
-            auto playButtonNode = gdcast<godot::Button>(m_main_menu->find_child(name::main_menu::player, true, false));
-            signal<event::buttonPressed>::connect<godot::Button>(playButtonNode) <=> signal_callback(this, loadPlayScene);
+            //grab a reference to the "PlayButton" node in the "MainMenu" scene
+            auto play_button_node = get_node<godot::Button>(tog::node::name::MainMenu::PlayButton);
+            //attach our callback function "load_character_creator_scene" to the "pressed" signal event of the respective node
+            signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(play_button_node) <=> signal_callback(this, load_character_creator_scene);
 
-            auto quitButtonNode = gdcast<godot::Button>(m_main_menu->find_child(name::main_menu::quit, true, false));
-            signal<event::buttonPressed>::connect<godot::Button>(quitButtonNode) <=> signal_callback(this, quitGame);
+            //grab a reference to the "QuitButton" node in the "MainMenu" scene
+            auto quit_button_node = get_node<godot::Button>(tog::node::name::MainMenu::QuitButton);
+            //attach our callback function "stop_application" to the "pressed" signal event of the respective node
+            signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(quit_button_node) <=> signal_callback(this, stop_application);
+
+        } else {
+            assertion(m_main_menu, "MainMenu scene does not exist");
         }
-
-        /*
-        resource::preload::packed_scene<Level> level{ path::scene::Level1 };
-        resource::preload::packed_scene<MainDialog> dialog{ path::ui::MainDialog };
-
-        m_active_level = level.instantiate();
-        runtime_assert(m_active_level != nullptr);
-        m_main_dialog = dialog.instantiate();
-        runtime_assert(m_main_dialog != nullptr);
-
-        if (m_main_dialog != nullptr) {
-
-            if (m_main_dialog != nullptr) {
-                //add "MainDialog" scene to "Main" node as a child and make it show up in the editor
-                this->add_child(m_main_dialog);
-                m_main_dialog->set_owner(this);
-                this->set_editable_instance(m_main_dialog, true);
-            }
-
-            m_canvas_layer = gdcast<godot::CanvasLayer>(m_main_dialog->find_child(name::dialog::canvas_layer, true, false));
-
-            runtime_assert(m_canvas_layer != nullptr);
-            if (m_active_level != nullptr && m_canvas_layer != nullptr) {
-                m_canvas_layer->get_parent()->set_editable_instance(m_canvas_layer, true);
-                m_canvas_layer->add_child(m_active_level);
-                m_active_level->set_owner(m_canvas_layer);
-                m_canvas_layer->set_editable_instance(m_active_level, true);
-            }
-
-        }
-        */
-
     }
 
     void Main::_ready() {
@@ -65,35 +44,30 @@ namespace rl {
     void Main::_physics_process(double delta) {
         if (engine::editor_active())
             return;
-
-        /* m_signal_timer += delta;
-        if (m_signal_timer > 1.0) {
-            //this->emit_signal(event::signal_example, delta);
-            m_signal_timer -= 1.0;
-        } */
     }
 
     [[signal_slot]]
-    void Main::loadPlayScene() {
-        console->print("Loading Play Scene...");
+    void Main::load_character_creator_scene() const {
+        m_console->print("Loading Play Scene...");
+        //grab the scene tree
+        godot::SceneTree* tree = get_tree();
         //deattach the "main_menu" scene and then load the player creator
-        godot::SceneTree *tree = get_tree();
         const godot::Error err = tree->change_scene_to_file(path::ui::PlayScene);
     }
 
     [[signal_slot]]
     void Main::loadSettingsScene() {
-        console->print("Loading Settings Scene...");
+        m_console->print("Loading Settings Scene...");
     }
 
     [[signal_slot]]
     void Main::loadCreditsScene() {
-        console->print("Loading Credits Scene...");
+        m_console->print("Loading Credits Scene...");
     }
 
     [[signal_slot]]
-    void Main::quitGame() {
-        console->print("Quitting...");
+    void Main::stop_application() {
+        m_console->print("Stopping Application .... ");
         get_tree()->get_root()->propagate_notification(godot::Window::NOTIFICATION_WM_CLOSE_REQUEST);
         get_tree()->quit(0);
     }
