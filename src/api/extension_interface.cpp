@@ -6,6 +6,7 @@
 
 #include "api/extension_interface.hpp"
 
+#include "main.hpp"
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -15,9 +16,9 @@
 #include "entity/controller/player_controller.hpp"
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
-#include "main.hpp"
-#include "../resources/character/character_portrait.hpp"
-#include "../resources/game/class_stats.hpp"
+#include "resources/character/character_portrait.hpp"
+#include "resources/game/class_stats.hpp"
+#include "resources/character/character_state.hpp"
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
@@ -71,6 +72,7 @@ namespace rl {
         //Resources
         godot::ClassDB::register_class<tog::ClassStats>();
         godot::ClassDB::register_class<tog::CharacterPortraitSheet>();
+        godot::ClassDB::register_class<tog::CharacterState>();
 
         initialize_static_objects();
     }
@@ -87,8 +89,7 @@ namespace rl {
     {
         GDExtensionBool GDE_EXPORT extension_library_init(GDExtensionInterfaceGetProcAddress addr,
                                                           GDExtensionClassLibraryPtr lib,
-                                                          GDExtensionInitialization* init)
-        {
+                                                          GDExtensionInitialization* init) {
             const auto init_level = godot::MODULE_INITIALIZATION_LEVEL_SCENE;
             godot::GDExtensionBinding::InitObject init_obj(addr, lib, init);
 

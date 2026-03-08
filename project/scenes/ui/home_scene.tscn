@@ -23,6 +23,161 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="StatsGridContainer" type="GridContainer" parent="SceneControl/StatsPanel" unique_id=1411545155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="NameLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1371240988]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=327843519]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=476934271]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Level:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1043223969]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1604913640]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "HP:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=140454867]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShinsuLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1405392787]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Shinsu:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShinsuValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=674983933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1827035544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Defense:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefenseValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=654013657]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=457799959]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Attack:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=584733075]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MagicPowerLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=1407545767]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Magic Power:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MagicPowerValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=339776938]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpiritPowerLabel" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=5526215]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Spirit Power:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpiritPowerValue" type="Label" parent="SceneControl/StatsPanel/StatsGridContainer" unique_id=736549215]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LifePanel" type="Panel" parent="SceneControl" unique_id=1894159449]
 custom_minimum_size = Vector2(320, 360)
 layout_mode = 0

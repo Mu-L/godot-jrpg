@@ -3,6 +3,37 @@
 #include <cstdint>
 #include <string>
 
+
+namespace tog::inline constants {
+
+    namespace path {
+
+        namespace scene {
+
+        }
+
+        namespace resource {
+
+        }
+
+    }
+
+    namespace node {
+
+        namespace signal {
+
+        }
+
+        namespace name {
+
+        }
+
+    }
+
+
+}
+
+
 namespace rl::inline constants {
 
     namespace name {

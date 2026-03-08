@@ -161,8 +161,8 @@ namespace tog {
     }
 
     void ClassSelection::load_character_images() {
+        //grab the resource loader object
         godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
-
         //todo: find a better way to do a look up the project directory from anywhere
         const std::filesystem::path character_resource_path{"/Users/abi/CLionProjects/godot-jrpg/project/assets/resources/characters"};
 
@@ -173,7 +173,7 @@ namespace tog {
             assertion(loaded_char_sheet != nullptr, "Character Portrait Sheet Does Not Exist");
 
             //load character images into container
-            auto ids = loaded_char_sheet->get_ids();
+            godot::Array ids = loaded_char_sheet->get_ids();
             int character_count = loaded_char_sheet->get_count();
 
             for (int i{0}; i < character_count; i++) {
@@ -194,6 +194,11 @@ namespace tog {
 
     void ClassSelection::create_world() {
         //save player data to a resource
+
+        //save the player stats
+
+        //save the character portarit too
+
         //change the scene to the
         m_console->print("Changing Scene to home_scene");
         godot::SceneTree* tree = get_tree();
