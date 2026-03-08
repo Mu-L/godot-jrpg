@@ -32,7 +32,7 @@ namespace tog {
 
     public:
         ClassSelection();
-        ~ClassSelection() = default;
+        ~ClassSelection() override = default;
 
         void _ready() override;
         void _physics_process(double delta) override;

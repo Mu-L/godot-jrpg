@@ -55,21 +55,12 @@ namespace rl {
         //grab the scene tree
         godot::SceneTree* tree = get_tree();
         //deattach the "main_menu" scene and then load the player creator
-        const godot::Error err = tree->change_scene_to_file(path::ui::PlayScene);
+        const godot::Error err = tree->change_scene_to_file(tog::path::scene::ui::CharacterCreator);
     }
 
     [[signal_slot]]
-    void Main::loadSettingsScene() {
-        m_console->print("Loading Settings Scene...");
-    }
-
-    [[signal_slot]]
-    void Main::loadCreditsScene() {
-        m_console->print("Loading Credits Scene...");
-    }
-
-    [[signal_slot]]
-    void Main::stop_application() {
+    void Main::stop_application() const
+    {
         m_console->print("Stopping Application .... ");
         get_tree()->get_root()->propagate_notification(godot::Window::NOTIFICATION_WM_CLOSE_REQUEST);
         get_tree()->quit(0);

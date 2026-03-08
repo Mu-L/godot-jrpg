@@ -12,6 +12,7 @@ namespace tog::inline constants {
 
             namespace ui {
                 constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
+                constexpr inline auto CharacterCreator{ "res://scenes/ui/character_creator.tscn" };
             }
 
         }
@@ -35,10 +36,10 @@ namespace tog::inline constants {
         namespace name {
 
             namespace MainMenu {
-                constexpr inline auto PlayButton    { "MainMenuButtonContainer/%PlayButton" };
-                constexpr inline auto SettingsButton{ "MainMenuButtonContainer/%SettingsButton" };
-                constexpr inline auto CreditButton  { "MainMenuButtonContainer/%CreditButton" };
-                constexpr inline auto QuitButton    { "MainMenuButtonContainer/%QuitButton" };
+                constexpr inline auto PlayButton    { "%PlayButton" };
+                constexpr inline auto SettingsButton{ "%SettingsButton" };
+                constexpr inline auto CreditButton  { "%CreditButton" };
+                constexpr inline auto QuitButton    { "%QuitButton" };
             }
 
         }

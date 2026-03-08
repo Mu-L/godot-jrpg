@@ -14,23 +14,19 @@ namespace rl {
 
     public:
         Main();
-        ~Main() = default;
+        ~Main() override = default;
 
         void _ready() override;
         void _physics_process(double delta) override;
 
         [[signal_slot]] void load_character_creator_scene() const;
-        [[signal_slot]] void loadSettingsScene();
-        [[signal_slot]] void loadCreditsScene();
-        [[signal_slot]] void stop_application();
+        [[signal_slot]] void stop_application() const;
 
     protected:
         void apply_default_settings();
 
         static void _bind_methods() {
             bind_member_function(Main, load_character_creator_scene);
-            bind_member_function(Main, loadSettingsScene);
-            bind_member_function(Main, loadCreditsScene);
             bind_member_function(Main, stop_application);
         }
 

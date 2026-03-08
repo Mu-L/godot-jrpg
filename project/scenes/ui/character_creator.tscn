@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://ds7xlvn05m4p2"]
+
+[ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_50a5s"]
+[ext_resource type="Texture2D" uid="uid://b5xueyngjp0p5" path="res://assets/art/character_tilesets/character_set_3.png" id="2_rve6s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50a5s"]
+atlas = ExtResource("2_rve6s")
+region = Rect2(0, 0, 341, 512)
+
+[node name="CharacterCreator" type="Control" unique_id=956611327]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ClassSelection" type="ClassSelection" parent="." unique_id=719836684]
+
+[node name="MainMenuBackground" type="TextureRect" parent="ClassSelection" unique_id=975002471]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_50a5s")
+
+[node name="ClassPanel" type="Panel" parent="ClassSelection" unique_id=2084300535]
+anchors_preset = -1
+anchor_left = 0.062000003
+anchor_top = 0.065000005
+anchor_right = 0.41700003
+anchor_bottom = 0.92600006
+offset_left = 0.95999146
+offset_top = -0.20000458
+offset_right = -0.6400757
+offset_bottom = -0.080078125
+
+[node name="StatsContainer" type="GridContainer" parent="ClassSelection/ClassPanel" unique_id=1930238898]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.034
+anchor_top = 0.32200003
+anchor_right = 0.48800004
+anchor_bottom = 0.97400004
+offset_left = -3.1200008
+offset_top = 0.539978
+offset_right = -11.840027
+offset_bottom = -5.8200073
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=973439453]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Health:"
+horizontal_alignment = 1
+
+[node name="HealthValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=186396674]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+horizontal_alignment = 1
+
+[node name="ShinsuLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=426927908]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shinsu:"
+horizontal_alignment = 1
+
+[node name="ShinsuValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=1332467115]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12"
+horizontal_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=1193954767]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack:"
+horizontal_alignment = 1
+
+[node name="AttackValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=302060672]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "11"
+horizontal_alignment = 1
+
+[node name="PowerLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=399061375]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Magic Power:"
+horizontal_alignment = 1
+
+[node name="PowerValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=1198285978]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12"
+horizontal_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=56159614]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Defense:"
+horizontal_alignment = 1
+
+[node name="DefenseValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=745184224]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+horizontal_alignment = 1
+
+[node name="SpiritLabel" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=1882516549]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Spirit:"
+horizontal_alignment = 1
+
+[node name="SpiritValue" type="Label" parent="ClassSelection/ClassPanel/StatsContainer" unique_id=911158526]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12"
+horizontal_alignment = 1
+
+[node name="TraitsContainer" type="VBoxContainer" parent="ClassSelection/ClassPanel" unique_id=1889248927]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 300.0
+offset_right = 660.0
+offset_bottom = 900.0
+
+[node name="RoleSelector" type="Control" parent="ClassSelection/ClassPanel" unique_id=1493907145]
+clip_contents = true
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.24700001
+offset_bottom = 0.2899933
+
+[node name="CharImage" type="TextureRect" parent="ClassSelection" unique_id=1145218582]
+offset_left = 1260.0
+offset_top = 130.0
+offset_right = 1620.0
+offset_bottom = 790.0
+texture = SubResource("AtlasTexture_50a5s")
+
+[node name="CharNameLabel" type="Label" parent="ClassSelection" unique_id=518328899]
+offset_left = 1260.0
+offset_top = 840.0
+offset_right = 1620.0
+offset_bottom = 928.0
+theme_override_font_sizes/font_size = 64
+text = "Chris"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PrevCharButton" type="Button" parent="ClassSelection" unique_id=1468240901]
+offset_left = 1230.0
+offset_top = 945.0
+offset_right = 1290.0
+offset_bottom = 1005.0
+text = "<"
+
+[node name="StartButton" type="Button" parent="ClassSelection" unique_id=916211019]
+offset_left = 1320.0
+offset_top = 945.0
+offset_right = 1560.0
+offset_bottom = 1005.0
+text = "START"
+
+[node name="NextCharButton" type="Button" parent="ClassSelection" unique_id=518603094]
+offset_left = 1590.0
+offset_top = 945.0
+offset_right = 1650.0
+offset_bottom = 1005.0
+text = ">"

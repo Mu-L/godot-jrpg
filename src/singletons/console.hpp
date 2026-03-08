@@ -44,6 +44,18 @@ namespace rl {
         void stop_logging() {
             m_logger->flush();
             m_stop = true;
+            if (m_stop.exchange(true, std::memory_order_relaxed))
+                return;
+
+            m_gui_console = nullptr;
+
+            if (m_logger != nullptr)
+                m_logger->flush();
+
+            // Godot unloads the extension library before application termination.
+            // Explicitly shutting down spdlog avoids late TLS finalizers from
+            // third-party logging internals running after unload on macOS.
+            spdlog::shutdown();
         }
 
         void init_loggers() requires std::same_as<TContext, godot::RichTextLabel> {
@@ -75,12 +87,13 @@ namespace rl {
                 new spdlog::logger{ "custom_callback_logger",
                                     { stdout_sink, stderr_sink, callbk_sink } });
 
-            using namespace std::chrono_literals;
-            spdlog::flush_every(0.25s);
+            m_logger->flush_on(spdlog::level::err);
         }
 
         template <typename... TArgs>
         void print(fmt::format_string<TArgs...> format_str, TArgs&&... args) {
+            if (m_stop.load(std::memory_order_relaxed) || m_logger == nullptr)
+                return;
             m_logger->info(format_str, std::forward<TArgs>(args)...);
         }
 
