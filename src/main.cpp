@@ -1,4 +1,7 @@
 #include "main.hpp"
+
+#include <godot_cpp/classes/v_box_container.hpp>
+
 #include "core/assert.hpp"
 #include "util/conversions.hpp"
 #include "util/engine.hpp"
@@ -21,12 +24,12 @@ namespace rl {
             this->set_editable_instance(m_main_menu, true);
 
             //grab a reference to the "PlayButton" node in the "MainMenu" scene
-            auto play_button_node = get_node<godot::Button>(tog::node::name::MainMenu::PlayButton);
+            auto play_button_node = m_main_menu->get_node<godot::Button>(tog::node::name::MainMenu::PlayButton);
             //attach our callback function "load_character_creator_scene" to the "pressed" signal event of the respective node
             signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(play_button_node) <=> signal_callback(this, load_character_creator_scene);
 
             //grab a reference to the "QuitButton" node in the "MainMenu" scene
-            auto quit_button_node = get_node<godot::Button>(tog::node::name::MainMenu::QuitButton);
+            auto quit_button_node = m_main_menu->get_node<godot::Button>(tog::node::name::MainMenu::QuitButton);
             //attach our callback function "stop_application" to the "pressed" signal event of the respective node
             signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(quit_button_node) <=> signal_callback(this, stop_application);
 

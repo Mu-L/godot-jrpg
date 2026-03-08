@@ -14,7 +14,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_sl1te")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=117788443]
+[node name="MainMenuButtonContainer" type="VBoxContainer" parent="." unique_id=117788443]
 layout_mode = 0
 offset_left = 840.0
 offset_top = 540.0
@@ -22,23 +22,23 @@ offset_right = 1080.0
 offset_bottom = 1040.0
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1516345949]
+[node name="PlayButton" type="Button" parent="MainMenuButtonContainer" unique_id=1516345949]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=639128353]
+[node name="SettingsButton" type="Button" parent="MainMenuButtonContainer" unique_id=639128353]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 
-[node name="CreditButton" type="Button" parent="VBoxContainer" unique_id=1391705786]
+[node name="CreditButton" type="Button" parent="MainMenuButtonContainer" unique_id=1391705786]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Credits
 "
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=895946517]
+[node name="QuitButton" type="Button" parent="MainMenuButtonContainer" unique_id=895946517]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit
