@@ -43,12 +43,9 @@ namespace tog {
         static void _bind_methods() {
             //expose callback to godot system and let godot system know how to call it
             godot::ClassDB::bind_method(godot::D_METHOD("role_scroll", "event"), &ClassSelection::role_scroll);
+            //rl::bind_member_function(ClassSelection, role_scroll);
             rl::bind_member_function(ClassSelection, create_world);
-
-            godot::ClassDB::bind_method(godot::D_METHOD("on_next_character"), &ClassSelection::on_next_character);
             rl::bind_member_function(ClassSelection, on_next_character);
-
-            godot::ClassDB::bind_method(godot::D_METHOD("on_prev_character"), &ClassSelection::on_prev_character);
             rl::bind_member_function(ClassSelection, on_prev_character);
 
         }
@@ -95,8 +92,7 @@ namespace tog {
         godot::Label* m_char_name_label = nullptr;
         godot::TextureRect* m_char_image = nullptr;
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
-        //stores Dictionary entries like {"image": <Ref<Texture2D>, "id": <StringName>}
-        godot::Array m_char_port_container;
+        godot::Array m_char_port_container; //stores Dictionary entries like {"image": <Ref<Texture2D>, "id": <StringName>}
         std::vector<Slot> m_slots;
         std::vector<godot::Button*> m_items;
         godot::LocalVector<godot::Ref<ClassStats>> m_roles;

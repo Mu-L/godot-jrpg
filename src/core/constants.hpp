@@ -11,8 +11,8 @@ namespace tog::inline constants {
         namespace scene {
 
             namespace ui {
-                constexpr inline auto MainMenu{ "res://scenes/ui/main_menu.tscn" };
-                constexpr inline auto CharacterCreator{ "res://scenes/ui/character_creator.tscn" };
+                constexpr inline auto MainMenu          { "res://scenes/ui/main_menu.tscn" };
+                constexpr inline auto CharacterCreator  { "res://scenes/ui/character_creator.tscn" };
             }
 
         }

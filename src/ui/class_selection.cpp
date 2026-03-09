@@ -7,7 +7,7 @@
 namespace tog {
 
     ClassSelection::ClassSelection() {
-        //reserve buffer for all class selections up front
+        //reserve enough space in the array for all the roles
         m_roles.reserve(static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT));
         //create a resource for each class
         for (const int i : std::views::iota(0, static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))) {
