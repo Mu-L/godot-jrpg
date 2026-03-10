@@ -55,7 +55,7 @@ namespace rl {
         //grab the scene tree
         godot::SceneTree* tree = get_tree();
         //deattach the "main_menu" scene and then load the player creator
-        const godot::Error err = tree->change_scene_to_file(tog::path::scene::ui::CharacterCreator);
+        tree->change_scene_to_file(tog::path::scene::ui::CharacterCreator);
     }
 
     [[signal_slot]]

@@ -31,6 +31,10 @@ namespace tog::inline constants {
                 constexpr inline auto pressed   { "pressed" };
             }
 
+            namespace Control {
+                constexpr inline auto gui_input   { "gui_input" };
+            }
+
         }
 
         namespace name {
@@ -40,6 +44,24 @@ namespace tog::inline constants {
                 constexpr inline auto SettingsButton{ "%SettingsButton" };
                 constexpr inline auto CreditButton  { "%CreditButton" };
                 constexpr inline auto QuitButton    { "%QuitButton" };
+            }
+
+            namespace CharacterCreator {
+                constexpr inline auto RoleContainer { "%RoleContainer" };
+                constexpr inline auto StatsContainer{ "%StatsContainer" };
+                constexpr inline auto CharNameLabel { "%CharNameLabel" };
+                constexpr inline auto CharImage     { "%CharImage" };
+                constexpr inline auto PrevCharButton{ "%PrevCharButton" };
+                constexpr inline auto NextCharButton{ "%NextCharButton" };
+                constexpr inline auto StartButton   { "%StartButton" };
+
+                constexpr inline auto HealthValue   { "%HealthValue" };
+                constexpr inline auto ShinsuValue   { "%ShinsuValue" };
+                constexpr inline auto AttackValue   { "%AttackValue" };
+                constexpr inline auto PowerValue    { "%PowerValue" };
+                constexpr inline auto DefenseValue  { "%DefenseValue" };
+                constexpr inline auto SpiritValue   { "%SpiritValue" };
+
             }
 
         }

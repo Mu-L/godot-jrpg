@@ -9,44 +9,46 @@ namespace tog {
     ClassSelection::ClassSelection() {
         //reserve enough space in the array for all the roles
         m_roles.reserve(static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT));
-        //create a resource for each class
+
+        //create a resource "ClassStats" for each role we defined
         for (const int i : std::views::iota(0, static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))) {
-            m_roles.push_back(memnew(ClassStats));
-            m_roles[i]->set_class_name(i);
+            auto* new_class_stats_resource = memnew(ClassStats);
+            new_class_stats_resource->set_class_name(i);
+            m_roles.push_back(new_class_stats_resource);
         }
+
+
     }
 
     void ClassSelection::_ready() {
-        //grab references to the related nodes needed
-        m_role_selector = rl::gdcast<godot::Control>(this->get_parent()->find_child("RoleSelector", true, false));
-        m_stat_container = rl::gdcast<godot::GridContainer>(this->get_parent()->find_child("StatsContainer", true, false));
-        m_char_name_label = rl::gdcast<godot::Label>(this->get_parent()->find_child("CharNameLabel", true, false));
+        //grab references to the respective nodes needed
+        m_role_selector         = get_node<godot::Control>      (tog::node::name::CharacterCreator::RoleContainer);
+        m_char_name_label       = get_node<godot::Label>        (tog::node::name::CharacterCreator::CharNameLabel);
+        m_char_image            = get_node<godot::TextureRect>  (tog::node::name::CharacterCreator::CharImage);
+        m_hp_value_label        = get_node<godot::Label>        (tog::node::name::CharacterCreator::HealthValue);
+        m_shinsu_value_label    = get_node<godot::Label>        (tog::node::name::CharacterCreator::ShinsuValue);
+        m_attack_value_label    = get_node<godot::Label>        (tog::node::name::CharacterCreator::AttackValue);
+        m_magic_value_label     = get_node<godot::Label>        (tog::node::name::CharacterCreator::PowerValue);
+        m_defense_value_label   = get_node<godot::Label>        (tog::node::name::CharacterCreator::DefenseValue);
+        m_spirit_value_label    = get_node<godot::Label>        (tog::node::name::CharacterCreator::SpiritValue);
+        auto* start_button_node = get_node<godot::Button>       (tog::node::name::CharacterCreator::StartButton);
+        auto* next_char_button  = get_node<godot::Button>       (tog::node::name::CharacterCreator::NextCharButton);
+        auto* next_prev_button  = get_node<godot::Button>       (tog::node::name::CharacterCreator::PrevCharButton);
+
+        //make the font bigger in label
         m_char_name_label->add_theme_font_size_override("font_size", 64);
-        m_char_image = rl::gdcast<godot::TextureRect>(this->get_parent()->find_child("CharImage", true, false));
 
-        //bind button to appropriate callback functions
+        //-- bind button to appropriate callback functions
         //bind callback to transition to the player home screen
-        auto* startButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("StartButton", true, false));
-        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(startButtonNode) <=> signal_callback(this, create_world);
+        rl::signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(start_button_node) <=> signal_callback(this, create_world);
         //bind callback to advance to the next character image from button press down event
-        auto* nextCharacterButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("NextCharButton", true, false));
-        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(nextCharacterButtonNode) <=> signal_callback(this, on_next_character);
+        rl::signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(next_char_button) <=> signal_callback(this, on_next_character);
         //bind callback to decrease to the prev character image from button press down event
-        auto* prevCharacterButtonNode = rl::gdcast<godot::Button>(this->get_parent()->find_child("PrevCharButton", true, false));
-        rl::signal<rl::event::buttonPressed>::connect<godot::Button>(prevCharacterButtonNode) <=> signal_callback(this, on_prev_character);
-
-        //cache
-        hp_value_label = m_stat_container->get_node<godot::Label>("%HealthValue");
-        mp_value_label = m_stat_container->get_node<godot::Label>("%ShinsuValue");
-        attack_value_label = m_stat_container->get_node<godot::Label>("%AttackValue");
-        magic_value_label = m_stat_container->get_node<godot::Label>("%PowerValue");
-        defense_value_label = m_stat_container->get_node<godot::Label>("%DefenseValue");
-        spirit_value_label = m_stat_container->get_node<godot::Label>("%SpiritValue");
-
+        rl::signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(next_prev_button) <=> signal_callback(this, on_prev_character);
         //bind the signal for "gui_input" to be called our function
-        rl::signal<rl::event::gui_input>::connect<godot::Control>(m_role_selector) <=> signal_callback(this, role_scroll);
+        rl::signal<tog::node::signal::Control::gui_input>::connect<godot::Control>(m_role_selector) <=> signal_callback(this, role_scroll);
 
-        //initialize buttons to be used as selectables
+        //initialize new godot::buttons and attach them to the RoleContainer node
         for (int i{0}; i < m_visible_slots; i++) {
             auto* new_button = memnew(godot::Button);
             m_role_selector->add_child(new_button);
@@ -54,6 +56,7 @@ namespace tog {
             m_role_selector->set_editable_instance(new_button, true);
             m_items.push_back(new_button);
         }
+
         //compute slot positions around in a semi circle along y
         compute_slots();
         assign_items_to_slots(0);
@@ -98,12 +101,12 @@ namespace tog {
 
     void ClassSelection::update_stats_display() {
         int selected_index = (m_curr_role_index + 2) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-        hp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_hp()));
-        mp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_mp()));
-        attack_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_attack()));
-        magic_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_magic_power()));
-        defense_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_defense()));
-        spirit_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_spirit_power()));
+        m_hp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_hp()));
+        m_shinsu_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_mp()));
+        m_attack_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_attack()));
+        m_magic_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_magic_power()));
+        m_defense_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_defense()));
+        m_spirit_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_spirit_power()));
     }
 
     void ClassSelection::rotate_right() {
