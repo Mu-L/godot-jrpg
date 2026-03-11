@@ -24,7 +24,7 @@ namespace tog {
         GDCLASS(ClassSelection, godot::Node);
 
     private:
-        struct Slot {
+        struct ElementTransform {
             godot::Vector2 position{};
             float scale{};
             int z{};
@@ -35,18 +35,17 @@ namespace tog {
         ~ClassSelection() override = default;
 
         void _ready() override;
-        void _physics_process(double delta) override;
 
-        [[signal_slot]] void role_scroll(const godot::Ref<godot::InputEvent>& event);
+        void role_scroll(const godot::Ref<godot::InputEvent>& event);
 
     protected:
+
         static void _bind_methods() {
             //expose callback to godot system and let godot system know how to call it
             rl::bind_member_function(ClassSelection, role_scroll);
             rl::bind_member_function(ClassSelection, create_world);
             rl::bind_member_function(ClassSelection, on_next_character);
             rl::bind_member_function(ClassSelection, on_prev_character);
-
         }
 
     private:
@@ -70,7 +69,6 @@ namespace tog {
         void update_character_display();
         //load character images into an array from files
         void load_character_images();
-
         //change to "home_scene" (creates the game world)
         void create_world();
 
@@ -90,7 +88,7 @@ namespace tog {
         godot::TextureRect* m_char_image{nullptr};
         rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
         godot::Array m_char_port_container; //stores Dictionary entries like {"image": <Ref<Texture2D>, "id": <StringName>}
-        std::vector<Slot> m_slots;
+        std::vector<ElementTransform> m_slots;
         std::vector<godot::Button*> m_items;
         godot::LocalVector<godot::Ref<ClassStats>> m_roles;
     };

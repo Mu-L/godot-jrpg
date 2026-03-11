@@ -1,8 +1,9 @@
 #include "class_selection.hpp"
 
-#include <godot_cpp/classes/dir_access.hpp>
+#include "resources/character/character_portrait.hpp"
+#include "util/utility.hpp"
 
-#include "../resources/character/character_portrait.hpp"
+#include <godot_cpp/classes/dir_access.hpp>
 
 namespace tog {
 
@@ -16,8 +17,6 @@ namespace tog {
             new_class_stats_resource->set_class_name(i);
             m_roles.push_back(new_class_stats_resource);
         }
-
-
     }
 
     void ClassSelection::_ready() {
@@ -51,9 +50,7 @@ namespace tog {
         //initialize new godot::buttons and attach them to the RoleContainer node
         for (int i{0}; i < m_visible_slots; i++) {
             auto* new_button = memnew(godot::Button);
-            m_role_selector->add_child(new_button);
-            new_button->set_owner(m_role_selector);
-            m_role_selector->set_editable_instance(new_button, true);
+            tog::attach_child_to_parent(m_role_selector, new_button);
             m_items.push_back(new_button);
         }
 
@@ -67,19 +64,15 @@ namespace tog {
         update_character_display();
     }
 
-    void ClassSelection::_physics_process(double delta) {
-
-    }
-
     void ClassSelection::compute_slots() {
         m_slots.clear();
-        float angles[5]   = { -0.6f, -0.3f, 0.0f, 0.3f, 0.6f };
-        float scales[5]   = { 0.6f, 0.8f, 1.2f, 0.8f, 0.6f };
-        int  z_values[5] = { 0, 1, 2, 1, 0 };
+        float angles[5]     = { -0.6f, -0.3f, 0.0f, 0.3f, 0.6f };
+        float scales[5]     = { 0.6f, 0.8f, 1.2f, 0.8f, 0.6f };
+        int  z_values[5]    = { 0, 1, 2, 1, 0 };
         // calculate the position of where the items will show up
         auto center = godot::Vector2(680.0/2 - m_radius, 230/2);
-        for (int i{0}; i < m_visible_slots; i++) {
-            Slot s;
+        for (const int i : std::views::iota(0,m_visible_slots)) {
+            ElementTransform s;
             s.position = center + godot::Vector2(m_radius, 0).rotated(angles[i]);
             s.position.x = 680.0f/2.0f;
             s.scale = scales[i];
@@ -89,7 +82,7 @@ namespace tog {
     }
 
     void ClassSelection::assign_items_to_slots(int offset) {
-        for (int i{0}; i < m_visible_slots; i++) {
+        for (const int i : std::views::iota(0,m_visible_slots)) {
             int role_index = (offset + i) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
             m_items[i]->set_text(m_roles[role_index]->get_class_name_str().data());
             m_items[i]->set_scale(godot::Vector2(m_slots[i].scale, m_slots[i].scale));
@@ -111,23 +104,19 @@ namespace tog {
 
     void ClassSelection::rotate_right() {
         //compute new offset going to the right
-        int new_offset = (m_curr_role_index + 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+        m_curr_role_index = (m_curr_role_index + 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
         //animate_rotation(new_offset);
         //assign role to items with respect to offset
-        m_curr_role_index = new_offset % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-        assign_items_to_slots(new_offset);
-        //update the position of the role we are currently at now
+        assign_items_to_slots(m_curr_role_index);
     }
 
     void ClassSelection::rotate_left() {
         //compute new offset going to the left
-        int new_offset = (m_curr_role_index - 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+        m_curr_role_index = (m_curr_role_index - 1 + static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))
+        % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
         //animate_rotation(new_offset);
-        if (new_offset <= -1)
-            new_offset = static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT) - 1;
         //assign role to items with respect to offset
-        m_curr_role_index = new_offset;
-        assign_items_to_slots(new_offset);
+        assign_items_to_slots(m_curr_role_index);
     }
 
     void ClassSelection::animate_rotation() {
@@ -135,20 +124,12 @@ namespace tog {
     }
 
     void ClassSelection::on_next_character() {
-        //advance the currently selected offset by 1
-        if (m_char_port_container.is_empty()) {
-            return;
-        }
         // advance index and wrap around, similar to rotate_right()
         m_curr_char_image_index = ( m_curr_char_image_index + 1 ) % static_cast<int>(m_char_port_container.size());
         update_character_display();
     }
 
     void ClassSelection::on_prev_character() {
-        //decrease the currently selected offset by 1
-        if (m_char_port_container.is_empty()) {
-            return;
-        }
         // decrement and wrap around; add size before modulo to avoid negatives
         m_curr_char_image_index = (m_curr_char_image_index - 1 + static_cast<int>(m_char_port_container.size())) % static_cast<int>(m_char_port_container.size());
         update_character_display();
@@ -156,8 +137,7 @@ namespace tog {
 
     void ClassSelection::update_character_display() {
         m_console->print("The current character image index is: {} ", m_curr_char_image_index);
-        godot::Dictionary entry = m_char_port_container[m_curr_char_image_index];
-        if (m_char_image) {
+        if (godot::Dictionary entry{m_char_port_container[m_curr_char_image_index]}; m_char_image) {
             m_char_image->set_texture(entry["image"]);
             m_char_name_label->set_text(entry["id"]);
         }
@@ -208,7 +188,6 @@ namespace tog {
         const godot::Error err = tree->change_scene_to_file(rl::path::ui::HomeScene);
     }
 
-    [[signal_slot]]
     void ClassSelection::role_scroll(const godot::Ref<godot::InputEvent> &event) {
         godot::Ref<godot::InputEventMouseButton> mb = event;
         if (mb.is_valid() && mb->is_pressed() && mb->get_button_index() == godot::MouseButton::MOUSE_BUTTON_LEFT) {

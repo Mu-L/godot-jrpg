@@ -1,11 +1,13 @@
 #include "main.hpp"
 
-#include <godot_cpp/classes/v_box_container.hpp>
-
-#include "core/assert.hpp"
-#include "util/conversions.hpp"
+#include "core/constants.hpp"
 #include "util/engine.hpp"
+#include "util/utility.hpp"
 #include "util/input.hpp"
+#include "util/bind.hpp"
+#include "util/scene.hpp"
+
+#include "godot_cpp/classes/button.hpp"
 
 namespace rl {
 
@@ -16,12 +18,8 @@ namespace rl {
         m_main_menu = main_menu.instantiate();
 
         if (m_main_menu) {
-            //attach scene to current node as sub child
-            this->add_child(m_main_menu);
-            //set the owner of the newly loaded scene to the current node
-            m_main_menu->set_owner(this);
-            //makes the newly loaded scene show up in the editor for debugging
-            this->set_editable_instance(m_main_menu, true);
+            //attach scene to current node as child
+            tog::attach_child_to_parent(this, m_main_menu);
 
             //grab a reference to the "PlayButton" node in the "MainMenu" scene
             auto play_button_node = m_main_menu->get_node<godot::Button>(tog::node::name::MainMenu::PlayButton);
