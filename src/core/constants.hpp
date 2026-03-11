@@ -19,6 +19,21 @@ namespace tog::inline constants {
 
         namespace resource {
 
+            namespace characters {
+                constexpr inline auto dir_path  { "res://assets/resources/characters/" };
+            }
+
+            namespace player {
+                constexpr inline auto main_player  { "res://assets/resources/player/main_player.tres" };
+            }
+
+
+
+        }
+
+        namespace folder {
+
+
         }
 
     }

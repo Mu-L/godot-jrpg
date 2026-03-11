@@ -1,11 +1,11 @@
 #pragma once
 
+#include "util/bind.hpp"
+#include "core/attributes.hpp"
+
 #include <godot_cpp/classes/resource.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/core/class_db.hpp>
-
-#include "util/bind.hpp"
-#include "core/attributes.hpp"
 
 namespace tog {
 
@@ -41,15 +41,15 @@ namespace tog {
         [[property]] void set_spirit_power(const int value);
         [[property]] void set_class_name(const int value);
 
-        [[property]] int get_max_hp()                       { return m_max_hp; }
-        [[property]] int get_max_mp()                       { return m_max_mp; }
-        [[property]] int get_attack()                       { return m_attack; }
-        [[property]] int get_magic_power()                  { return m_magic_power; }
-        [[property]] int get_defense()                      { return m_defence; }
-        [[property]] int get_spirit_power()                 { return m_spirit_power; }
-        [[property]] int get_class_name()                   { return static_cast<int>(m_class_name); }
+        [[property]] int get_max_hp() const         { return m_max_hp; }
+        [[property]] int get_max_mp() const         { return m_max_mp; }
+        [[property]] int get_attack() const         { return m_attack; }
+        [[property]] int get_magic_power() const    { return m_magic_power; }
+        [[property]] int get_defense() const        { return m_defence; }
+        [[property]] int get_spirit_power() const   { return m_spirit_power; }
+        [[property]] int get_class_name() const     { return static_cast<int>(m_class_name); }
 
-        std::string get_class_name_str() { return names[static_cast<int>(m_class_name)]; }
+        godot::String get_class_name_str() { return names[static_cast<int>(m_class_name)]; }
 
     protected:
         static void _bind_methods() {
@@ -79,12 +79,12 @@ namespace tog {
         int m_magic_power = 10;
         int m_defence = 10;
         int m_spirit_power = 10;
-        std::vector<std::string> names = {
+        std::vector<godot::String> names = {
             "FISHERMAN",
-            "SPEAR_BEARER",
+            "SPEAR BEARER",
             "SCOUT",
-            "LIGHT_BEARER",
-            "WAVE_CONTROLLER",
+            "LIGHT BEARER",
+            "WAVE CONTROLLER",
             "JEONSULSA",
             "HWAYEOMSA",
             "DANSULSA",

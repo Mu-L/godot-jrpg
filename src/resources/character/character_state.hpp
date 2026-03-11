@@ -4,6 +4,7 @@
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/packed_string_array.hpp>
+#include <utility>
 
 #include "util/bind.hpp"
 #include "core/attributes.hpp"
@@ -16,6 +17,7 @@ namespace tog {
 
     public:
         godot::String get_name()      { return m_name; }
+        godot::String get_role()      { return m_role; }
         int get_level()         const { return m_level; }
         int get_xp()            const { return m_xp; }
         int get_hp()            const { return m_hp; }
@@ -25,7 +27,8 @@ namespace tog {
         int get_magic_power()   const { return m_magic_power; }
         int get_spirit_power()  const { return m_spirit_power; }
 
-        void set_name(godot::String value)   { m_name = value; }
+        void set_name(godot::String value)   { m_name = std::move(value); }
+        void set_role(godot::String value)   { m_role = std::move(value); }
         void set_level(int value)            { m_level = value; }
         void set_xp(int value)               { m_xp = value; }
         void set_hp(int value)               { m_hp = value; }
@@ -36,10 +39,22 @@ namespace tog {
         void set_spirit_power(int value)     { m_spirit_power = value; }
 
     protected:
-        static void _bind_methods();
+        static void _bind_methods() {
+            rl::bind_property(CharacterState, name, godot::String);
+            rl::bind_property(CharacterState, role, godot::String);
+            rl::bind_property(CharacterState, level, int);
+            rl::bind_property(CharacterState, xp, int);
+            rl::bind_property(CharacterState, hp, int);
+            rl::bind_property(CharacterState, shinsu, int);
+            rl::bind_property(CharacterState, defense, int);
+            rl::bind_property(CharacterState, attack, int);
+            rl::bind_property(CharacterState, magic_power, int);
+            rl::bind_property(CharacterState, spirit_power, int);
+        }
 
     private:
-        godot::String m_name{};
+        godot::String m_name{"default"};
+        godot::String m_role{"default"};
         int m_level = 1;
         int m_xp = 0;
         int m_hp = 0;

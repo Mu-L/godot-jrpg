@@ -1,9 +1,11 @@
 #include "class_selection.hpp"
 
 #include "resources/character/character_portrait.hpp"
+#include "resources/character/character_state.hpp"
 #include "util/utility.hpp"
 
 #include <godot_cpp/classes/dir_access.hpp>
+
 
 namespace tog {
 
@@ -84,7 +86,7 @@ namespace tog {
     void ClassSelection::assign_items_to_slots(int offset) {
         for (const int i : std::views::iota(0,m_visible_slots)) {
             int role_index = (offset + i) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-            m_items[i]->set_text(m_roles[role_index]->get_class_name_str().data());
+            m_items[i]->set_text(m_roles[role_index]->get_class_name_str());
             m_items[i]->set_scale(godot::Vector2(m_slots[i].scale, m_slots[i].scale));
             m_items[i]->set_position(m_slots[i].position);
             m_items[i]->set_z_index(m_slots[i].z);
@@ -146,13 +148,24 @@ namespace tog {
     void ClassSelection::load_character_images() {
         //grab the resource loader object
         godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
-        //todo: find a better way to do a look up the project directory from anywhere
-        const std::filesystem::path character_resource_path{"/Users/abi/CLionProjects/godot-jrpg/project/assets/resources/characters"};
+        //open the directory
+        auto characters_dir = godot::DirAccess::open(tog::path::resource::characters::dir_path);
+        //check if the directory we opened is vaild
+        if (characters_dir.is_null()) {
+            m_console->print("character_tileset directory failed to open");
+            assertion(false, "character_tileset directory failed to open");
+        }
 
-        //iterate through the directory and load "character images" from the file
-        for (const auto& file : std::filesystem::directory_iterator{character_resource_path}) {
-            //check if resource loaded correctly
-            godot::Ref<tog::CharacterPortraitSheet> loaded_char_sheet = resource_loader->load(file.path().c_str());
+        //we dont care about hidden files and navigational directories
+        characters_dir->set_include_hidden(false);
+        characters_dir->set_include_navigational(false);
+
+        //iterate through all the files and extract the character subimage and name from them
+        for (const godot::String& file : characters_dir->get_files()) {
+            //build full file path
+            auto curr_file = tog::path::resource::characters::dir_path + file;
+            //load the resource
+            godot::Ref<tog::CharacterPortraitSheet> loaded_char_sheet = resource_loader->load(curr_file);
             assertion(loaded_char_sheet != nullptr, "Character Portrait Sheet Does Not Exist");
 
             //load character images into container
@@ -176,12 +189,21 @@ namespace tog {
     }
 
     void ClassSelection::create_world() {
+        //load the main_player resource
+        godot::Ref<tog::CharacterState> main_player =  godot::ResourceLoader::get_singleton()->load(tog::path::resource::player::main_player);
+        main_player.instantiate(); //clean node
         //save player data to a resource
-
+        main_player->set_name(godot::Dictionary(m_char_port_container[m_curr_char_image_index])["id"]);
+        main_player->set_role(m_roles[m_curr_role_index]->get_class_name_str());
+        main_player->set_hp(m_roles[m_curr_role_index]->get_max_hp());
+        main_player->set_shinsu(m_roles[m_curr_role_index]->get_max_mp());
+        main_player->set_attack(m_roles[m_curr_role_index]->get_attack());
+        main_player->set_defense(m_roles[m_curr_role_index]->get_defense());
+        main_player->set_magic_power(m_roles[m_curr_role_index]->get_magic_power());
+        main_player->set_spirit_power(m_roles[m_curr_role_index]->get_spirit_power());
+        //todo: save the character portarit too
         //save the player stats
-
-        //save the character portarit too
-
+        godot::ResourceSaver::get_singleton()->save(main_player,tog::path::resource::player::main_player);
         //change the scene to the
         m_console->print("Changing Scene to home_scene");
         godot::SceneTree* tree = get_tree();

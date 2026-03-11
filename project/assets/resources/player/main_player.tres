@@ -1,3 +1,11 @@
-[gd_resource type="CharacterState" format=3 uid="uid://ih5b7ppcudvs"]
+[gd_resource type="CharacterState" format=3]
 
 [resource]
+name = "Becky"
+role = "FISHERMAN"
+hp = 12
+shinsu = 10
+defense = 12
+attack = 12
+magic_power = 10
+spirit_power = 10
