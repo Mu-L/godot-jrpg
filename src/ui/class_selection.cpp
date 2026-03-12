@@ -4,7 +4,7 @@
 #include "resources/character/character_state.hpp"
 #include "util/utility.hpp"
 
-#include <godot_cpp/classes/dir_access.hpp>
+#include "godot_cpp/classes/dir_access.hpp"
 
 
 namespace tog {
@@ -190,20 +190,20 @@ namespace tog {
 
     void ClassSelection::create_world() {
         //load the main_player resource
-        godot::Ref<tog::CharacterState> main_player =  godot::ResourceLoader::get_singleton()->load(tog::path::resource::player::main_player);
-        main_player.instantiate(); //clean node
+        godot::Ref<tog::CharacterState> main_player_state =  godot::ResourceLoader::get_singleton()->load(tog::path::resource::player::main_player);
+        main_player_state.instantiate(); //clean node
         //save player data to a resource
-        main_player->set_name(godot::Dictionary(m_char_port_container[m_curr_char_image_index])["id"]);
-        main_player->set_role(m_roles[m_curr_role_index]->get_class_name_str());
-        main_player->set_hp(m_roles[m_curr_role_index]->get_max_hp());
-        main_player->set_shinsu(m_roles[m_curr_role_index]->get_max_mp());
-        main_player->set_attack(m_roles[m_curr_role_index]->get_attack());
-        main_player->set_defense(m_roles[m_curr_role_index]->get_defense());
-        main_player->set_magic_power(m_roles[m_curr_role_index]->get_magic_power());
-        main_player->set_spirit_power(m_roles[m_curr_role_index]->get_spirit_power());
+        main_player_state->set_name(godot::Dictionary(m_char_port_container[m_curr_char_image_index])["id"]);
+        main_player_state->set_role(m_roles[m_curr_role_index]->get_class_name_str());
+        main_player_state->set_hp(m_roles[m_curr_role_index]->get_max_hp());
+        main_player_state->set_shinsu(m_roles[m_curr_role_index]->get_max_mp());
+        main_player_state->set_attack(m_roles[m_curr_role_index]->get_attack());
+        main_player_state->set_defense(m_roles[m_curr_role_index]->get_defense());
+        main_player_state->set_magic_power(m_roles[m_curr_role_index]->get_magic_power());
+        main_player_state->set_spirit_power(m_roles[m_curr_role_index]->get_spirit_power());
         //todo: save the character portarit too
         //save the player stats
-        godot::ResourceSaver::get_singleton()->save(main_player,tog::path::resource::player::main_player);
+        godot::ResourceSaver::get_singleton()->save(main_player_state,tog::path::resource::player::main_player);
         //change the scene to the
         m_console->print("Changing Scene to home_scene");
         godot::SceneTree* tree = get_tree();

@@ -18,6 +18,15 @@
 #include <ranges>
 #include <filesystem>
 
+/*
+ *  todo: violating single responsibility rule
+ *  currently this class is used to cycle between two different arrays to represent a selected class/character
+ *  as well as to load/save the main player character state
+ *  it also creates default selectable pickable "classes" and "characters"
+ *  could probably find a better way to handle this
+ *  but before doing this i probably wanna make the "class" selection a bit cleaner
+ */
+
 namespace tog {
 
     class ClassSelection : public godot::Node {

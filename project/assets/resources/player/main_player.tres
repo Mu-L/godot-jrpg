@@ -1,7 +1,7 @@
 [gd_resource type="CharacterState" format=3]
 
 [resource]
-name = "Becky"
+name = "Kumar"
 role = "FISHERMAN"
 hp = 12
 shinsu = 10
