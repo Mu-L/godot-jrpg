@@ -14,13 +14,14 @@ namespace tog {
         HomeController();
         ~HomeController() override = default;
 
-        void _ready() override {
-
-
-        };
+        void _ready() override;
 
     protected:
         static void _bind_methods() {}
+
+    private:
+
+
 
     private:
         godot::Ref<tog::CharacterState> m_main_player_state{};
