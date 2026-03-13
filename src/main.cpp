@@ -30,7 +30,6 @@ namespace rl {
             auto quit_button_node = m_main_menu->get_node<godot::Button>(tog::node::name::MainMenu::QuitButton);
             //attach our callback function "stop_application" to the "pressed" signal event of the respective node
             signal<tog::node::signal::BaseButton::pressed>::connect<godot::Button>(quit_button_node) <=> signal_callback(this, stop_application);
-
         } else {
             assertion(m_main_menu, "MainMenu scene does not exist");
         }
@@ -57,8 +56,7 @@ namespace rl {
     }
 
     [[signal_slot]]
-    void Main::stop_application() const
-    {
+    void Main::stop_application() const {
         m_console->print("Stopping Application .... ");
         get_tree()->get_root()->propagate_notification(godot::Window::NOTIFICATION_WM_CLOSE_REQUEST);
         get_tree()->quit(0);
