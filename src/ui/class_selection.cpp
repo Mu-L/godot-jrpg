@@ -1,11 +1,16 @@
 #include "class_selection.hpp"
 
+#include "core/constants.hpp"
 #include "resources/character/character_portrait.hpp"
 #include "resources/character/character_state.hpp"
 #include "util/utility.hpp"
 
+#include <godot_cpp/classes/scene_tree.hpp>
 #include "godot_cpp/classes/dir_access.hpp"
+#include "godot_cpp/classes/input_event_mouse_button.hpp"
+#include "godot_cpp/classes/resource_saver.hpp"
 
+#include <ranges>
 
 namespace tog {
 
@@ -96,29 +101,12 @@ namespace tog {
 
     void ClassSelection::update_stats_display() {
         int selected_index = (m_curr_role_index + 2) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-        m_hp_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_hp()));
-        m_shinsu_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_max_mp()));
-        m_attack_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_attack()));
-        m_magic_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_magic_power()));
-        m_defense_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_defense()));
-        m_spirit_value_label->set_text(godot::String::num_int64(m_roles[selected_index]->get_spirit_power()));
-    }
-
-    void ClassSelection::rotate_right() {
-        //compute new offset going to the right
-        m_curr_role_index = (m_curr_role_index + 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-        //animate_rotation(new_offset);
-        //assign role to items with respect to offset
-        assign_items_to_slots(m_curr_role_index);
-    }
-
-    void ClassSelection::rotate_left() {
-        //compute new offset going to the left
-        m_curr_role_index = (m_curr_role_index - 1 + static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))
-        % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
-        //animate_rotation(new_offset);
-        //assign role to items with respect to offset
-        assign_items_to_slots(m_curr_role_index);
+        m_hp_value_label->set_text      (godot::String::num_int64(m_roles[selected_index]->get_max_hp()));
+        m_shinsu_value_label->set_text  (godot::String::num_int64(m_roles[selected_index]->get_max_mp()));
+        m_attack_value_label->set_text  (godot::String::num_int64(m_roles[selected_index]->get_attack()));
+        m_magic_value_label->set_text   (godot::String::num_int64(m_roles[selected_index]->get_magic_power()));
+        m_defense_value_label->set_text (godot::String::num_int64(m_roles[selected_index]->get_defense()));
+        m_spirit_value_label->set_text  (godot::String::num_int64(m_roles[selected_index]->get_spirit_power()));
     }
 
     void ClassSelection::animate_rotation() {
@@ -193,21 +181,22 @@ namespace tog {
         godot::Ref<tog::CharacterState> main_player_state =  godot::ResourceLoader::get_singleton()->load(tog::path::resource::player::main_player);
         main_player_state.instantiate(); //clean node
         //save player data to a resource
-        main_player_state->set_name(godot::Dictionary(m_char_port_container[m_curr_char_image_index])["id"]);
-        main_player_state->set_role(m_roles[m_curr_role_index]->get_class_name_str());
-        main_player_state->set_hp(m_roles[m_curr_role_index]->get_max_hp());
-        main_player_state->set_shinsu(m_roles[m_curr_role_index]->get_max_mp());
-        main_player_state->set_attack(m_roles[m_curr_role_index]->get_attack());
-        main_player_state->set_defense(m_roles[m_curr_role_index]->get_defense());
-        main_player_state->set_magic_power(m_roles[m_curr_role_index]->get_magic_power());
-        main_player_state->set_spirit_power(m_roles[m_curr_role_index]->get_spirit_power());
-        //todo: save the character portarit too
+        auto index = (m_curr_role_index + 2) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
+        main_player_state->set_name         (godot::Dictionary(m_char_port_container[m_curr_char_image_index])["id"]);
+        main_player_state->set_image         (godot::Dictionary(m_char_port_container[m_curr_char_image_index])["image"]);
+        main_player_state->set_role         (m_roles[index]->get_class_name_str());
+        main_player_state->set_hp           (m_roles[index]->get_max_hp());
+        main_player_state->set_shinsu       (m_roles[index]->get_max_mp());
+        main_player_state->set_attack       (m_roles[index]->get_attack());
+        main_player_state->set_defense      (m_roles[index]->get_defense());
+        main_player_state->set_magic_power  (m_roles[index]->get_magic_power());
+        main_player_state->set_spirit_power (m_roles[index]->get_spirit_power());
+        //todo: save the character portrait too
         //save the player stats
         godot::ResourceSaver::get_singleton()->save(main_player_state,tog::path::resource::player::main_player);
         //change the scene to the
         m_console->print("Changing Scene to home_scene");
-        godot::SceneTree* tree = get_tree();
-        const godot::Error err = tree->change_scene_to_file(rl::path::ui::HomeScene);
+        get_tree()->change_scene_to_file(tog::path::scene::ui::HomeScene);
     }
 
     void ClassSelection::role_scroll(const godot::Ref<godot::InputEvent> &event) {
@@ -218,12 +207,13 @@ namespace tog {
             if (local.x > half) {
                 //going right
                 m_console->print("Rotating right");
-                rotate_right();
+                m_curr_role_index = (m_curr_role_index + 1) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
             } else {
                 //going left
                 m_console->print("Rotating left");
-                rotate_left();
+                m_curr_role_index = (m_curr_role_index - 1 + static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT)) % static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT);
             }
+            assign_items_to_slots(m_curr_role_index);
         }
     }
 

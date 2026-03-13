@@ -1,13 +1,10 @@
 #pragma once
 
+#include "util/bind.hpp"
 #include <godot_cpp/classes/resource.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
-#include <godot_cpp/variant/packed_string_array.hpp>
-#include <utility>
-
-#include "util/bind.hpp"
-#include "core/attributes.hpp"
+#include <godot_cpp/classes/texture2d.hpp>
 
 namespace tog {
 
@@ -18,6 +15,7 @@ namespace tog {
     public:
         godot::String get_name()      { return m_name; }
         godot::String get_role()      { return m_role; }
+        godot::Ref<godot::Texture2D> get_image() { return m_image; }
         int get_level()         const { return m_level; }
         int get_xp()            const { return m_xp; }
         int get_hp()            const { return m_hp; }
@@ -29,6 +27,7 @@ namespace tog {
 
         void set_name(godot::String value)   { m_name = std::move(value); }
         void set_role(godot::String value)   { m_role = std::move(value); }
+        void set_image(const godot::Ref<godot::Texture2D>& value)   { m_image = value; }
         void set_level(int value)            { m_level = value; }
         void set_xp(int value)               { m_xp = value; }
         void set_hp(int value)               { m_hp = value; }
@@ -50,6 +49,7 @@ namespace tog {
             rl::bind_property(CharacterState, attack, int);
             rl::bind_property(CharacterState, magic_power, int);
             rl::bind_property(CharacterState, spirit_power, int);
+            rl::bind_property(CharacterState, image, godot::Ref<godot::Texture2D>);
         }
 
     private:
@@ -63,7 +63,7 @@ namespace tog {
         int m_attack = 0;
         int m_magic_power = 0;
         int m_spirit_power = 0;
-
+        godot::Ref<godot::Texture2D> m_image{};
         godot::Array m_spells;
         godot::Dictionary inventory; //item_id -> item_quantity
 

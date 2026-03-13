@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://b74vh8sp86qfc"]
 
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_rui7c"]
+[ext_resource type="Texture2D" uid="uid://b5xueyngjp0p5" path="res://assets/art/character_tilesets/character_set_3.png" id="2_cyx2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86thw"]
+atlas = ExtResource("2_cyx2i")
+region = Rect2(341, 0, 341, 512)
 
 [node name="HomeScene" type="HomeController" unique_id=1052583600]
 
@@ -49,6 +54,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "Kakara"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,6 +73,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -85,6 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "11"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -103,6 +111,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "14"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,6 +130,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -139,6 +149,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -157,6 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "14"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -175,6 +187,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -286,6 +299,135 @@ layout_mode = 0
 offset_left = 320.0
 offset_right = 1600.0
 offset_bottom = 900.0
+
+[node name="BuffContainer" type="HBoxContainer" parent="SceneControl/CharacterPanel" unique_id=1085193158]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 448.0
+offset_bottom = 64.0
+
+[node name="TeamName" type="Label" parent="SceneControl/CharacterPanel" unique_id=602947622]
+layout_mode = 0
+offset_left = 496.0
+offset_right = 784.0
+offset_bottom = 64.0
+text = "team name here"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="TeamLevel" type="Label" parent="SceneControl/CharacterPanel" unique_id=816379353]
+layout_mode = 0
+offset_left = 784.0
+offset_right = 848.0
+offset_bottom = 64.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="TeamMember3Image" type="TextureRect" parent="SceneControl/CharacterPanel" unique_id=1684648403]
+layout_mode = 0
+offset_top = 356.0
+offset_right = 256.0
+offset_bottom = 740.0
+expand_mode = 1
+
+[node name="TeamMember3" type="Label" parent="SceneControl/CharacterPanel" unique_id=54913753]
+layout_mode = 0
+offset_top = 772.0
+offset_right = 256.0
+offset_bottom = 836.0
+text = "TeamMember3"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="TeamMember1Image" type="TextureRect" parent="SceneControl/CharacterPanel" unique_id=1576837799]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 324.0
+offset_right = 512.0
+offset_bottom = 708.0
+expand_mode = 1
+
+[node name="TeamMember1" type="Label" parent="SceneControl/CharacterPanel" unique_id=641383720]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 708.0
+offset_right = 512.0
+offset_bottom = 772.0
+text = "TeamMember1"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="MainPlayerImage" type="TextureRect" parent="SceneControl/CharacterPanel" unique_id=1623267208]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = 260.0
+offset_right = 768.0
+offset_bottom = 644.0
+texture = SubResource("AtlasTexture_86thw")
+expand_mode = 1
+
+[node name="MainPlayer" type="Label" parent="SceneControl/CharacterPanel" unique_id=1207143627]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = 644.0
+offset_right = 768.0
+offset_bottom = 708.0
+text = "Kakara"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="TeamMember2Image" type="TextureRect" parent="SceneControl/CharacterPanel" unique_id=1940142380]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 324.0
+offset_right = 1024.0
+offset_bottom = 708.0
+expand_mode = 1
+
+[node name="TeamMember2" type="Label" parent="SceneControl/CharacterPanel" unique_id=1785545887]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 708.0
+offset_right = 1024.0
+offset_bottom = 772.0
+text = "TeamMember2"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="TeamMember4Image" type="TextureRect" parent="SceneControl/CharacterPanel" unique_id=385111860]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 388.0
+offset_right = 1280.0
+offset_bottom = 772.0
+expand_mode = 1
+
+[node name="TeamMember4" type="Label" parent="SceneControl/CharacterPanel" unique_id=1992495580]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 772.0
+offset_right = 1280.0
+offset_bottom = 836.0
+text = "TeamMember4"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
 
 [node name="OptionsContainer" type="HBoxContainer" parent="SceneControl" unique_id=1654013772]
 layout_mode = 0

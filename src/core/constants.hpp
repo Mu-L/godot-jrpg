@@ -13,6 +13,8 @@ namespace tog::inline constants {
             namespace ui {
                 constexpr inline auto MainMenu          { "res://scenes/ui/main_menu.tscn" };
                 constexpr inline auto CharacterCreator  { "res://scenes/ui/character_creator.tscn" };
+                constexpr inline auto HomeScene         { "res://scenes/ui/home_scene.tscn" };
+
             }
 
         }
@@ -77,6 +79,19 @@ namespace tog::inline constants {
                 constexpr inline auto DefenseValue  { "%DefenseValue" };
                 constexpr inline auto SpiritValue   { "%SpiritValue" };
 
+            }
+
+            namespace HomeScene {
+                constexpr inline auto NameValue         { "%NameValue" };
+                constexpr inline auto LevelValue        { "%LevelValue" };
+                constexpr inline auto HPValue           { "%HPValue" };
+                constexpr inline auto ShinsuValue       { "%ShinsuValue" };
+                constexpr inline auto AttackValue       { "%AttackValue" };
+                constexpr inline auto DefenseValue      { "%DefenseValue" };
+                constexpr inline auto MagicPowerValue   { "%MagicPowerValue" };
+                constexpr inline auto SpiritPowerValue  { "%SpiritPowerValue" };
+                constexpr inline auto MainPlayer        { "%MainPlayer" };
+                constexpr inline auto MainPlayerImage   { "%MainPlayerImage" };
             }
 
         }

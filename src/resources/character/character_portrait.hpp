@@ -1,15 +1,14 @@
 #pragma once
 
+#include "util/bind.hpp"
+#include "core/attributes.hpp"
+
 #include <godot_cpp/classes/resource.hpp>
 #include <godot_cpp/classes/texture2d.hpp>
-#include <godot_cpp/classes/atlas_texture.hpp>
 #include <godot_cpp/variant/array.hpp>
-#include <godot_cpp/variant/rect2.hpp>
 #include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
-#include "util/bind.hpp"
-#include "core/attributes.hpp"
 
 namespace tog {
 
