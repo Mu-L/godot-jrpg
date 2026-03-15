@@ -59,6 +59,12 @@ namespace tog::inline constants {
                 constexpr inline auto called_set_cursor_shape_to_arrow     { "called_set_cursor_shape_to_arrow" };
             }
 
+            namespace TacticsPawnResource {
+                constexpr inline auto pawn_moved    { "pawn_moved" };
+                constexpr inline auto pawn_attacked { "pawn_attacked" };
+                constexpr inline auto turn_ended    { "turn_ended" };
+            }
+
         }
 
         namespace name {
