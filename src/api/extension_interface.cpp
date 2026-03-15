@@ -7,6 +7,8 @@
 #include "api/extension_interface.hpp"
 
 #include "main.hpp"
+#include "entity/battle/tactics_pawn.h"
+#include "entity/battle/tactics_control.h"
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -19,6 +21,7 @@
 #include "resources/character/character_portrait.hpp"
 #include "resources/game/class_stats.hpp"
 #include "resources/character/character_state.hpp"
+#include "resources/battle/tactics_control_resource.h"
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
@@ -69,7 +72,12 @@ namespace rl {
         //Util
         godot::ClassDB::register_class<console>();
 
+        //Battle
+        godot::ClassDB::register_class<tog::TacticsPawn>();
+        godot::ClassDB::register_class<tog::TacticsControl>();
+
         //Resources
+        godot::ClassDB::register_class<tog::TacticsControlResource>();
         godot::ClassDB::register_class<tog::ClassStats>();
         godot::ClassDB::register_class<tog::CharacterPortraitSheet>();
         godot::ClassDB::register_class<tog::CharacterState>();

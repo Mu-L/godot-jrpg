@@ -29,12 +29,9 @@ namespace tog::inline constants {
                 constexpr inline auto main_player  { "res://assets/resources/player/main_player.tres" };
             }
 
+            namespace battle {
 
-
-        }
-
-        namespace folder {
-
+            }
 
         }
 
@@ -50,6 +47,16 @@ namespace tog::inline constants {
 
             namespace Control {
                 constexpr inline auto gui_input   { "gui_input" };
+            }
+
+            namespace TacticsControlResource {
+                constexpr inline auto called_set_actions_menu_visibility   { "called_set_actions_menu_visibility" };
+                constexpr inline auto called_move_camera                   { "called_move_camera" };
+                constexpr inline auto called_select_pawn                   { "called_select_pawn" };
+                constexpr inline auto called_select_pawn_to_attack         { "called_select_pawn_to_attack" };
+                constexpr inline auto called_select_new_location           { "called_select_new_location" };
+                constexpr inline auto called_set_cursor_shape_to_move      { "called_set_cursor_shape_to_move" };
+                constexpr inline auto called_set_cursor_shape_to_arrow     { "called_set_cursor_shape_to_arrow" };
             }
 
         }
@@ -95,6 +102,10 @@ namespace tog::inline constants {
             }
 
         }
+
+    }
+
+    namespace signals {
 
     }
 

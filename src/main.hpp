@@ -2,7 +2,6 @@
 
 #include "util/bind.hpp"
 #include "singletons/console.hpp"
-
 #include "godot_cpp/classes/node.hpp"
 
 namespace rl {
