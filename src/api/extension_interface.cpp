@@ -7,8 +7,10 @@
 #include "api/extension_interface.hpp"
 
 #include "main.hpp"
-#include "entity/battle/tactics_pawn.h"
-#include "entity/battle/tactics_control.h"
+#include "entity/battle/tactics_pawn.hpp"
+#include "entity/battle/tactics_control.hpp"
+#include "entity/battle/tactics_participant.hpp"
+#include "entity/battle/tactics_player.hpp"
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -21,7 +23,8 @@
 #include "resources/character/character_portrait.hpp"
 #include "resources/game/class_stats.hpp"
 #include "resources/character/character_state.hpp"
-#include "resources/battle/tactics_control_resource.h"
+#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/input_capture_resource.hpp"
 #include "singletons/console.hpp"
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
@@ -75,10 +78,16 @@ namespace rl {
         //Battle
         godot::ClassDB::register_class<tog::TacticsPawn>();
         godot::ClassDB::register_class<tog::TacticsControl>();
+        godot::ClassDB::register_class<tog::TacticsParticipant>();
+        godot::ClassDB::register_class<tog::TacticsPlayer>();
 
         //Resources
+        //battle
         godot::ClassDB::register_class<tog::TacticsControlResource>();
+        godot::ClassDB::register_class<tog::InputCaptureResource>();
+        //game
         godot::ClassDB::register_class<tog::ClassStats>();
+        //character
         godot::ClassDB::register_class<tog::CharacterPortraitSheet>();
         godot::ClassDB::register_class<tog::CharacterState>();
 

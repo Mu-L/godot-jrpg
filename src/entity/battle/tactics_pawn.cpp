@@ -1,1 +1,1 @@
-#include "tactics_pawn.h"
+#include "tactics_pawn.hpp"
