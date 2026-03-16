@@ -6,7 +6,7 @@
 namespace tog {
 
     //Mapping
-    //inline const static godot::Array CAMERA_PAN_KEYS = {"camera_left", "camera_right", "camera_forward", "camera_backwards" };
+    //const godot::Array CAMERA_PAN_KEYS = {"camera_left", "camera_right", "camera_forward", "camera_backwards" };
     //The maximum length for the ray used in mouse cursor position casting
     inline static constexpr int RAY_LENGTH = 10000;
     //Deadzone for controller input to prevent unintended movement from small inputs
