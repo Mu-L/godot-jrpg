@@ -37,7 +37,7 @@ namespace tog {
             rl::signal_binding<TacticsCameraResource, tog::node::signal::TacticsCameraResource::called_rotate_camera>::add<float>();
         }
 
-    private:
+    public:
         //MOVEMENT
         //Movement speed of the camera
         int m_move_speed;
@@ -86,7 +86,7 @@ namespace tog {
         //Flag to indicate if camera is snapping to quadrant
         bool m_is_snapping_to_quad = false;
         //Flag to indicate if camera is rotating
-        bool m_is_rotating = false;
+        inline static bool m_is_rotating = false;
         //Vertical pitch rotation
         inline static int m_x_rotation = 0;
         //Horizontal twist rotation
