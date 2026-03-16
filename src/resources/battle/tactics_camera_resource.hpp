@@ -10,9 +10,9 @@
 namespace tog {
 
     //Delay before panning starts
-    inline static float constexpr PANNING_DELAY = 0.95f;
+    inline static constexpr float PANNING_DELAY = 0.95f;
     //Timeout for free look mode
-    inline static float constexpr FREE_LOOK_TIMEOUT = 0.05;
+    inline static constexpr float FREE_LOOK_TIMEOUT = 0.05;
 
     class TacticsCameraResource : public godot::Resource {
         GDCLASS(TacticsCameraResource, godot::Resource);

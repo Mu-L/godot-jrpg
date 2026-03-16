@@ -16,6 +16,7 @@ namespace tog {
 
     public:
 
+        InputCaptureService() = default;
         InputCaptureService(tog::InputCaptureResource* resource) : m_input_capture_resource(resource) {};
         ~InputCaptureService() override = default;
 

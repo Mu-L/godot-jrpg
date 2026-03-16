@@ -1,16 +1,15 @@
-#include <gdextension_interface.h>
-#include <godot_cpp/classes/engine.hpp>
-#include <godot_cpp/core/memory.hpp>
-#include <godot_cpp/variant/string_name.hpp>
-#include <godot_cpp/core/class_db.hpp>
-
 #include "api/extension_interface.hpp"
+#include <gdextension_interface.h>
 
 #include "main.hpp"
+
 #include "entity/battle/tactics_pawn.hpp"
 #include "entity/battle/tactics_control.hpp"
 #include "entity/battle/tactics_participant.hpp"
 #include "entity/battle/tactics_player.hpp"
+#include "entity/battle/input_capture.hpp"
+#include "entity/battle/input_capture_service.hpp"
+#include "entity/battle/tactics_camera_movement_service.hpp"
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -20,19 +19,29 @@
 #include "entity/controller/player_controller.hpp"
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
+
 #include "resources/character/character_portrait.hpp"
 #include "resources/game/class_stats.hpp"
 #include "resources/character/character_state.hpp"
 #include "resources/battle/tactics_control_resource.hpp"
 #include "resources/battle/input_capture_resource.hpp"
+#include "resources/battle/tactics_camera_resource.hpp"
+#include "resources/battle/tactics_pawn_resource.hpp"
+
 #include "singletons/console.hpp"
+
 #include "ui/class_selection.hpp"
 #include "ui/main_dialog.hpp"
 #include "ui/home_controller.hpp"
+
 #include "util/engine.hpp"
 
-#include <type_traits>
+#include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/core/memory.hpp>
+#include <godot_cpp/variant/string_name.hpp>
+#include <godot_cpp/core/class_db.hpp>
 
+#include <type_traits>
 
 namespace rl {
 
@@ -67,24 +76,33 @@ namespace rl {
         godot::ClassDB::register_class<rl::Level>();
         godot::ClassDB::register_class<rl::MainDialog>();
 
+        //Main
+        godot::ClassDB::register_class<rl::Main>();
+
         //UI Related
         godot::ClassDB::register_class<tog::ClassSelection>();
-        godot::ClassDB::register_class<rl::Main>();
         godot::ClassDB::register_class<tog::HomeController>();
 
         //Util
         godot::ClassDB::register_class<console>();
 
         //Battle
-        godot::ClassDB::register_class<tog::TacticsPawn>();
+        godot::ClassDB::register_class<tog::InputCapture>();
+        godot::ClassDB::register_class<tog::InputCaptureService>();
+        godot::ClassDB::register_class<tog::TacticsCameraMovementService>();
+        godot::ClassDB::register_class<tog::TacticsCameraService>();
         godot::ClassDB::register_class<tog::TacticsControl>();
         godot::ClassDB::register_class<tog::TacticsParticipant>();
+        godot::ClassDB::register_class<tog::TacticsPawn>();
         godot::ClassDB::register_class<tog::TacticsPlayer>();
 
         //Resources
         //battle
-        godot::ClassDB::register_class<tog::TacticsControlResource>();
         godot::ClassDB::register_class<tog::InputCaptureResource>();
+        godot::ClassDB::register_class<tog::TacticsCameraResource>();
+        godot::ClassDB::register_class<tog::TacticsControlResource>();
+        godot::ClassDB::register_class<tog::TacticsPawnResource>();
+
         //game
         godot::ClassDB::register_class<tog::ClassStats>();
         //character

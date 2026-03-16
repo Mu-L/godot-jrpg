@@ -1,6 +1,5 @@
 #include "input_capture_service.hpp"
 
-#include "../../../extern/godot-engine/core/input/input_enums.h"
 #include "resources/battle/tactics_camera_resource.hpp"
 
 #include "godot_cpp/classes/input_event_mouse_button.hpp"
