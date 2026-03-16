@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../../../extern/godot-engine/thirdparty/icu4c/common/unicode/urename.h"
 #include "core/constants.hpp"
 #include "util/bind.hpp"
 #include "godot_cpp/classes/resource.hpp"

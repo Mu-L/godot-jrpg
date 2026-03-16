@@ -44,7 +44,7 @@ namespace tog {
             rl::bind_property(InputCaptureResource, camera_zoom_speed, float);
         }
 
-    private:
+    public:
         //Indicates whether joystick input is currently active
         inline static bool m_is_joystick = false;
         //Indicates whether free look input is currently active

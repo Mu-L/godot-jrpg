@@ -65,6 +65,12 @@ namespace tog::inline constants {
                 constexpr inline auto turn_ended    { "turn_ended" };
             }
 
+            namespace TacticsCameraResource {
+                constexpr inline auto called_move_camera    { "called_move_camera" };
+                constexpr inline auto called_free_look      { "called_free_look" };
+                constexpr inline auto called_rotate_camera  { "called_rotate_camera" };
+            }
+
         }
 
         namespace name {
