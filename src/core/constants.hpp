@@ -124,6 +124,12 @@ namespace tog::inline constants {
                 constexpr inline auto MainPlayerImage   { "%MainPlayerImage" };
             }
 
+            namespace RayCasting {
+                constexpr inline auto Neighbors   { "Neighbors" };
+            }
+
+
+
         }
 
     }
