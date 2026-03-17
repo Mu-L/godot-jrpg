@@ -6,7 +6,7 @@
 namespace tog {
 
     //Mapping
-    //const godot::Array CAMERA_PAN_KEYS = {"camera_left", "camera_right", "camera_forward", "camera_backwards" };
+    inline constexpr const char* CAMERA_PAN_KEYS[] = {"camera_left", "camera_right", "camera_forward", "camera_backwards"};
     //The maximum length for the ray used in mouse cursor position casting
     inline static constexpr int RAY_LENGTH = 10000;
     //Deadzone for controller input to prevent unintended movement from small inputs
@@ -65,7 +65,7 @@ namespace tog {
         godot::Vector2 m_mouse_position = { 0, 0 };
 
         //The current direction of the camera
-        //inline static godot::Vector2 m_cam_direction = { 0, 0 };
+        inline static godot::Vector2 m_cam_direction = { 0, 0 };
 
         //The sensitivity of mouse input
         float m_mouse_sensitivity = 1.0f;

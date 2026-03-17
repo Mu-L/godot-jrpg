@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" path="res://assets/art/character_tilesets/character_set_1.png" id="1_8r2fb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86thw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r2fb"]
 atlas = ExtResource("1_8r2fb")
-region = Rect2(682, 512, 341, 512)
+region = Rect2(0, 512, 341, 512)
 
 [resource]
-name = "Shibisu"
+name = "Rak"
 role = "SCOUT"
 hp = 10
 shinsu = 12
@@ -15,4 +15,4 @@ defense = 10
 attack = 11
 magic_power = 12
 spirit_power = 12
-image = SubResource("AtlasTexture_86thw")
+image = SubResource("AtlasTexture_8r2fb")

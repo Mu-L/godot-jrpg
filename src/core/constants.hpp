@@ -49,6 +49,17 @@ namespace tog::inline constants {
                 constexpr inline auto gui_input   { "gui_input" };
             }
 
+            namespace TacticsParticipantResource {
+                constexpr inline auto called_skip_turn   { "called_skip_turn" };
+            }
+
+            namespace TacticsArenaResource {
+                constexpr inline auto called_reset_all_tile_markers     { "called_reset_all_tile_markers" };
+                constexpr inline auto called_get_pathfinding_tilestack  { "called_get_pathfinding_tilestack" };
+                constexpr inline auto called_mark_hover_tile            { "called_mark_hover_tile" };
+            }
+
+
             namespace TacticsControlResource {
                 constexpr inline auto called_set_actions_menu_visibility   { "called_set_actions_menu_visibility" };
                 constexpr inline auto called_move_camera                   { "called_move_camera" };

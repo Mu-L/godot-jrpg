@@ -27,6 +27,7 @@
 #include "resources/battle/input_capture_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_pawn_resource.hpp"
+#include "resources/battle/tactics_participant_resource.hpp"
 
 #include "singletons/console.hpp"
 
@@ -42,6 +43,7 @@
 #include <godot_cpp/core/class_db.hpp>
 
 #include <type_traits>
+
 
 namespace rl {
 
@@ -101,6 +103,7 @@ namespace rl {
         godot::ClassDB::register_class<tog::InputCaptureResource>();
         godot::ClassDB::register_class<tog::TacticsCameraResource>();
         godot::ClassDB::register_class<tog::TacticsControlResource>();
+        godot::ClassDB::register_class<tog::TacticsParticipantResource>();
         godot::ClassDB::register_class<tog::TacticsPawnResource>();
 
         //game

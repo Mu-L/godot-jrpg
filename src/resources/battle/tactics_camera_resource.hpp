@@ -40,7 +40,7 @@ namespace tog {
     public:
         //MOVEMENT
         //Movement speed of the camera
-        int m_move_speed;
+        int m_move_speed{};
         //Rotation speed of the camera
         inline static float m_rot_speed = 10/10.f;
         //Smoothing factor for camera movement

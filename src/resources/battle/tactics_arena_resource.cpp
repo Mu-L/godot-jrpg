@@ -1,0 +1,1 @@
+#include "tactics_arena_resource.hpp"
