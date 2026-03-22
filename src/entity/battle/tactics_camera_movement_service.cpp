@@ -5,13 +5,13 @@ tog::TacticsCameraMovementService::TacticsCameraMovementService(TacticsCameraRes
     m_tactics_control_resource = control_resource;
 }
 
-void tog::TacticsCameraMovementService::move_camera(float h, float v, bool joystick, float delta, TacticsCamera *camera) {
+void tog::TacticsCameraMovementService::move_camera(float h, float v, bool joystick, float delta, TacticsCamera*camera) {
 
     if (m_tactics_camera_resource->m_target || (h == 0 && v == 0)) {
         return;
     }
 
-    //float angle = (godot::Math::atan2(-h,v)) +
+    //float angle = (godot::Math::atan2(-h,v))
 
 }
 

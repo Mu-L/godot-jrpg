@@ -10,6 +10,7 @@
 #include "entity/battle/input_capture.hpp"
 #include "entity/battle/input_capture_service.hpp"
 #include "entity/battle/tactics_camera_movement_service.hpp"
+#include "entity/battle/tactics_camera_service.hpp"
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -50,6 +51,7 @@ namespace rl {
     static inline console* console_singleton{ nullptr };
 
     void initialize_static_objects() {
+        //register static object to be looked up as a singleton
         console_singleton = memnew(console);
         rl::engine::get()->register_singleton("Console", console::get());
     }
@@ -57,6 +59,9 @@ namespace rl {
     void teardown_static_objects() {
         rl::engine::get()->unregister_singleton("Console");
         memdelete(console_singleton);
+
+        //delete the "TacticsCameraService" static object
+       tog::TacticsCameraService::cleanup();
     }
 
     void initialize_extension_module(godot::ModuleInitializationLevel init_level) {
@@ -115,8 +120,7 @@ namespace rl {
         initialize_static_objects();
     }
 
-    void uninitialize_extension_module(godot::ModuleInitializationLevel init_level)
-    {
+    void uninitialize_extension_module(godot::ModuleInitializationLevel init_level) {
         if (init_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE)
             return;
 

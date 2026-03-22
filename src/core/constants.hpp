@@ -14,7 +14,6 @@ namespace tog::inline constants {
                 constexpr inline auto MainMenu          { "res://scenes/ui/main_menu.tscn" };
                 constexpr inline auto CharacterCreator  { "res://scenes/ui/character_creator.tscn" };
                 constexpr inline auto HomeScene         { "res://scenes/ui/home_scene.tscn" };
-
             }
 
         }
@@ -30,7 +29,8 @@ namespace tog::inline constants {
             }
 
             namespace battle {
-
+                constexpr inline auto tactics_control_resource  { "res://assets/resources/battle/tactics_control_resource.tres" };
+                constexpr inline auto tactics_tile_raycast      { "res://assets/resources/battle/tactics_tile_raycast.tres" };
             }
 
         }
@@ -125,7 +125,8 @@ namespace tog::inline constants {
             }
 
             namespace RayCasting {
-                constexpr inline auto Neighbors   { "Neighbors" };
+                constexpr inline auto Neighbors { "Neighbors" };
+                constexpr inline auto Above     { "Above" };
             }
 
 

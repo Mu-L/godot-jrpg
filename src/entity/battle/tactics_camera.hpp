@@ -6,6 +6,7 @@
 
 #include "godot_cpp/classes/character_body3d.hpp"
 #include "godot_cpp/core/class_db.hpp"
+#include "godot_cpp/classes/camera3d.hpp"
 
 
 namespace tog {
@@ -17,26 +18,37 @@ namespace tog {
      * [code]follow[/code]: "Focus" mode [i](programmatically called)[/i][br][br]
      * Resource Interface: [TacticsCameraResource] -- Service: [TacticsCameraService]
      */
+
+    class TacticsCameraResource;
+    class TacticsCameraService;
+
     class TacticsCamera : public godot::CharacterBody3D {
         GDCLASS(TacticsCamera, godot::CharacterBody3D);
 
     public:
 
-        TacticsCamera();
+        TacticsCamera() = default;
         ~TacticsCamera() override = default;
 
         void _ready() override {};
 
     protected:
 
-        static void _bind_methods() {
-
-        }
+        static void _bind_methods() {}
 
     public:
-        TacticsCameraResource* m_tactics_camera_resource = nullptr;
-        TacticsControlResource* m_tactics_control_resource = nullptr;
-        //inline static TacticsCameraService m_tactics_camera_service;
+        //Resource containing camera attributes and signals
+        tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
+        //Resource containing control settings
+        tog::TacticsControlResource* m_tactics_control_resource = nullptr;
+        //Service handling camera operations
+        tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
+        //Node for horizontal rotation
+        godot::Node3D* m_t_pivot = nullptr;
+        //Node for vertical rotation
+        godot::Node3D* m_p_pivot = nullptr;
+        //Main camera node
+        godot::Camera3D* m_camera = nullptr;
     };
 
 }
