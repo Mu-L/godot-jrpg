@@ -16,6 +16,7 @@ namespace tog {
 
     class TacticsCameraMovementService;
     class TacticsCameraZoomService;
+    class TacticsCameraRotationService;
 
     class TacticsCameraService : public godot::Object {
         GDCLASS(TacticsCameraService, godot::Object);
@@ -26,9 +27,13 @@ namespace tog {
         static inline tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
         static inline void cleanup() { delete m_static_inst; }
 
-        TacticsCameraService() = default;
+        void setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera);
+        void process(float delta, tog::TacticsCamera* tactics_camera);
+
+    private:
+        TacticsCameraService() { m_static_inst = this; }
         TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
-        ~TacticsCameraService() override = default;
+        ~TacticsCameraService() override { delete m_static_inst; m_static_inst = nullptr; };
 
     protected:
         void static _bind_methods() {}

@@ -29,10 +29,10 @@ namespace tog {
         void set_camera_rotate_speed(float value)   { m_camera_rotate_speed = value; }
         void set_camera_zoom_speed(float value)     { m_camera_zoom_speed = value; }
 
-        float get_mouse_sensitivity(float value) const      { return m_mouse_sensitivity; }
-        float get_camera_move_speed(float value) const      { return m_camera_move_speed; }
-        float get_camera_rotate_speed(float value) const    { return m_camera_rotate_speed; }
-        float get_camera_zoom_speed(float value) const      { return m_camera_zoom_speed; }
+        float get_mouse_sensitivity() const      { return m_mouse_sensitivity; }
+        float get_camera_move_speed() const      { return m_camera_move_speed; }
+        float get_camera_rotate_speed() const    { return m_camera_rotate_speed; }
+        float get_camera_zoom_speed() const      { return m_camera_zoom_speed; }
 
     protected:
 
