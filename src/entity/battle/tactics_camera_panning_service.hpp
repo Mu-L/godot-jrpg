@@ -6,6 +6,8 @@
 
 namespace tog {
 
+    class TacticsCamera;
+
     //Service class for handling camera panning in tactical view
     class TacticsCameraPanningService : public godot::Object {
         GDCLASS(TacticsCameraPanningService, godot::Object);

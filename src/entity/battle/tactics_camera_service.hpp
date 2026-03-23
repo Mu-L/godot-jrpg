@@ -17,6 +17,7 @@ namespace tog {
     class TacticsCameraMovementService;
     class TacticsCameraZoomService;
     class TacticsCameraRotationService;
+    class TacticsCameraPanningService;
 
     class TacticsCameraService : public godot::Object {
         GDCLASS(TacticsCameraService, godot::Object);
