@@ -63,7 +63,7 @@ namespace tog {
             rl::signal_binding<TacticsControlResource, tog::node::signal::TacticsControlResource::called_set_cursor_shape_to_arrow>::add<>();
         }
 
-    private:
+    public:
         //property - indicates whether the current input device is a joystick
         bool m_is_joystick{false};
         //property - indicates whether the input hints are folded

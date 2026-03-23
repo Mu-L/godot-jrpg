@@ -1,8 +1,10 @@
 #pragma once
 
 #include "godot_cpp/classes/node.hpp"
+#include "godot_cpp/classes/standard_material3d.hpp"
 
 #include <concepts>
+
 
 namespace tog {
 
@@ -23,6 +25,15 @@ namespace tog {
         //makes the newly loaded scene show up in the editor for debugging
         parent->set_editable_instance(child, editable);
         return child;
+    }
+
+    static godot::Ref<godot::StandardMaterial3D> make_colored_material(const godot::Color &color) {
+        godot::Ref<godot::StandardMaterial3D> mat;
+        mat.instantiate();
+        mat->set_albedo(color);
+        mat->set_roughness(0.9);
+        mat->set_metallic(0.0);
+        return mat;
     }
 
 }

@@ -1,0 +1,1 @@
+#include "tactics_camera_panning_service.hpp"
