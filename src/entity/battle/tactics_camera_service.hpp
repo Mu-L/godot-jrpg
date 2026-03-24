@@ -24,8 +24,8 @@ namespace tog {
 
     public:
         static tog::TacticsCameraService* get();
-        static inline tog::TacticsCameraService* reset();
-        static inline tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
+        static tog::TacticsCameraService* reset();
+        static tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
         static inline void cleanup() { delete m_static_inst; }
 
         void setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera);
@@ -39,13 +39,14 @@ namespace tog {
     protected:
         void static _bind_methods() {}
 
-    private:
+    public:
         tog::TacticsCameraResource*         m_tactics_camera_resource = nullptr;
         tog::TacticsControlResource*        m_tactics_control_resource = nullptr;
         tog::TacticsCameraMovementService*  m_tactics_camera_movement_service = nullptr;
         tog::TacticsCameraZoomService*      m_tactics_zoom_service = nullptr;
         tog::TacticsCameraRotationService*  m_tactics_camera_rotation_service = nullptr;
         tog::TacticsCameraPanningService*   m_tactics_camera_panning_service = nullptr;
+    private:
         static inline tog::TacticsCameraService* m_static_inst = nullptr;
 
     };

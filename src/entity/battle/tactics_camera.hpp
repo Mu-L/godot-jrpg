@@ -30,10 +30,21 @@ namespace tog {
         TacticsCamera() = default;
         ~TacticsCamera() override = default;
 
-        void _ready() override {};
+        void _ready() override;
+        //Process camera service
+        void _process(double p_delta) override;
+        //Moves the camera based on input
+        void move_camera(float h, float v, bool joystick, float delta);
+        //Rotates the camera
+        void rotate_camera(float delta, int twist = 0);
+        //Enables free look mode
+        void free_look(float delta);
+        //Zooms the camera
+        static void zoom_camera(float zoom_increment);
+        //Resets camera zoom to default
+        void reset_cam_zoom();
 
     protected:
-
         static void _bind_methods() {}
 
     public:
@@ -42,7 +53,7 @@ namespace tog {
         //Resource containing control settings
         tog::TacticsControlResource* m_tactics_control_resource = nullptr;
         //Service handling camera operations
-        tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
+        inline static tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
         //Node for horizontal rotation
         godot::Node3D* m_t_pivot = nullptr;
         //Node for vertical rotation

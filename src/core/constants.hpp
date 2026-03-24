@@ -59,7 +59,6 @@ namespace tog::inline constants {
                 constexpr inline auto called_mark_hover_tile            { "called_mark_hover_tile" };
             }
 
-
             namespace TacticsControlResource {
                 constexpr inline auto called_set_actions_menu_visibility   { "called_set_actions_menu_visibility" };
                 constexpr inline auto called_move_camera                   { "called_move_camera" };
@@ -127,6 +126,12 @@ namespace tog::inline constants {
             namespace RayCasting {
                 constexpr inline auto Neighbors { "Neighbors" };
                 constexpr inline auto Above     { "Above" };
+            }
+
+            namespace BattleTest {
+                constexpr inline auto TwistPivot{ "$TwistPivot" };
+                constexpr inline auto PitchPivot{ "$TwistPivot/PitchPivot" };
+                constexpr inline auto Camera3D{ "$TwistPivot/PitchPivot/Camera3D" };
             }
 
 

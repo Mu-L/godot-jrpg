@@ -37,8 +37,36 @@ bool tog::TacticsCameraPanningService::do_pan(float h, float v, float delta, tog
 }
 
 bool tog::TacticsCameraPanningService::refresh_cam_viewpoint_size(tog::TacticsCamera* tactics_camera) {
-    godot::Vector2i vp_size = tactics_camera->get_viewport()->get_visible_rect().get_size();
-    if (vp_size != m_tactics_camera_resource->get_view)
+    godot::Vector2i new_viewpoint_size = tactics_camera->get_viewport()->get_visible_rect().get_size();
+    if (new_viewpoint_size != m_tactics_camera_resource->m_viewport_size) {
+        m_tactics_camera_resource->m_viewport_size = new_viewpoint_size;
+        return true;
+    } else {
+        return false;
+    }
 }
 
+godot::Dictionary tog::TacticsCameraPanningService::get_mouse_panning_values() {
+    //return result
+    godot::Dictionary result;
 
+    float h = 0.0f;
+    float v = 0.0f;
+
+    if ( m_tactics_camera_resource->m_mouse_position.x <= m_tactics_camera_resource->m_border_pan_px_threshold ) {
+        h = -1.0f;
+    } else if ( m_tactics_camera_resource->m_mouse_position.x >= m_tactics_camera_resource->m_viewport_size.x - m_tactics_camera_resource->m_border_pan_px_threshold) {
+        h = 1.0f;
+    }
+
+    if ( m_tactics_camera_resource->m_mouse_position.y <= m_tactics_camera_resource->m_border_pan_px_threshold ) {
+        v = 1.0f;
+    } else if ( m_tactics_camera_resource->m_mouse_position.y >= m_tactics_camera_resource->m_viewport_size.y - m_tactics_camera_resource->m_border_pan_px_threshold) {
+        v = -1.0f;
+    }
+
+    result["h"] = h;
+    result["v"] = v;
+
+    return result;
+}
