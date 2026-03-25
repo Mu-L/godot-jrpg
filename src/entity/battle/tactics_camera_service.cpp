@@ -39,11 +39,21 @@ void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics
     }
 
     godot::Vector2 input_dir = tog::InputCaptureResource::m_cam_direction;
-
     if (input_dir != godot::Vector2(0,0)) {
-        //m_tactics_camera_panning_service
+        m_tactics_camera_panning_service->wasd_pan(delta, tactics_camera, input_dir);
+    } else if (m_tactics_camera_panning_service->is_cursor_near_edge(tactics_camera) && (!m_tactics_control_resource->m_is_joystick)) {
+        m_tactics_camera_panning_service->edge_pan(delta, tactics_camera);
+    } else {
+        m_tactics_camera_resource->m_panning_timer = 0.0f;
+        m_tactics_camera_movement_service->stabilize_camera(delta, tactics_camera);
     }
 
+    if (tactics_camera->get_velocity().length() < tog::MIN_VELOCITY) {
+        tactics_camera->set_velocity(get_zero_vector3());
+    }
+
+    m_tactics_camera_movement_service->focus_on_target(tactics_camera);
+    m_tactics_zoom_service->apply_zoom_smoothing(tactics_camera, delta);
 }
 
 tog::TacticsCameraService::TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource) {

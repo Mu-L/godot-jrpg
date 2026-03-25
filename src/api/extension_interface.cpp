@@ -1,16 +1,22 @@
 #include "api/extension_interface.hpp"
 #include <gdextension_interface.h>
-
 #include "main.hpp"
 
-#include "entity/battle/tactics_pawn.hpp"
-#include "entity/battle/tactics_control.hpp"
-#include "entity/battle/tactics_participant.hpp"
-#include "entity/battle/tactics_player.hpp"
 #include "entity/battle/input_capture.hpp"
 #include "entity/battle/input_capture_service.hpp"
+#include "entity/battle/tactics_camera.hpp"
 #include "entity/battle/tactics_camera_movement_service.hpp"
+#include "entity/battle/tactics_camera_panning_service.hpp"
+#include "entity/battle/tactics_camera_rotation_service.hpp"
 #include "entity/battle/tactics_camera_service.hpp"
+#include "entity/battle/tactics_camera_zoom_service.hpp"
+#include "entity/battle/tactics_control.hpp"
+#include "entity/battle/tactics_participant.hpp"
+#include "entity/battle/tactics_pawn.hpp"
+#include "entity/battle/tactics_player.hpp"
+#include "entity/battle/tactics_tile.hpp"
+#include "entity/battle/tactics_tile_raycast.hpp"
+
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
 #include "entity/character/enemy.hpp"
@@ -21,14 +27,16 @@
 #include "entity/level.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
 
+#include "resources/battle/input_capture_resource.hpp"
+#include "resources/battle/tactics_arena_resource.hpp"
+#include "resources/battle/tactics_camera_resource.hpp"
+#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_participant_resource.hpp"
+#include "resources/battle/tactics_pawn_resource.hpp"
+
 #include "resources/character/character_portrait.hpp"
 #include "resources/game/class_stats.hpp"
 #include "resources/character/character_state.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
-#include "resources/battle/input_capture_resource.hpp"
-#include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_pawn_resource.hpp"
-#include "resources/battle/tactics_participant_resource.hpp"
 
 #include "singletons/console.hpp"
 
@@ -96,16 +104,23 @@ namespace rl {
         //Battle
         godot::ClassDB::register_class<tog::InputCapture>();
         godot::ClassDB::register_class<tog::InputCaptureService>();
+        godot::ClassDB::register_class<tog::TacticsCamera>();
         godot::ClassDB::register_class<tog::TacticsCameraMovementService>();
+        godot::ClassDB::register_class<tog::TacticsCameraPanningService>();
+        godot::ClassDB::register_class<tog::TacticsCameraRotationService>();
         godot::ClassDB::register_class<tog::TacticsCameraService>();
+        godot::ClassDB::register_class<tog::TacticsCameraZoomService>();
         godot::ClassDB::register_class<tog::TacticsControl>();
         godot::ClassDB::register_class<tog::TacticsParticipant>();
         godot::ClassDB::register_class<tog::TacticsPawn>();
         godot::ClassDB::register_class<tog::TacticsPlayer>();
+        //godot::ClassDB::register_class<tog::TacticsTile>();
+        godot::ClassDB::register_class<tog::TacticsTileRaycast>();
 
         //Resources
         //battle
         godot::ClassDB::register_class<tog::InputCaptureResource>();
+        godot::ClassDB::register_class<tog::TacticsArenaResource>();
         godot::ClassDB::register_class<tog::TacticsCameraResource>();
         godot::ClassDB::register_class<tog::TacticsControlResource>();
         godot::ClassDB::register_class<tog::TacticsParticipantResource>();

@@ -1,6 +1,8 @@
 #pragma once
+
 #include "godot_cpp/godot.hpp"
 #include "godot_cpp/core/defs.hpp"
+
 
 namespace godot {
     void initialize_static_objects();

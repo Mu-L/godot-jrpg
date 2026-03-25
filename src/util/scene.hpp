@@ -119,7 +119,7 @@ namespace rl::inline utils {
                         m_packed_resource = resource_loader->load(load_resource_path, load_type_hint, load_cache_mode);
                         initialized = m_packed_resource.is_valid();
                     } else {
-                        assertion(resource_exists, "Resource does not exit");
+                        assertion(resource_exists, "Resource does not exit: ");
                     }
 
                 }
