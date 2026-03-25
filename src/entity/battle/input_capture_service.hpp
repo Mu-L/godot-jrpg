@@ -3,7 +3,7 @@
 #include "input_capture.hpp"
 #include "resources/battle/input_capture_resource.hpp"
 
-#include "godot_cpp/classes/ref_counted.hpp"
+#include "godot_cpp/classes/object.hpp"
 #include "godot_cpp/classes/input_event.hpp"
 #include "godot_cpp/classes/mesh_instance3d.hpp"
 
@@ -11,8 +11,8 @@ namespace tog {
 
     static constexpr float FL_ROT_SPEED_DIVIDER = 0.25f;
 
-    class InputCaptureService : public godot::RefCounted {
-        GDCLASS(InputCaptureService, godot::RefCounted);
+    class InputCaptureService : public godot::Object {
+        GDCLASS(InputCaptureService, godot::Object);
 
     public:
 
