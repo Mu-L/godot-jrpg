@@ -2,6 +2,7 @@
 
 #include "tactics_camera.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
+#include "util/utility_vec.hpp"
 
 #include "godot_cpp/classes/input.hpp"
 #include "godot_cpp/classes/input_event_joypad_button.hpp"
@@ -9,7 +10,10 @@
 #include "godot_cpp/classes/input_event_key.hpp"
 #include "godot_cpp/classes/input_event_mouse_button.hpp"
 #include "godot_cpp/classes/input_event_mouse_motion.hpp"
-#include "util/utility_vec.hpp"
+#include "godot_cpp/classes/physics_direct_space_state3d.hpp"
+#include "godot_cpp/classes/physics_ray_query_parameters3d.hpp"
+#include "godot_cpp/classes/viewport.hpp"
+#include "godot_cpp/classes/world3d.hpp"
 
 void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>& event) {
     //recast to an InputEventMouseButton object and check if pressed
@@ -103,6 +107,26 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
 
 }
 
-void tog::InputCaptureService::hanlde_input(godot::Ref<godot::InputEvent> event) {
+void tog::InputCaptureService::hanlde_input(const godot::Ref<godot::InputEvent>& event) {
     return;
+}
+
+godot::CollisionObject3D* tog::InputCaptureService::project_mouse_position(int collison_mask, bool is_joystick, const tog::InputCapture* input_capture) {
+    if (!m_input_capture_resource) {
+        return nullptr;
+    }
+
+    auto camera_node = input_capture->get_viewport()->get_camera_3d();
+    m_input_capture_resource->m_mouse_position = input_capture->get_viewport()->get_mouse_position();
+    godot::Vector2 pointer_origin = (!is_joystick) ? m_input_capture_resource->m_mouse_position : input_capture->get_viewport()->get_visible_rect().size / 2;
+
+    godot::Vector3 from = camera_node->project_ray_origin(pointer_origin);
+    godot::Vector3 to = from + camera_node->project_ray_origin(pointer_origin) * RAY_LENGTH;
+
+    //todo: debug log
+    auto ray_query = godot::PhysicsRayQueryParameters3D::create(from, to, collison_mask, {});
+    auto collider = input_capture->get_world_3d()->get_direct_space_state()->intersect_ray(ray_query);
+    godot::Object* obj = collider.is_empty() ? nullptr : collider["collider"];
+
+    return rl::gdcast<godot::CollisionObject3D>(obj);
 }

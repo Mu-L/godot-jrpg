@@ -1,0 +1,1 @@
+#include "tactics_controls_resource.hpp"
