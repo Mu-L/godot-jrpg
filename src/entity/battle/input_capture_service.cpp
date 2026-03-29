@@ -107,16 +107,15 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
 
 }
 
-void tog::InputCaptureService::hanlde_input(const godot::Ref<godot::InputEvent>& event) {
-    return;
-}
+//seems like you do nothing?
+void tog::InputCaptureService::handle_input(const godot::Ref<godot::InputEvent>& event) {}
 
 godot::CollisionObject3D* tog::InputCaptureService::project_mouse_position(int collison_mask, bool is_joystick, const tog::InputCapture* input_capture) {
-    if (!m_input_capture_resource) {
+    if (!m_input_capture_resource.is_valid()) {
         return nullptr;
     }
 
-    auto camera_node = input_capture->get_viewport()->get_camera_3d();
+    godot::Camera3D* camera_node = input_capture->get_viewport()->get_camera_3d();
     m_input_capture_resource->m_mouse_position = input_capture->get_viewport()->get_mouse_position();
     godot::Vector2 pointer_origin = (!is_joystick) ? m_input_capture_resource->m_mouse_position : input_capture->get_viewport()->get_visible_rect().size / 2;
 

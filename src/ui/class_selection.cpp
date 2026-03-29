@@ -20,6 +20,7 @@ namespace tog {
 
         //create a resource "ClassStats" for each role we defined
         for (const int i : std::views::iota(0, static_cast<int>(ClassStats::ClassName::MAX_CLASS_COUNT))) {
+            //todo: change to godot::Ref<T> so that memnew objects are deleted when out of scope
             auto* new_class_stats_resource = memnew(ClassStats);
             new_class_stats_resource->set_class_name(i);
             m_roles.push_back(new_class_stats_resource);
@@ -56,6 +57,7 @@ namespace tog {
 
         //initialize new godot::buttons and attach them to the RoleContainer node
         for (int i{0}; i < m_visible_slots; i++) {
+            //todo: change to godot::Ref<T> so that memnew objects are deleted when out of scope
             auto* new_button = memnew(godot::Button);
             tog::attach_child_to_parent(m_role_selector, new_button);
             m_items.push_back(new_button);
