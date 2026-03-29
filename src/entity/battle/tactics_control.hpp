@@ -21,6 +21,7 @@ namespace tog {
         TacticsControl() = default;
         ~TacticsControl() override = default;
 
+        /*
         //Initialize the service with necessary resources
         void _ready() override;
         //Handle physics-based processing
@@ -44,6 +45,7 @@ namespace tog {
         godot::Object* get_3d_canvas_mouse_position(int collision_mask);
         //Selects a pawn for the player
         //void select_pawn(tog::TacticsPawyer)
+        */
 
     protected:
         static void _bind_methods() {}

@@ -1,8 +1,5 @@
 #pragma once
 
-#include "core/constants.hpp"
-#include "entity/battle/tactics_pawn.hpp"
-#include "entity/battle/tactics_player.hpp"
 #include "util/bind.hpp"
 
 #include "godot_cpp/variant/dictionary.hpp"
@@ -10,6 +7,7 @@
 
 namespace tog {
 
+    class TacticsPawn;
     class TacticsPlayer;
 
     //Resource class for managing tactics controls and related signals
@@ -44,26 +42,7 @@ namespace tog {
         void set_cursor_shape_to_arrow();
 
     protected:
-        static void _bind_methods() {
-            //bind property to editor
-            rl::bind_property(TacticsControlsResource, is_joystick, bool);
-            rl::bind_property(TacticsControlsResource, input_hints_folded, bool);
-
-            //Signal emitted when the actions menu visibility needs to be set
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_set_actions_menu_visibility>::add<bool, tog::TacticsPawn*>();
-            //Signal emitted when the camera needs to be moved.
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_move_camera>::add<float>();
-            //Signal emitted when a pawn needs to be selected
-            //rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_select_pawn>::add<tog::TacticsPlayer*>();
-            //Signal emitted when a pawn needs to be selected for attack
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_select_pawn_to_attack>::add<>();
-            //Signal emitted when a new location needs to be selected
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_select_new_location>::add<>();
-            //Signal emitted when the cursor shape needs to be set to "move"
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_set_cursor_shape_to_move>::add<>();
-            //Signal emitted when the cursor shape needs to be set to "arrow"
-            rl::signal_binding<TacticsControlsResource, tog::node::signal::TacticsControlResource::called_set_cursor_shape_to_arrow>::add<>();
-        }
+        static void _bind_methods();
 
     public:
         //property - indicates whether the current input device is a joystick

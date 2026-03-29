@@ -9,6 +9,7 @@
 #include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/object.hpp"
+#include "godot_cpp/classes/camera3d.hpp"
 
 namespace tog {
 
