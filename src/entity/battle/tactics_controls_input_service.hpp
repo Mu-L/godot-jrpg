@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tactics_control.hpp"
+#include "tactics_controls.hpp"
 
 #include "resources/battle/tactics_controls_resource.hpp"
 
@@ -8,6 +8,8 @@
 #include "godot_cpp/classes/input.hpp"
 
 namespace tog {
+
+    class TacticsControls;
 
     //Service class for managing input-related functionalities in the Tactics game
     class TacticsControlsInputService : public godot::RefCounted {
@@ -25,10 +27,10 @@ namespace tog {
         void handle_input(const godot::Ref<godot::InputEvent>& event);
         //Gets the 3D position of the mouse in the game world
         //Returns null if hovering over a UI element or if input_capture is not set
-        godot::Object* get_3d_canvas_mouse_position(int collision_mask, tog::TacticsControl* tactics_control);
+        godot::Object* get_3d_canvas_mouse_position(int collision_mask, tog::TacticsControls* tactics_controls);
         //Checks if the mouse is hovering over a UI element
         //Returns true if the mouse is over any of the specified UI elements
-        bool is_mouse_hovering_ui_elem(tog::TacticsControl* tactics_control, std::initializer_list<std::string_view> elements = {"%Actions", "%Hints"}) {return false;};
+        bool is_mouse_hovering_ui_elem(tog::TacticsControls* tactics_controls, const godot::PackedStringArray& elements = {"%Actions", "%Hints"});
 
     protected:
         static void _bind_methods() {}
@@ -36,7 +38,6 @@ namespace tog {
     private:
         //Reference to the TacticsControlsResource
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
-        //tog::TacticsControlResource* m_tactics_controls_resource = nullptr;
         //Node for capturing mouse clicks
         godot::Node* m_input_capture = nullptr;
 

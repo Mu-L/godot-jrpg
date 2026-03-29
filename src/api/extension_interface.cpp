@@ -10,7 +10,7 @@
 #include "entity/battle/tactics_camera_rotation_service.hpp"
 #include "entity/battle/tactics_camera_service.hpp"
 #include "entity/battle/tactics_camera_zoom_service.hpp"
-#include "entity/battle/tactics_control.hpp"
+#include "entity/battle/tactics_controls.hpp"
 #include "entity/battle/tactics_participant.hpp"
 #include "entity/battle/tactics_pawn.hpp"
 #include "entity/battle/tactics_player.hpp"
@@ -110,7 +110,7 @@ namespace rl {
         godot::ClassDB::register_class<tog::TacticsCameraRotationService>();
         godot::ClassDB::register_class<tog::TacticsCameraService>();
         godot::ClassDB::register_class<tog::TacticsCameraZoomService>();
-        godot::ClassDB::register_class<tog::TacticsControl>();
+        godot::ClassDB::register_class<tog::TacticsControls>();
         godot::ClassDB::register_class<tog::TacticsParticipant>();
         godot::ClassDB::register_class<tog::TacticsPawn>();
         godot::ClassDB::register_class<tog::TacticsPlayer>();

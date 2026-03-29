@@ -13,26 +13,27 @@
 
 namespace tog {
 
+    class TacticsControlsService;
+
     //Handles UI elements and player controls for the Tactics systems
-    class TacticsControl : public godot::Control {
-        GDCLASS(TacticsControl, godot::Control);
+    class TacticsControls : public godot::Control {
+        GDCLASS(TacticsControls, godot::Control);
 
     public:
-        TacticsControl() = default;
-        ~TacticsControl() override = default;
+        TacticsControls() = default;
+        ~TacticsControls() override = default;
 
-        /*
         //Initialize the service with necessary resources
         void _ready() override;
         //Handle physics-based processing
-        void _physics_process(double p_delta) override;
+        //void _physics_process(double p_delta) override;
         //Handle input events
-        void _input(const godot::Ref<godot::InputEvent> &p_event) override;
-
+        //void _input(const godot::Ref<godot::InputEvent> &p_event) override;
         //Sets the cursor shape to 'move'
-        void set_cusor_shape_to_move();
+        void set_cursor_shape_to_move();
+        /*
         //Sets the cursor shape to 'arrow'
-        void set_cusor_shape_to_arrow();
+        void set_cursor_shape_to_arrow();
         //Moves the camera based on input
         void move_camera(float delta);
         //Retrieves an action button node
@@ -44,13 +45,27 @@ namespace tog {
         //Gets the 3D position of the mouse in the game world
         godot::Object* get_3d_canvas_mouse_position(int collision_mask);
         //Selects a pawn for the player
-        //void select_pawn(tog::TacticsPawyer)
+        void select_pawn(tog::TacticsPlayer* tactics_player);
+        //Initiates the process of selecting a new location for the pawn
+        void select_new_location();
+        //Initiates the process of selecting a pawn to attack
+        void select_pawn_to_attack();
+        //Handles the player's intention to move
+        void player_wants_to_move();
+        //Handles the player's intention to cancel an action
+        void player_wants_to_cancel();
+        //Handles the player's intention to wait
+        void player_wants_to_wait();
+        //Handles the player's intention to skip their turn
+        void player_wants_to_skip_turn();
+        //Handles the player's intention to attack
+        void player_wants_to_attack();
         */
 
     protected:
         static void _bind_methods() {}
 
-    private:
+    public:
         //Resource containing control-related data and settings
         godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
         //Resource containing camera-related data and settings

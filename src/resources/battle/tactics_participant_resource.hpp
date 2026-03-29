@@ -3,7 +3,6 @@
 #include "core/constants.hpp"
 #include "entity/battle/tactics_pawn.hpp"
 #include "util/bind.hpp"
-
 #include "godot_cpp/classes/resource.hpp"
 
 namespace tog {

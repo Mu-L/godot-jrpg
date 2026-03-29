@@ -7,6 +7,7 @@
 
 namespace tog {
 
+    //todo: finish setting up "TacticsArenaResource"
     //Attributes, controller & signals of the tactics arena
     class TacticsArenaResource : public godot::Resource {
         GDCLASS(TacticsArenaResource, godot::Resource);
