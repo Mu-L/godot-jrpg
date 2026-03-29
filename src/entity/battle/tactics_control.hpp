@@ -5,7 +5,7 @@
 
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
 
 #include "godot_cpp/classes/button.hpp"
@@ -50,7 +50,7 @@ namespace tog {
 
     private:
         //Resource containing control-related data and settings
-        godot::Ref<tog::TacticsControlResource> m_tactics_control_resource;
+        godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
         //Resource containing camera-related data and settings
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Resource containing participant-related data and settings

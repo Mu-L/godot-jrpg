@@ -12,9 +12,7 @@ namespace tog {
         ~TacticsPlayer() override = default;
 
     protected:
-        static void _bind_methods() {
-
-        }
+        static void _bind_methods() {}
 
     private:
 

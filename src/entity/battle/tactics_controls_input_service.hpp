@@ -2,7 +2,7 @@
 
 #include "tactics_control.hpp"
 
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/object.hpp"
 #include "godot_cpp/classes/input.hpp"
@@ -16,7 +16,7 @@ namespace tog {
     public:
         TacticsControlsInputService() = default;
         //Initializes the TacticsControlsInputService with necessary resources and nodes
-        TacticsControlsInputService(godot::Ref<tog::TacticsControlResource> controls, godot::Node* input_capture);
+        TacticsControlsInputService(godot::Ref<tog::TacticsControlsResource> controls, godot::Node* input_capture);
         ~TacticsControlsInputService() override = default;
 
         //Updates the mouse mode based on whether a joystick is being used
@@ -35,7 +35,7 @@ namespace tog {
 
     private:
         //Reference to the TacticsControlsResource
-        godot::Ref<tog::TacticsControlResource> m_tactics_controls_resource;
+        godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
         //tog::TacticsControlResource* m_tactics_controls_resource = nullptr;
         //Node for capturing mouse clicks
         godot::Node* m_input_capture = nullptr;

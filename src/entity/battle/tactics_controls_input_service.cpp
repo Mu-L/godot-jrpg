@@ -3,7 +3,7 @@
 #include "godot_cpp/classes/input_event_joypad_button.hpp"
 #include "godot_cpp/classes/input_event_joypad_motion.hpp"
 
-tog::TacticsControlsInputService::TacticsControlsInputService(godot::Ref<tog::TacticsControlResource> controls, godot::Node* input_capture) {
+tog::TacticsControlsInputService::TacticsControlsInputService(godot::Ref<tog::TacticsControlsResource> controls, godot::Node* input_capture) {
     m_tactics_controls_resource = controls;
     m_input_capture = input_capture;
 }

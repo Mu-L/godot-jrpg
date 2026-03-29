@@ -6,7 +6,7 @@
 #include "tactics_camera_zoom_service.hpp"
 
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/object.hpp"
 
@@ -25,7 +25,7 @@ namespace tog {
     public:
         static tog::TacticsCameraService* get();
         static tog::TacticsCameraService* reset();
-        static tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
+        static tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
         static inline void cleanup() { delete m_static_inst; }
 
         void setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera);
@@ -33,7 +33,7 @@ namespace tog {
 
     private:
         TacticsCameraService() { m_static_inst = this; }
-        TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
+        TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
         ~TacticsCameraService() override { delete m_static_inst; m_static_inst = nullptr; };
 
     protected:
@@ -41,7 +41,7 @@ namespace tog {
 
     public:
         tog::TacticsCameraResource*         m_tactics_camera_resource = nullptr;
-        tog::TacticsControlResource*        m_tactics_control_resource = nullptr;
+        tog::TacticsControlsResource*        m_tactics_control_resource = nullptr;
         tog::TacticsCameraMovementService*  m_tactics_camera_movement_service = nullptr;
         tog::TacticsCameraZoomService*      m_tactics_zoom_service = nullptr;
         tog::TacticsCameraRotationService*  m_tactics_camera_rotation_service = nullptr;

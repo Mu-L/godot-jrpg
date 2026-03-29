@@ -2,7 +2,7 @@
 
 #include "tactics_camera.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 
 namespace tog {
 
@@ -21,7 +21,7 @@ namespace tog {
         GDCLASS(TacticsCameraMovementService, godot::Object);
     public:
         TacticsCameraMovementService() = default;
-        TacticsCameraMovementService(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource);
+        TacticsCameraMovementService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
         ~TacticsCameraMovementService() override = default;
 
         //Moves the camera based on input and applies boundary constraints
@@ -36,7 +36,7 @@ namespace tog {
 
     private:
         TacticsCameraResource* m_tactics_camera_resource = nullptr;
-        TacticsControlResource* m_tactics_control_resource = nullptr;
+        TacticsControlsResource* m_tactics_control_resource = nullptr;
     };
 
 }

@@ -2,7 +2,7 @@
 
 #include "tactics_camera_service.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/character_body3d.hpp"
 #include "godot_cpp/core/class_db.hpp"
@@ -51,7 +51,7 @@ namespace tog {
         //Resource containing camera attributes and signals
         tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
         //Resource containing control settings
-        tog::TacticsControlResource* m_tactics_control_resource = nullptr;
+        tog::TacticsControlsResource* m_tactics_control_resource = nullptr;
         //Service handling camera operations
         inline static tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
         //Node for horizontal rotation

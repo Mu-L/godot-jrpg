@@ -5,7 +5,7 @@
 #include "godot_cpp/classes/property_tweener.hpp"
 #include "godot_cpp/variant/callable_method_pointer.hpp"
 
-tog::TacticsCameraRotationService::TacticsCameraRotationService(tog::TacticsCameraResource *camera_resource, tog::TacticsControlResource *control_resource) {
+tog::TacticsCameraRotationService::TacticsCameraRotationService(tog::TacticsCameraResource *camera_resource, tog::TacticsControlsResource *control_resource) {
     m_tactics_camera_resource = camera_resource;
     m_tactics_control_resource = control_resource;
 }

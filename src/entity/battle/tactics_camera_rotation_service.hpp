@@ -2,7 +2,7 @@
 
 #include "tactics_camera.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_control_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/object.hpp"
 
@@ -16,7 +16,7 @@ namespace tog {
 
     public:
         TacticsCameraRotationService() = default;
-        TacticsCameraRotationService(tog::TacticsCameraResource* camera_resource, tog::TacticsControlResource* control_resource);
+        TacticsCameraRotationService(tog::TacticsCameraResource* camera_resource, tog::TacticsControlsResource* control_resource);
         ~TacticsCameraRotationService() override = default;
 
         //Handles free look camera rotation
@@ -62,7 +62,7 @@ namespace tog {
         const int m_FREE_LOOK_ROT_FACTOR = 20;
 
         tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
-        tog::TacticsControlResource* m_tactics_control_resource = nullptr;
+        tog::TacticsControlsResource* m_tactics_control_resource = nullptr;
     };
 
 }

@@ -12,7 +12,7 @@ tog::TacticsCameraService * tog::TacticsCameraService::reset() {
     return m_static_inst;
 }
 
-tog::TacticsCameraService * tog::TacticsCameraService::reset(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource) {
+tog::TacticsCameraService * tog::TacticsCameraService::reset(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource) {
     delete m_static_inst;
     m_static_inst = memnew(TacticsCameraService(camera_resource, control_resource));
     return m_static_inst;
@@ -56,7 +56,7 @@ void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics
     m_tactics_zoom_service->apply_zoom_smoothing(tactics_camera, delta);
 }
 
-tog::TacticsCameraService::TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlResource* control_resource) {
+tog::TacticsCameraService::TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource) {
     //point the static ptr to the current initialized object
     m_static_inst = this;
     //set the resources
