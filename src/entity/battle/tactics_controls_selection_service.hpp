@@ -10,6 +10,9 @@
 
 namespace tog {
 
+    class TacticsControlsInputService;
+    class TacticsControls;
+
     //Service class for managing pawn and tile selection in the Tactics game.
     class TacticsControlsSelectionService : public godot::RefCounted {
         GDCLASS(TacticsControlsSelectionService, godot::RefCounted);
