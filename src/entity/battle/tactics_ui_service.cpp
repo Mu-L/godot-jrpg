@@ -23,4 +23,12 @@ void tog::TacticsUIService::set_actions_menu_visibility(bool v, tog::TacticsPawn
     if (!tactics_controls->get_node<godot::VBoxContainer>("HBox/Actions")->is_visible()) {
         tactics_controls->get_node<godot::Button>("HBox/Actions/Move")->grab_focus();
     }
+
+    tactics_controls->get_node<godot::VBoxContainer>("HBox/Actions")->set_visible(v);
+    //tactics_pawn->can_act();
+
+    if (!tactics_pawn) {
+        return;
+    }
+    
 }

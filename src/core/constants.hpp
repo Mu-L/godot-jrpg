@@ -129,9 +129,10 @@ namespace tog::inline constants {
             }
 
             namespace BattleTest {
-                constexpr inline auto TwistPivot{ "$TwistPivot" };
-                constexpr inline auto PitchPivot{ "$TwistPivot/PitchPivot" };
-                constexpr inline auto Camera3D{ "$TwistPivot/PitchPivot/Camera3D" };
+                constexpr inline auto TwistPivot{ "%TwistPivot" };
+                constexpr inline auto PitchPivot{ "%TwistPivot/PitchPivot" };
+                constexpr inline auto Camera3D{ "%TwistPivot/PitchPivot/Camera3D" };
+                constexpr inline auto Stats{ "%Expertise/Stats" };
             }
 
 
@@ -147,7 +148,7 @@ namespace tog::inline constants {
 
 }
 
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 namespace rl::inline constants {
 
     namespace name {

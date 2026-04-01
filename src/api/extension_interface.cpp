@@ -28,6 +28,7 @@
 #include "entity/projectile/projectile_spawner.hpp"
 
 #include "resources/battle/input_capture_resource.hpp"
+#include "resources/battle/stats_resource.hpp"
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
@@ -120,6 +121,7 @@ namespace rl {
         //Resources
         //battle
         godot::ClassDB::register_class<tog::InputCaptureResource>();
+        godot::ClassDB::register_class<tog::StatsResource>();
         godot::ClassDB::register_class<tog::TacticsArenaResource>();
         godot::ClassDB::register_class<tog::TacticsCameraResource>();
         godot::ClassDB::register_class<tog::TacticsControlsResource>();
