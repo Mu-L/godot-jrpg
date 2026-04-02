@@ -129,12 +129,13 @@ namespace tog::inline constants {
             }
 
             namespace BattleTest {
-                constexpr inline auto TwistPivot    { "%TwistPivot" };
-                constexpr inline auto PitchPivot    { "%TwistPivot/PitchPivot" };
-                constexpr inline auto Camera3D      { "%TwistPivot/PitchPivot/Camera3D" };
-                constexpr inline auto Stats         { "%Expertise/Stats" };
-                constexpr inline auto AnimationTree { "%AnimationTree" };
-                constexpr inline auto NameLabel     { "%CharacterUI/NameLabel" };
+                constexpr inline auto TwistPivot    { "TwistPivot" };
+                constexpr inline auto PitchPivot    { "TwistPivot/PitchPivot" };
+                constexpr inline auto Camera3D      { "TwistPivot/PitchPivot/Camera3D" };
+                constexpr inline auto Character     { "Character" };
+                constexpr inline auto Stats         { "Expertise/Stats" };
+                constexpr inline auto AnimationTree { "AnimationTree" };
+                constexpr inline auto NameLabel     { "CharacterUI/NameLabel" };
                 constexpr inline auto Playback      { "Parameters/Playback" };
                 constexpr inline auto Tile          { "Tile" };
             }
