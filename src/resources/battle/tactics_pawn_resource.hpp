@@ -37,7 +37,7 @@ namespace tog {
             rl::signal_binding<TacticsPawnResource, tog::node::signal::TacticsPawnResource::turn_ended>::add<>();
         }
 
-    private:
+    public:
         //Minimum height difference required for the pawn to jump
         static constexpr int MIN_HEIGHT_TO_JUMP = 1;
         //Strength of gravity applied to the paw

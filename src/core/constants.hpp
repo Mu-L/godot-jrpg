@@ -136,6 +136,7 @@ namespace tog::inline constants {
                 constexpr inline auto AnimationTree { "%AnimationTree" };
                 constexpr inline auto NameLabel     { "%CharacterUI/NameLabel" };
                 constexpr inline auto Playback      { "Parameters/Playback" };
+                constexpr inline auto Tile          { "Tile" };
             }
 
 

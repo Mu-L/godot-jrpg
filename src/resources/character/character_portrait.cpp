@@ -5,7 +5,7 @@
 godot::Ref<godot::Texture2D> tog::CharacterPortraitSheet::build_portrait_texture(int index) const {
     //check if index is valid
     if ( !m_character_sprite_sheet.is_valid() || m_columns <= 0 || m_rows <= 0 || index < 0 || index >= get_count() ) {
-        return godot::Ref<godot::Texture2D>();
+        return {};
     }
 
     // calculate cell size from actual texture dimensions

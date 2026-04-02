@@ -38,13 +38,9 @@ namespace tog {
             //bind properties to editor
             rl::bind_property(CharacterPortraitSheet, columns, int);
             rl::bind_property(CharacterPortraitSheet, rows, int);
-
             godot::ClassDB::bind_method(godot::D_METHOD("set_sheet", "sheet"), &CharacterPortraitSheet::set_sheet);
             godot::ClassDB::bind_method(godot::D_METHOD("get_sheet"), &CharacterPortraitSheet::get_sheet);
-            ADD_PROPERTY(godot::PropertyInfo(godot::Variant::OBJECT, "sheet", godot::PROPERTY_HINT_RESOURCE_TYPE,"Texture2D"),
-                         "set_sheet",
-                         "get_sheet");
-
+            ADD_PROPERTY(godot::PropertyInfo(godot::Variant::OBJECT, "sheet", godot::PROPERTY_HINT_RESOURCE_TYPE,"Texture2D"), "set_sheet", "get_sheet");
             godot::ClassDB::bind_method(godot::D_METHOD("set_ids", "ids"), &CharacterPortraitSheet::set_ids);
             godot::ClassDB::bind_method(godot::D_METHOD("get_ids"), &CharacterPortraitSheet::get_ids);
             ADD_PROPERTY(godot::PropertyInfo(godot::Variant::ARRAY, "ids"), "set_ids", "get_ids");
