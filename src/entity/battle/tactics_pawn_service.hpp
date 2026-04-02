@@ -16,6 +16,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        //Service for handling pawn movement
 
     };
 

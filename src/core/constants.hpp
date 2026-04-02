@@ -29,8 +29,11 @@ namespace tog::inline constants {
             }
 
             namespace battle {
-                constexpr inline auto tactics_control_resource  { "res://assets/resources/battle/tactics_control_resource.tres" };
-                constexpr inline auto tactics_tile_raycast      { "res://assets/resources/battle/tactics_tile_raycast.tres" };
+                constexpr inline auto tactics_control_resource      { "res://assets/resources/battle/tactics_control_resource.tres" };
+                constexpr inline auto tactics_tile_raycast          { "res://assets/resources/battle/tactics_tile_raycast.tres" };
+                constexpr inline auto tactics_camera_resource       { "res://assets/resources/battle/tactics_camera_resource.tres" };
+                constexpr inline auto tactics_participant_resource  { "res://assets/resources/battle/tactics_participant_resource.tres" };
+                constexpr inline auto tactics_arena_resource        { "res://assets/resources/battle/tactics_arena_resource.tres" };
             }
 
         }

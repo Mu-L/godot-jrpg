@@ -56,10 +56,10 @@ void tog::TacticsPawnSprite::rotate_sprite(const godot::Basis& basis) {
         //Facing towards camera, use "front" view
         this->set_frame(m_current_frame+ 1 * tog::TacticsPawnResource::ANIMATION_FRAMES);
     }
+    //Note: If -0.306 <= scalar <= 0.306, the frame remains unchanged
 }
 
 bool tog::TacticsPawnSprite::adjust_to_center(tog::TacticsPawn* tactics_pawn) {
-    //todo: finish this
     if (tactics_pawn->get_tile() && tactics_pawn->m_tactics_pawn_resource->m_is_moving) {
         tactics_pawn->set_global_position(tactics_pawn->get_tile()->get_global_position());
         return true;

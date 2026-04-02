@@ -26,6 +26,7 @@ namespace tog {
         ~TacticsPawn() override = default;
         //Initializes the TacticsPawn node
         void _ready() override;
+        /*
         //Processes pawn logic every physics frame
         //@param delta: Time elapsed since the last frame
         void _physics_process(double p_delta) override;
@@ -35,9 +36,11 @@ namespace tog {
         //Shows or hides the pawn's stats UI
         //@param v: Whether to show (true) or hide (false) the stats
         void show_pawn_stats(bool v);
+        */
         //Gets the tile the pawn is currently on
         //@return: The TacticsTile the pawn is on
         tog::TacticsTile* get_tile() const;
+        /*
         //Checks if the pawn is alive
         //@return: Whether the pawn's current health is above 0
         bool is_alive();
@@ -62,6 +65,7 @@ namespace tog {
         //Moves the pawn along its designated path
         //@param delta: Time elapsed since the last frame
         void move_along_path(float delta);
+        */
 
     protected:
         static void _bind_methods() {};

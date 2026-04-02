@@ -31,7 +31,6 @@ namespace tog {
         //void _input(const godot::Ref<godot::InputEvent> &p_event) override;
         //Sets the cursor shape to 'move'
         void set_cursor_shape_to_move();
-        /*
         //Sets the cursor shape to 'arrow'
         void set_cursor_shape_to_arrow();
         //Moves the camera based on input
@@ -60,7 +59,6 @@ namespace tog {
         void player_wants_to_skip_turn();
         //Handles the player's intention to attack
         void player_wants_to_attack();
-        */
 
     protected:
         static void _bind_methods() {}
