@@ -66,9 +66,8 @@ namespace tog {
         // Speed at which the pawn walks
         int m_walk_speed = 8;
         //Stack of tiles representing the pawn's pathfinding route
+        //todo: does this actually store godot::Vector3?
         godot::Array m_pathfinding_tile_stack;
-
-
     };
 
 }

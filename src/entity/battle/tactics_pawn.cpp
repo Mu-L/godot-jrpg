@@ -8,9 +8,10 @@ void tog::TacticsPawn::_ready() {
     if (m_stats_node) {
         m_expertise = m_stats_node->m_expertise;
     }
-
     m_tactics_controls_resource = memnew(tog::TacticsControlsResource);
     m_tactics_pawn_service = memnew(tog::TacticsPawnService);
+    //todo: finish this
+    //m_tactics_pawn_service->setup()
 }
 
 tog::TacticsTile* tog::TacticsPawn::get_tile() const {

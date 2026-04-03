@@ -15,6 +15,7 @@
 namespace tog {
 
     class TacticsPawnSprite;
+    class TacticsPawnService;
 
     //Represents a pawn in the tactics game, handling movement, combat, and state management
     class TacticsPawn : public godot::CharacterBody3D {
