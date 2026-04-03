@@ -141,6 +141,7 @@ namespace tog::inline constants {
                 constexpr inline auto NameLabel     { "CharacterUI/NameLabel" };
                 constexpr inline auto Playback      { "Parameters/Playback" };
                 constexpr inline auto Tile          { "Tile" };
+                constexpr inline auto InputCapture  { "InputCapture" };
             }
 
 

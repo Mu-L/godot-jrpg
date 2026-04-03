@@ -35,9 +35,7 @@ namespace tog {
         void setup(tog::TacticsControls* tactics_controls);
 
     protected:
-        static void _bind_methods() {
-
-        }
+        static void _bind_methods() {}
 
     private:
         //Reference to the TacticsControlsResource

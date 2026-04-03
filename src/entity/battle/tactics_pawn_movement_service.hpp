@@ -5,6 +5,8 @@
 
 namespace tog {
 
+    class TacticsPawn;
+
     //Service class for handling pawn movement in the tactics game
     class TacticsPawnMovementService : public godot::RefCounted {
         GDCLASS(TacticsPawnMovementService, godot::RefCounted);

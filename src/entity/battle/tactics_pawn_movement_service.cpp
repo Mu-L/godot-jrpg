@@ -44,3 +44,15 @@ void tog::TacticsPawnMovementService::perform_movement(tog::TacticsPawn* tactics
     tactics_pawn->set_up_direction(get_up_vector3());
     tactics_pawn->move_and_slide();
 }
+
+godot::Vector3 tog::TacticsPawnMovementService::calculate_velocity(tog::TacticsPawn *tactics_pawn, float delta) {
+}
+
+float tog::TacticsPawnMovementService::calculate_speed(tog::TacticsPawn *tactics_pawn) {
+}
+
+void tog::TacticsPawnMovementService::reset_movement_state(tog::TacticsPawn *tactics_pawn) {
+}
+
+void tog::TacticsPawnMovementService::check_movement_completion(tog::TacticsPawn *tactics_pawn) {
+}

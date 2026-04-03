@@ -36,7 +36,7 @@ namespace tog {
         //Moves the camera based on input
         void move_camera(float delta);
         //Retrieves an action button node
-        godot::Button* get_action(godot::String action = "");
+        godot::Button* get_action(const godot::String& action = "")  {return nullptr;};
         //Checks if the mouse is hovering over a UI element
         bool is_mouse_hovering_ui_elem();
         //Sets the visibility of the actions menu
@@ -61,7 +61,7 @@ namespace tog {
         void player_wants_to_attack();
 
     protected:
-        static void _bind_methods() {}
+        static void _bind_methods();
 
     public:
         //Resource containing control-related data and settings
@@ -80,6 +80,7 @@ namespace tog {
         godot::Ref<godot::Texture2D> m_layout_xbox_texture;
         //Texture for PC controls layout
         godot::Ref<godot::Texture2D> m_layout_pc_texture;
+        //Node for capturing mouse clicks
         tog::InputCapture* m_input_capture;
 
     };
