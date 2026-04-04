@@ -32,7 +32,6 @@ namespace tog {
         GDCLASS(TacticsParticipantResource, godot::Resource);
 
     public:
-
         TacticsParticipantResource() = default;
         ~TacticsParticipantResource() override = default;
 
@@ -45,17 +44,22 @@ namespace tog {
             rl::signal_binding<TacticsParticipantResource, tog::node::signal::TacticsParticipantResource::called_skip_turn>::add<>();
         }
 
-    private:
+    public:
         //The current stage of the participant's turn
         int m_stage = 0;
+
         //The currently active pawn
         tog::TacticsPawn* m_tactics_pawn = nullptr;
+
         //The pawn that can be attacked
         tog::TacticsPawn* m_attackable_pawn = nullptr;
+
         //The node containing the target pawns
         godot::Node* m_targets = nullptr;
+
         //Flag to control the display of opponent stats
         bool m_display_opponent_stats = false;
+
         //Flag indicating if the turn has just started
         bool m_turn_just_started = true;
 

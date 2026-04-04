@@ -15,6 +15,7 @@ namespace tog {
     class TacticsControlsResource;
     class TacticsParticipantResource;
     class TacticsCameraResource;
+    class TacticsPlayer;
 
     class TacticsParticipant : public godot::Node3D {
         GDCLASS(TacticsParticipant, godot::Node3D);

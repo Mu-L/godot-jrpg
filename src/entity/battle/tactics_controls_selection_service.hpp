@@ -29,24 +29,31 @@ namespace tog {
         ~TacticsControlsSelectionService() override = default;
 
         //Handles the selection of a pawn
-        void select_pawn(tog::TacticsPlayer* tactics_player, tog::TacticsControls* tactics_controls);
+        void select_pawn(tog::TacticsPlayer* tactics_player, const tog::TacticsControls* tactics_controls);
+
         //Selects the pawn currently hovered by the mouse
         godot::PhysicsBody3D select_hovered_pawn(tog::TacticsControls* tactics_controls);
+
         //Handles the selection of a new location for the current pawn
         void select_new_location(tog::TacticsControls* tactics_controls);
+
         //Handles the selection of a pawn to attack
         void select_pawn_to_attack(tog::TacticsControls* tactics_controls);
+
         //Handles the player's intention to move
         void player_wants_to_move();
+
         //Handles the player's intention to cancel
         void player_wants_to_cancel();
+
         //Handles the player's intention to wait
         void player_wants_to_wait();
+
         //Handles the player's intention to skip turn
         void player_wants_to_skip_turn();
+
         //Handles the player's intention to attack
         void player_wants_to_attack();
-
 
     protected:
         static void _bind_methods() {}

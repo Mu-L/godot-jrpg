@@ -22,6 +22,7 @@ namespace tog {
         // getter/setter for property value
         void set_is_joystick(bool value) { m_is_joystick = value; }
         bool get_is_joystick() const     { return m_is_joystick; }
+
         // getter/setter for property value
         void set_input_hints_folded(bool value) { m_input_hints_folded = value; }
         bool get_input_hints_folded() const     { return m_input_hints_folded; }

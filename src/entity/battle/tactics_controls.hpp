@@ -2,6 +2,7 @@
 
 #include "input_capture.hpp"
 #include "tactics_controls_service.hpp"
+#include "tactics_player.hpp"
 
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
@@ -26,9 +27,9 @@ namespace tog {
         //Initialize the service with necessary resources
         void _ready() override;
         //Handle physics-based processing
-        //void _physics_process(double p_delta) override;
+        void _physics_process(double p_delta) override;
         //Handle input events
-        //void _input(const godot::Ref<godot::InputEvent> &p_event) override;
+        void _input(const godot::Ref<godot::InputEvent> &p_event) override;
         //Sets the cursor shape to 'move'
         void set_cursor_shape_to_move();
         //Sets the cursor shape to 'arrow'
@@ -36,7 +37,7 @@ namespace tog {
         //Moves the camera based on input
         void move_camera(float delta);
         //Retrieves an action button node
-        godot::Button* get_action(const godot::String& action = "")  {return nullptr;};
+        godot::Button* get_action(const godot::String& action = "");
         //Checks if the mouse is hovering over a UI element
         bool is_mouse_hovering_ui_elem();
         //Sets the visibility of the actions menu

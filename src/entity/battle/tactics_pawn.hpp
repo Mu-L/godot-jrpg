@@ -22,51 +22,59 @@ namespace tog {
         GDCLASS(TacticsPawn, godot::CharacterBody3D);
 
     public:
-
         TacticsPawn() = default;
         ~TacticsPawn() override = default;
+
         //Initializes the TacticsPawn node
         void _ready() override;
-        /*
+
         //Processes pawn logic every physics frame
         //@param delta: Time elapsed since the last frame
         void _physics_process(double p_delta) override;
+
         //Centers the pawn on its current tile
         //@return: Whether the centering operation was successful
         bool center();
+
         //Shows or hides the pawn's stats UI
         //@param v: Whether to show (true) or hide (false) the stats
         void show_pawn_stats(bool v);
-        */
+
         //Gets the tile the pawn is currently on
         //@return: The TacticsTile the pawn is on
         tog::TacticsTile* get_tile() const;
-        /*
+
         //Checks if the pawn is alive
         //@return: Whether the pawn's current health is above 0
         bool is_alive();
+
         //Checks if the pawn can move
         //@return: Whether the pawn can move and is alive
         bool can_pawn_move();
+
         //Checks if the pawn can attack
         //@return: Whether the pawn can attack and is alive
         bool can_pawn_attack();
+
         //Checks if the pawn can perform any action
         //@return: Whether the pawn can move or attack, and is alive
         bool can_act();
+
         //Resets the pawn's turn state
         void reset_turn();
+
         //Ends the pawn's turn
         void end_pawn_turn();
+
         //Initiates an attack on a target pawn
         //@param target_pawn: The TacticsPawn to attack
         //@param delta: Time elapsed since the last frame
         //@return: Whether the attack was successful
         bool attack_target_pawn(tog::TacticsPawn* target_pawn, float delta);
+
         //Moves the pawn along its designated path
         //@param delta: Time elapsed since the last frame
         void move_along_path(float delta);
-        */
 
     protected:
         static void _bind_methods() {};

@@ -15,7 +15,7 @@ void tog::TacticsControlsInputService::update_mouse_mode() {
     godot::Input::get_singleton()->set_mouse_mode(static_cast<godot::Input::MouseMode>(m_tactics_controls_resource->get_is_joystick()));
 }
 
-void tog::TacticsControlsInputService::handle_input(const godot::Ref<godot::InputEvent> &event) {
+void tog::TacticsControlsInputService::handle_input(const godot::Ref<godot::InputEvent>& event) {
     godot::Ref<godot::InputEventJoypadButton> joypad_button_event = event;
     godot::Ref<godot::InputEventJoypadMotion> joypad_motion_event = event;
 
