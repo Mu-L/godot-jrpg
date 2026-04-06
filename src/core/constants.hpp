@@ -136,6 +136,7 @@ namespace tog::inline constants {
                 constexpr inline auto PitchPivot    { "TwistPivot/PitchPivot" };
                 constexpr inline auto Camera3D      { "TwistPivot/PitchPivot/Camera3D" };
                 constexpr inline auto Character     { "Character" };
+                constexpr inline auto HealthLabel   { "Character/CharacterUI/HealthLabel" };
                 constexpr inline auto Stats         { "Expertise/Stats" };
                 constexpr inline auto AnimationTree { "AnimationTree" };
                 constexpr inline auto NameLabel     { "CharacterUI/NameLabel" };

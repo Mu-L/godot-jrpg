@@ -47,7 +47,7 @@ namespace tog {
         float m_smoothing = 0.1f;
         //Target velocity for camera movement
         godot::Vector3 m_target_velocity = { 0, 0, 0 };
-        //Target node for camera to focus on
+        //Target node for camera to focus on- could be a tog::tacticspawn object
         godot::Node3D* m_target = nullptr;
 
         //ZOOM

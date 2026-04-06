@@ -39,7 +39,7 @@ namespace tog {
 
         static void _bind_methods() {}
 
-    private:
+    public:
         //Resource for tile raycasting
         rl::resource::preload::packed_scene<tog::TacticsTileRaycast> m_tactics_tile_raycast_scene{tog::path::resource::battle::tactics_tile_raycast};
         //Whether the tile is reachable

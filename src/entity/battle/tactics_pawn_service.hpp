@@ -15,6 +15,8 @@ namespace tog {
     class TacticsPawnAnimationService;
     class TacticsPawnSprite;
     class TacticsPawnMovementService;
+    class TacticsPawnHudService;
+    class TacticsPawnCombatService;
 
     //Service class for managing pawn operations in the tactics game
     class TacticsPawnService : public godot::RefCounted {
@@ -29,10 +31,22 @@ namespace tog {
         //@param pawn: The TacticsPawn to set up
         void setup(tog::TacticsPawn* tactics_pawn);
 
+        //Processes pawn-related operations every frame
+        //@param pawn: The TacticsPawn to process
+        //@param delta: Time elapsed since the last frame
+        void process(tog::TacticsPawn* const tactics_pawn, float delta);
+
+        //Initiates an attack on a target pawn
+        //@param pawn: The attacking TacticsPawn
+        //@param target_pawn: The TacticsPawn being attacked
+        //@param delta: Time elapsed since the last frame
+        //@return: Whether the attack was successful
+        bool attack_target_pawn(tog::TacticsPawn* tactics_pawn, tog::TacticsPawn* target_tactics_pawn, float delta);
+
     protected:
         static void _bind_methods() {}
 
-    private:
+    public:
         //Service for handling pawn movement
         godot::Ref<tog::TacticsPawnMovementService> m_tactics_pawn_movement_service;
         //Service for handling pawn combat

@@ -11,7 +11,7 @@ void tog::TacticsPawn::_ready() {
     m_tactics_controls_resource = memnew(tog::TacticsControlsResource);
     m_tactics_pawn_service = memnew(tog::TacticsPawnService);
     //todo: finish this
-    //m_tactics_pawn_service->setup()
+    m_tactics_pawn_service->setup(this);
 }
 
 void tog::TacticsPawn::_physics_process(double p_delta) {

@@ -28,11 +28,14 @@ namespace tog {
             const godot::Ref<tog::TacticsControlsInputService>& controls_input_service);
         ~TacticsControlsSelectionService() override = default;
 
-        //Handles the selection of a pawn
-        void select_pawn(tog::TacticsPlayer* tactics_player, const tog::TacticsControls* tactics_controls);
+        //Handles the selection of a pawn                   //this makes it so the ptr itself is not modifiable
+        void select_pawn(tog::TacticsPlayer* const tactics_player, tog::TacticsControls* const tactics_controls);
 
         //Selects the pawn currently hovered by the mouse
-        godot::PhysicsBody3D select_hovered_pawn(tog::TacticsControls* tactics_controls);
+        godot::PhysicsBody3D* select_hovered_pawn(tog::TacticsControls* tactics_controls);
+
+        //Selects the tile currently hovered by the mouse
+        tog::TacticsTile* select_hovered_tile(tog::TacticsControls* tactics_controls);
 
         //Handles the selection of a new location for the current pawn
         void select_new_location(tog::TacticsControls* tactics_controls);
