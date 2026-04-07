@@ -1,4 +1,6 @@
 #include "tactics_controls.hpp"
+
+#include "cursor_service.hpp"
 #include "util/bind.hpp"
 
 #include "godot_cpp/classes/resource_loader.hpp"
@@ -25,34 +27,39 @@ void tog::TacticsControls::_ready() {
 }
 
 void tog::TacticsControls::_physics_process(double p_delta) {
-    //m_tactics_control_service->
+    //Handle physics-based processing
+    m_tactics_control_service->physics_process(p_delta, this);
 }
 
-void tog::TacticsControls::_input(const godot::Ref<godot::InputEvent> &p_event) {
-
+void tog::TacticsControls::_input(const godot::Ref<godot::InputEvent>& p_event) {
+    m_tactics_control_service->handle_input(p_event);
 }
 
 void tog::TacticsControls::set_cursor_shape_to_move() {
-
+    tog::CursorService::set_cursor_shape_to_move();
 }
 
 void tog::TacticsControls::set_cursor_shape_to_arrow() {
-
+    tog::CursorService::set_cursor_shape_to_arrow();
 }
 
 void tog::TacticsControls::move_camera(float delta) {
-
+    //m_tactics_control_service->
 }
 
-godot::Button* tog::TacticsControls::get_action(const godot::String &action) {
-    return {};
+godot::Button* tog::TacticsControls::get_action(const godot::String& action) {
+    if (action == "") {
+        return get_node<godot::Button>(tog::node::name::BattleTest::Actions);
+    }
+    return get_node<godot::Button>(tog::node::name::BattleTest::Actions)->get_node<godot::Button>(action);
 }
 
 bool tog::TacticsControls::is_mouse_hovering_ui_elem() {
-    return false;
+    //return m_tactics_control_service->
 }
 
 void tog::TacticsControls::set_actions_menu_visibility(bool v, tog::TacticsPawn* tactics_pawn) {
+    m_tactics_control_service->set_actions_menu_visibility(v, tactics_pawn, this);
 }
 
 godot::Object* tog::TacticsControls::get_3d_canvas_mouse_position(int collision_mask) {
