@@ -28,8 +28,8 @@ godot::Object* tog::TacticsControlsInputService::get_3d_canvas_mouse_position(in
     }
 
     if (m_input_capture) {
-        return nullptr;
-        //return tactics_control
+        //todo: finish this
+        return rl::gdcast<tog::InputCapture>(m_input_capture)->project_mouse_position(collision_mask, m_tactics_controls_resource->m_is_joystick);
     } else {
         //todo: debug log failure
         return nullptr;

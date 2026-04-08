@@ -80,7 +80,7 @@ namespace tog {
         static void _bind_methods() {};
 
     public:
-        //Resource containing pawn-specific data and configurations
+        //Resource containing control-related data and configurations
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
         //Resource containing pawn-specific data and configurations
         godot::Ref<tog::TacticsPawnResource> m_tactics_pawn_resource;

@@ -132,18 +132,22 @@ namespace tog::inline constants {
             }
 
             namespace BattleTest {
-                constexpr inline auto Actions       { "%Actions" };
-                constexpr inline auto TwistPivot    { "TwistPivot" };
-                constexpr inline auto PitchPivot    { "TwistPivot/PitchPivot" };
-                constexpr inline auto Camera3D      { "TwistPivot/PitchPivot/Camera3D" };
-                constexpr inline auto Character     { "Character" };
-                constexpr inline auto HealthLabel   { "Character/CharacterUI/HealthLabel" };
-                constexpr inline auto Stats         { "Expertise/Stats" };
-                constexpr inline auto AnimationTree { "AnimationTree" };
-                constexpr inline auto NameLabel     { "CharacterUI/NameLabel" };
-                constexpr inline auto Playback      { "Parameters/Playback" };
-                constexpr inline auto Tile          { "Tile" };
-                constexpr inline auto InputCapture  { "InputCapture" };
+                constexpr inline auto Attack            { "%Actions/Attack" };
+                constexpr inline auto Move              { "%Actions/Move" };
+                constexpr inline auto Actions           { "%Actions" };
+                constexpr inline auto ControllerHints   { "%ControllerHints" };
+                constexpr inline auto TwistPivot        { "TwistPivot" };
+                constexpr inline auto PitchPivot        { "TwistPivot/PitchPivot" };
+                constexpr inline auto Camera3D          { "TwistPivot/PitchPivot/Camera3D" };
+                constexpr inline auto Character         { "Character" };
+                constexpr inline auto CharacterUI       { "Character/CharacterUI" };
+                constexpr inline auto HealthLabel       { "Character/CharacterUI/HealthLabel" };
+                constexpr inline auto NameLabel         { "CharacterUI/NameLabel" };
+                constexpr inline auto Stats             { "Expertise/Stats" };
+                constexpr inline auto AnimationTree     { "AnimationTree" };
+                constexpr inline auto Playback          { "Parameters/Playback" };
+                constexpr inline auto Tile              { "Tile" };
+                constexpr inline auto InputCapture      { "InputCapture" };
             }
 
 

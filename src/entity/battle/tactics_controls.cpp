@@ -44,7 +44,8 @@ void tog::TacticsControls::set_cursor_shape_to_arrow() {
 }
 
 void tog::TacticsControls::move_camera(float delta) {
-    //m_tactics_control_service->
+    //todo: verify this function does not exist
+    //m_tactics_control_service->move_camera(delta);
 }
 
 godot::Button* tog::TacticsControls::get_action(const godot::String& action) {
@@ -55,7 +56,8 @@ godot::Button* tog::TacticsControls::get_action(const godot::String& action) {
 }
 
 bool tog::TacticsControls::is_mouse_hovering_ui_elem() {
-    //return m_tactics_control_service->
+    //todo: verify this function does not exist
+    //return m_tactics_control_service->is_mouse_hovering_ui_elem(this);
 }
 
 void tog::TacticsControls::set_actions_menu_visibility(bool v, tog::TacticsPawn* tactics_pawn) {
@@ -63,33 +65,41 @@ void tog::TacticsControls::set_actions_menu_visibility(bool v, tog::TacticsPawn*
 }
 
 godot::Object* tog::TacticsControls::get_3d_canvas_mouse_position(int collision_mask) {
-
-    return {};
+    //todo: verify this function does not exist
+    //return m_tactics_control_service->get_3d_canvas_mouse_position
+    return nullptr;
 }
 
 void tog::TacticsControls::select_pawn(tog::TacticsPlayer* tactics_player) {
-
+    m_tactics_control_service->select_pawn(tactics_player, this);
 }
 
 void tog::TacticsControls::select_new_location() {
+    m_tactics_control_service->select_new_location(this);
 }
 
 void tog::TacticsControls::select_pawn_to_attack() {
+    m_tactics_control_service->select_pawn_to_attack(this);
 }
 
 void tog::TacticsControls::player_wants_to_move() {
+    m_tactics_control_service->player_wants_to_move();
 }
 
 void tog::TacticsControls::player_wants_to_cancel() {
+    m_tactics_control_service->player_wants_to_cancel();
 }
 
 void tog::TacticsControls::player_wants_to_wait() {
+    m_tactics_control_service->player_wants_to_wait();
 }
 
 void tog::TacticsControls::player_wants_to_skip_turn() {
+    m_tactics_control_service->player_wants_to_skip_turn();
 }
 
 void tog::TacticsControls::player_wants_to_attack() {
+    m_tactics_control_service->player_wants_to_attack();
 }
 
 //let godot be aware about the
