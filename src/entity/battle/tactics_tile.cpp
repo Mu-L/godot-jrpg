@@ -14,8 +14,7 @@ tog::TacticsTile::TacticsTile() {
 
 void tog::TacticsTile::_process(double p_delta) {
     //Get child node named "Tile" and cast it to a MeshInstance3D.
-    //TODO: use variable here instead of hardcoded string
-    godot::MeshInstance3D* tile_node = rl::gdcast<godot::MeshInstance3D>(get_node_or_null("Tile"));
+    godot::MeshInstance3D* tile_node = rl::gdcast<godot::MeshInstance3D>(get_node_or_null(tog::node::name::BattleTest::Tile));
 
     if (!tile_node)
         return;

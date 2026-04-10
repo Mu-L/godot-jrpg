@@ -34,6 +34,7 @@ namespace tog::inline constants {
                 constexpr inline auto tactics_camera_resource       { "res://assets/resources/battle/tactics_camera_resource.tres" };
                 constexpr inline auto tactics_participant_resource  { "res://assets/resources/battle/tactics_participant_resource.tres" };
                 constexpr inline auto tactics_arena_resource        { "res://assets/resources/battle/tactics_arena_resource.tres" };
+
             }
 
         }
@@ -147,6 +148,7 @@ namespace tog::inline constants {
                 constexpr inline auto AnimationTree     { "AnimationTree" };
                 constexpr inline auto Playback          { "Parameters/Playback" };
                 constexpr inline auto Tile              { "Tile" };
+                constexpr inline auto Tiles              { "Tile" };
                 constexpr inline auto InputCapture      { "InputCapture" };
             }
 
