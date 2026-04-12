@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tactics_opponent.hpp"
+#include "tactics_player.hpp"
 #include "tactics_participant.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
@@ -28,13 +29,13 @@ namespace tog {
         //@param delta: Time elapsed since the last frame
         //@param player: The TacticsPlayer node
         //@param participant: The TacticsParticipant node
-        void handle_player_turn(float delta, tog::TacticsPlayer* tactics_player, tog::TacticsParticipant tactics_participant);
+        void handle_player_turn(float delta, tog::TacticsPlayer* tactics_player, tog::TacticsParticipant* tactics_participant);
 
         //Handles the opponent's turn
         //@param delta: Time elapsed since the last frame
         //@param opponent: The TacticsOpponent node
         //@param participant: The TacticsParticipant node
-        void handle_opponent_turn(float delta, tog::TacticsOpponent* tactics_opponent, tog::TacticsParticipant tactics_participant);
+        void handle_opponent_turn(float delta, tog::TacticsOpponent* tactics_opponent, tog::TacticsParticipant* tactics_participant);
 
         //Checks if the participant can perform an action
         //@param parent: The parent node of the participant

@@ -4,8 +4,6 @@
 
 namespace tog {
 
-    class TacticsParticipant;
-
     class TacticsPlayer : public TacticsParticipant {
         GDCLASS(TacticsPlayer, TacticsParticipant);
 
@@ -17,6 +15,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        //godot::Ref<tog::TacticsPlayerSEr
 
     };
 

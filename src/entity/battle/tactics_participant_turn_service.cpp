@@ -1,8 +1,6 @@
 #include "tactics_participant_turn_service.hpp"
 
-#include "tactics_player.hpp"
-
-void tog::TacticsParticipantTurnService::handle_player_turn(float delta, tog::TacticsPlayer* tactics_player, tog::TacticsParticipant tactics_participant) {
+void tog::TacticsParticipantTurnService::handle_player_turn(float delta, tog::TacticsPlayer* tactics_player, tog::TacticsParticipant* tactics_participant) {
     if (m_tactics_participant_resource->m_turn_just_started) {
         godot::Variant front_node = tactics_player->get_children().front();
         m_tactics_camera_resource->m_target = godot::Object::cast_to<godot::Node3D>(front_node);
@@ -20,4 +18,17 @@ void tog::TacticsParticipantTurnService::handle_player_turn(float delta, tog::Ta
             //tactics_player->
         default: ;
     }
+}
+
+void tog::TacticsParticipantTurnService::handle_opponent_turn(float delta, tog::TacticsOpponent *tactics_opponent,
+    tog::TacticsParticipant *tactics_participant) {
+}
+
+void tog::TacticsParticipantTurnService::can_act(godot::Node3D *parent) {
+}
+
+void tog::TacticsParticipantTurnService::reset_turn(godot::Node3D *parent) {
+}
+
+void tog::TacticsParticipantTurnService::skip_turn(tog::TacticsPlayer *player) {
 }

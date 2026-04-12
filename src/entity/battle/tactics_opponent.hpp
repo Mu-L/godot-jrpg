@@ -5,10 +5,8 @@
 
 namespace tog {
 
-    class TacticsParticipant;
-
     //Handles opponent AI actions and decision-making
-    class TacticsOpponent : public TacticsParticipant {
+    class TacticsOpponent : public tog::TacticsParticipant {
         GDCLASS(TacticsOpponent, TacticsParticipant);
 
     public:
@@ -40,8 +38,6 @@ namespace tog {
     private:
         //Service handling opponent-specific logic and operations
         godot::Ref<tog::TacticsOpponentService> m_tactics_opponent_service;
-
-
     };
 
 }

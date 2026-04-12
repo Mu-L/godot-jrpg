@@ -1,11 +1,11 @@
 #pragma once
 
 #include "tactics_controls_input_service.hpp"
-#include "godot_cpp/classes/ref_counted.hpp"
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
+#include "godot_cpp/classes/ref_counted.hpp"
 
 
 namespace tog {
