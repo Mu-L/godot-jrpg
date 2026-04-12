@@ -1,5 +1,7 @@
 #pragma once
 
+#include "tactics_player.hpp"
+#include "tactics_opponent.hpp"
 #include "tactics_participant_service.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
@@ -62,7 +64,6 @@ namespace tog {
         tog::TacticsPlayer* m_tactics_player = nullptr;
         //Reference to the TacticsOpponent node
         tog::TacticsOpponent* m_tactics_opponent = nullptr;
-
 
     };
 

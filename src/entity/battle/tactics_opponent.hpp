@@ -5,6 +5,8 @@
 
 namespace tog {
 
+    class TacticsParticipant;
+
     //Handles opponent AI actions and decision-making
     class TacticsOpponent : public tog::TacticsParticipant {
         GDCLASS(TacticsOpponent, TacticsParticipant);

@@ -4,6 +4,8 @@
 
 namespace tog {
 
+    class TacticsParticipant;
+
     class TacticsPlayer : public TacticsParticipant {
         GDCLASS(TacticsPlayer, TacticsParticipant);
 

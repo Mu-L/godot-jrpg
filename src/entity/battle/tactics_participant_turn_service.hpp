@@ -1,7 +1,6 @@
 #pragma once
 
 #include "tactics_opponent.hpp"
-#include "tactics_player.hpp"
 #include "tactics_participant.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
@@ -9,6 +8,7 @@
 
 namespace tog {
 
+    class TacticsParticipant;
     //Service class for handling turn-related actions
     //Parent: [TacticsParticipantService]
     class TacticsParticipantTurnService : public godot::RefCounted {

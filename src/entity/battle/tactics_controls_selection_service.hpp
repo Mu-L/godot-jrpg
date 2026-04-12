@@ -1,5 +1,7 @@
 #pragma once
 
+#include "tactics_player.hpp"
+#include "tactics_opponent.hpp"
 #include "tactics_controls_input_service.hpp"
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
