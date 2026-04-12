@@ -28,9 +28,14 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        //Resource containing participant data and configurations
         godot::Ref<tog::TacticsParticipantResource> m_tactics_participant_resource;
+        //Resource for camera-related data and configurations
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
+        //Resource for control-related data and configurations
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
+        //Service handling participant logic and operations
+        //godot::Ref<TacticsParticipantService>
 
     };
 

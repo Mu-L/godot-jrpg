@@ -31,7 +31,7 @@ namespace tog {
     protected:
         static void _bind_methods();
 
-    private:
+    public:
         godot::Array m_path_tiles_stack;
 
     };

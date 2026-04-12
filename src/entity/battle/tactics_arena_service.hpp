@@ -64,13 +64,13 @@ namespace tog {
         //## [param arena] The TacticsArena containing the tiles
         //## [param root] The starting tile
         //## [param distance] The maximum distance to consider
-        void mark_reachable_tiles(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_tile, float distance);
+        void mark_reachable_tiles(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_root_tile, float distance);
 
         //## Mark attackable tiles within a certain distance from a root tile
         //## [param arena] The TacticsArena containing the tiles
         //## [param root] The starting tile
         //## [param distance] The maximum attack distance
-        void mark_attackable_tiles(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_tile, float distance);
+        void mark_attackable_tiles(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_root_tile, float distance);
 
 
     protected:

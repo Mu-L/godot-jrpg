@@ -8,7 +8,7 @@
 namespace tog {
 
     //possible actions that can happen
-    enum class STAGE {
+    enum STAGE {
         //Constant for the pawn selection stage
         SELECT_PAWN = 0,
         //Constant for the action display stage
@@ -24,7 +24,9 @@ namespace tog {
         //Constant for the attack target selection stage
         SELECT_ATTACK_TARGET,
         //Constant for the attack execution stage
-        ATTACK
+        ATTACK,
+        //cap
+        MAX_STAGES
     };
 
     //Attributes & signals of the tactics participant
