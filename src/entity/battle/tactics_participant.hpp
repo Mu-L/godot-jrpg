@@ -1,12 +1,5 @@
 #pragma once
 
-#include "tactics_player.hpp"
-#include "tactics_opponent.hpp"
-#include "tactics_participant_service.hpp"
-#include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_controls_resource.hpp"
-#include "resources/battle/tactics_participant_resource.hpp"
-
 #include "godot_cpp/classes/node3d.hpp"
 
 namespace tog {
@@ -45,6 +38,8 @@ namespace tog {
             const godot::Ref<tog::TacticsCameraResource>& camera_resource,
             const godot::Ref<tog::TacticsControlsResource>& controls_resource
         );
+
+        //todo: the "is_configrued" function should be virtual because it will be used by TacticsPlayer and TacticsOpponent
 
     protected:
         static void _bind_methods() {}

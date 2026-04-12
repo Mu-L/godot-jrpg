@@ -1,16 +1,17 @@
 #pragma once
 
-#include "tactics_participant_combat_service.hpp"
-#include "tactics_participant_turn_service.hpp"
-#include "resources/battle/tactics_participant_resource.hpp"
-#include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_controls_resource.hpp"
-
+#include "godot_cpp/classes/node3d.hpp"
 #include "godot_cpp/classes/ref_counted.hpp"
 
 namespace tog {
 
     class TacticsParticipant;
+    class TacticsCameraResource;
+    class TacticsParticipantResource;
+    class TacticsControlsResource;
+    class TacticsParticipantTurnService;
+    class TacticsParticipantCombatService;
+    class TacticsPlayer;
 
     //Service class for TacticsParticipant
     //Dependency of: [TacticsParticipant]
