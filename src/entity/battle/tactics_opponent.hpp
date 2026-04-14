@@ -20,7 +20,7 @@ namespace tog {
 
         //Checks if the opponent's pawn is properly configured
         //@return: Whether the pawn is configured
-        bool is_pawn_configured();
+        bool is_pawn_configured() override;
 
         //Chooses a pawn for the opponent to act with
         void choose_pawn();

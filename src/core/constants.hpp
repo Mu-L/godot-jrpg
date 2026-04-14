@@ -148,8 +148,11 @@ namespace tog::inline constants {
                 constexpr inline auto AnimationTree     { "AnimationTree" };
                 constexpr inline auto Playback          { "Parameters/Playback" };
                 constexpr inline auto Tile              { "Tile" };
-                constexpr inline auto Tiles              { "Tile" };
+                constexpr inline auto Tiles             { "Tiles" };
                 constexpr inline auto InputCapture      { "InputCapture" };
+                constexpr inline auto TacticsArena      { "%TacticsArena" };
+                constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };
+                constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };
             }
 
 

@@ -112,9 +112,9 @@ namespace rl {
         godot::ClassDB::register_class<tog::TacticsCameraService>();
         godot::ClassDB::register_class<tog::TacticsCameraZoomService>();
         godot::ClassDB::register_class<tog::TacticsControls>();
-        godot::ClassDB::register_class<tog::TacticsParticipant>();
+        godot::ClassDB::register_abstract_class<tog::TacticsParticipant>();
         godot::ClassDB::register_class<tog::TacticsPawn>();
-        godot::ClassDB::register_class<tog::TacticsPlayer>();
+        //godot::ClassDB::register_class<tog::TacticsPlayer>(true);
         //godot::ClassDB::register_class<tog::TacticsTile>();
         godot::ClassDB::register_class<tog::TacticsTileRaycast>();
 

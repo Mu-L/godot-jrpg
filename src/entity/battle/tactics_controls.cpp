@@ -6,11 +6,11 @@
 #include "godot_cpp/classes/resource_loader.hpp"
 
 void tog::TacticsControls::_ready() {
-    const auto res_loader = godot::ResourceLoader::get_singleton();
-    m_tactics_control_resource = res_loader->load(tog::path::resource::battle::tactics_control_resource);
-    m_tactics_camera_resource = res_loader->load(tog::path::resource::battle::tactics_camera_resource);
-    m_tactics_participant_resource = res_loader->load(tog::path::resource::battle::tactics_participant_resource);
-    m_tactics_arena_resource = res_loader->load(tog::path::resource::battle::tactics_arena_resource);
+    const auto resource_loader = godot::ResourceLoader::get_singleton();
+    m_tactics_control_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
+    m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
+    m_tactics_participant_resource = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
+    m_tactics_arena_resource = resource_loader->load(tog::path::resource::battle::tactics_arena_resource);
 
     m_tactics_pawn = nullptr;
 

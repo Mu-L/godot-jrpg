@@ -1,11 +1,15 @@
 #pragma once
 
-#include "tactics_arena.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
+#include "resources/battle/tactics_controls_resource.hpp"
+
 #include "godot_cpp/classes/ref_counted.hpp"
 
 namespace tog {
+
+    class TacticsOpponent;
+    class TacticsArena;
 
     //Service class for TacticsOpponent
     class TacticsOpponentService : public godot::RefCounted {
@@ -27,8 +31,22 @@ namespace tog {
         //Checks if all opponent pawns are properly configured
         //@param opponent: The TacticsOpponent node to check
         //@return: Whether all pawns are configured
-        //bool is_pawn_configured(tog::Tac)
+        bool is_pawn_configured(tog::TacticsOpponent* tactics_opponent);
 
+        //Selects a pawn for the opponent to control
+        //@param opponent: The TacticsOpponent node
+        void choose_pawn(tog::TacticsOpponent* tactics_opponent);
+
+        //Initiates the opponent's pawn to chase the nearest enemy
+        //@param opponent: The TacticsOpponent node
+        //@param player_node: The player's node
+        void chase_nearest_enemy(tog::TacticsOpponent* tactics_opponent, godot::Node* player_node);
+
+        //Checks if the opponent's pawn has finished moving
+        void is_pawn_done_moving();
+
+        //Selects a pawn for the opponent to attack
+        void choose_pawn_to_attack();
 
     protected:
         static void _bind_methods() {}

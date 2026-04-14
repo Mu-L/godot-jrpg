@@ -4,17 +4,17 @@
 
 namespace tog {
 
-    //Handles participant (i.e. Player & Opponent) actions and decision-making
-    //Resource Interface: [TacticsParticipantResource] -- Service: [TacticsParticipantService]
-    //Parent of: [TacticsPlayer], [TacticsOpponent]
-
     class TacticsControlsResource;
     class TacticsParticipantResource;
     class TacticsCameraResource;
     class TacticsPlayer;
     class TacticsOpponent;
     class TacticsParticipantService;
+    class TacticsArena;
 
+    //Handles participant (i.e. Player & Opponent) actions and decision-making
+    //Resource Interface: [TacticsParticipantResource] -- Service: [TacticsParticipantService]
+    //Parent of: [TacticsPlayer], [TacticsOpponent]
     class TacticsParticipant : public godot::Node3D {
         GDCLASS(TacticsParticipant, godot::Node3D);
 
@@ -42,10 +42,27 @@ namespace tog {
         //todo: the "is_configrued" function should be virtual because it will be used by TacticsPlayer and TacticsOpponent
         virtual bool is_pawn_configured() = 0;
 
+        //Checks if the participant is properly configured
+        //@param parent: The parent node of the participant
+        //@return: Whether the participant is configured
+        bool is_configured(godot::Node3D* parent);
+
+        //Checks if the participant can perform an action
+        //@param parent: The parent node of the participant
+        //@return: Whether the participant can act
+        bool can_act(godot::Node3D* parent);
+
+        //Resets the participant's turn
+        //@param parent: The parent node of the participant
+        void reset_turn(godot::Node3D* parent);
+
+        //Skips the participant's turn
+        void skip_turn();
+
     protected:
         static void _bind_methods() {}
 
-    protected:
+    public:
         //Resource containing participant data and configurations
         godot::Ref<tog::TacticsParticipantResource> m_tactics_participant_resource;
         //Resource for camera-related data and configurations
@@ -55,7 +72,7 @@ namespace tog {
         //Service handling participant logic and operations
         godot::Ref<tog::TacticsParticipantService> m_tactics_participant_service;
         //Reference to the TacticsArena node
-        godot::Node3D* m_tactics_arena = nullptr;
+        tog::TacticsArena* m_tactics_arena = nullptr;
         //Reference to the TacticsPlayer node
         tog::TacticsPlayer* m_tactics_player = nullptr;
         //Reference to the TacticsOpponent node

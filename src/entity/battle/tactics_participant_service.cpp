@@ -40,7 +40,7 @@ void tog::TacticsParticipantService::configure(const godot::Ref<tog::TacticsCame
 }
 
 bool tog::TacticsParticipantService::is_configured(godot::Node3D* parent) {
-    return parent->
+    //return parent->
 
 }
 
