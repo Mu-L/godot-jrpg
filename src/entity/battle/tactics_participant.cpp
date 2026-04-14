@@ -9,4 +9,5 @@ void tog::TacticsParticipant::act(float delta, bool is_player, godot::Node3D* pa
 }
 
 void tog::TacticsParticipant::configure(const godot::Ref<tog::TacticsCameraResource> &camera_resource, const godot::Ref<tog::TacticsControlsResource> &controls_resource) {
+
 }
