@@ -44,7 +44,7 @@ namespace tog {
         //Checks if the participant can perform an action
         //@param parent: The parent node of the participant
         //@return: Whether the participant can act
-        void can_act(godot::Node3D* parent);
+        bool can_act(godot::Node3D* parent);
 
         //Resets the participant's turn
         //@param parent: The parent node of the participant
@@ -64,7 +64,6 @@ namespace tog {
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Resource for control-related data and configurations
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
-
     };
 
 }

@@ -77,8 +77,6 @@ namespace tog {
         godot::Ref<tog::TacticsParticipantTurnService> m_tactics_participant_turn_service;
         //Service handling combat-related logic
         godot::Ref<tog::TacticsParticipantCombatService> m_tactics_combat_service;
-
-
     };
 
 }

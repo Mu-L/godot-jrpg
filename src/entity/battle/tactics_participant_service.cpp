@@ -1,6 +1,7 @@
 #include "tactics_participant_service.hpp"
 
 #include "tactics_player.hpp"
+#include "tactics_opponent.hpp"
 #include "tactics_participant_turn_service.hpp"
 #include "tactics_participant_combat_service.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
@@ -14,7 +15,7 @@ tog::TacticsParticipantService::TacticsParticipantService(
         : m_tactics_participant_resource{participant_resource},
           m_tactics_camera_resource{camera_resource},
           m_tactics_controls_resource{controls_resource} {
-    //initializes the TacticsParticipantService
+
     m_tactics_participant_turn_service = memnew(
         tog::TacticsParticipantTurnService(m_tactics_participant_resource, m_tactics_camera_resource, m_tactics_controls_resource)
     );
@@ -31,6 +32,9 @@ void tog::TacticsParticipantService::act(float delta, bool is_player, godot::Nod
     if (is_player) {
         tog::TacticsPlayer* player = godot::Object::cast_to<tog::TacticsPlayer>(parent);
         m_tactics_participant_turn_service->handle_player_turn(delta, player, tactics_participant);
+    } else {
+        tog::TacticsOpponent* opponent = godot::Object::cast_to<tog::TacticsOpponent>(parent);
+        m_tactics_participant_turn_service->handle_opponent_turn(delta, opponent, tactics_participant);
     }
 }
 
@@ -40,17 +44,18 @@ void tog::TacticsParticipantService::configure(const godot::Ref<tog::TacticsCame
 }
 
 bool tog::TacticsParticipantService::is_configured(godot::Node3D* parent) {
-    //return parent->
-
+    tog::TacticsParticipant* participant = godot::Object::cast_to<tog::TacticsParticipant>(parent);
+    return participant ? participant->is_pawn_configured() : false;
 }
 
 bool tog::TacticsParticipantService::can_act(godot::Node3D* parent) {
+    return m_tactics_participant_turn_service->can_act(parent);
 }
 
 void tog::TacticsParticipantService::reset_turn(godot::Node3D* parent) {
-
+    m_tactics_participant_turn_service->reset_turn(parent);
 }
 
 void tog::TacticsParticipantService::skip_turn(tog::TacticsPlayer* tactics_player) {
-
+    m_tactics_participant_turn_service->skip_turn(tactics_player);
 }
