@@ -23,7 +23,7 @@ godot::Array tog::TacticsArena::get_pathfinding_tilestack(tog::TacticsTile* to) 
     m_tactics_arena_service->get_pathfinding_tilestack(to);
 }
 
-void tog::TacticsArena::get_nearest_target_adjacent_tile(tog::TacticsPawn* tactics_pawn, godot::Array target_pawns) {
+tog::TacticsTile* tog::TacticsArena::get_nearest_target_adjacent_tile(tog::TacticsPawn* tactics_pawn, godot::Array target_pawns) {
     m_tactics_arena_service->get_nearest_target_adjacent_tile(tactics_pawn, target_pawns);
 }
 

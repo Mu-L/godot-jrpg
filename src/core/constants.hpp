@@ -145,6 +145,7 @@ namespace tog::inline constants {
                 constexpr inline auto HealthLabel       { "Character/CharacterUI/HealthLabel" };
                 constexpr inline auto NameLabel         { "CharacterUI/NameLabel" };
                 constexpr inline auto Stats             { "Expertise/Stats" };
+                constexpr inline auto Stats_            { "%Stats" };
                 constexpr inline auto AnimationTree     { "AnimationTree" };
                 constexpr inline auto Playback          { "Parameters/Playback" };
                 constexpr inline auto Tile              { "Tile" };
@@ -153,6 +154,7 @@ namespace tog::inline constants {
                 constexpr inline auto TacticsArena      { "%TacticsArena" };
                 constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };
                 constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };
+                constexpr inline auto TacticsParticipant{ "%TacticsParticipant" };
             }
 
 

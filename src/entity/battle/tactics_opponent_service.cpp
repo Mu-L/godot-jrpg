@@ -3,6 +3,7 @@
 #include "tactics_arena.hpp"
 #include "tactics_pawn.hpp"
 #include "tactics_opponent.hpp"
+#include "tactics_tile.hpp"
 
 bool tog::TacticsOpponentService::is_pawn_configured(tog::TacticsOpponent* tactics_opponent) {
     for (const godot::Variant& variant : tactics_opponent->get_children()) {
@@ -36,7 +37,7 @@ void tog::TacticsOpponentService::chase_nearest_enemy(tog::TacticsOpponent* tact
             m_tactics_participant_resource->m_tactics_pawn->get_tile(),
             m_tactics_participant_resource->m_tactics_pawn->m_stats_node->m_movement
         );
-        tog::TacticTile* to_tile = m_tactics_arena->get_nearest_target_adjacent_tile(m_tactics_participant_resource->m_tactics_pawn, player_node->get_children());
+        tog::TacticsTile* to_tile = m_tactics_arena->get_nearest_target_adjacent_tile(m_tactics_participant_resource->m_tactics_pawn, player_node->get_children());
         m_tactics_participant_resource->m_tactics_pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack = m_tactics_arena->get_pathfinding_tilestack(to_tile);
         m_tactics_camera_resource->m_target = to_tile;
         //todo: debug for moving pawn

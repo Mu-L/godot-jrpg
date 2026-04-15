@@ -42,7 +42,7 @@ namespace tog {
         //[param pawn] The pawn seeking a target
         //[param target_pawns] Array of potential target pawns
         //[returns] The nearest adjacent tile to a target
-        void get_nearest_target_adjacent_tile(tog::TacticsPawn* tactics_pawn, godot::Array target_pawns);
+        tog::TacticsTile* get_nearest_target_adjacent_tile(tog::TacticsPawn* tactics_pawn, godot::Array target_pawns);
 
         //Identifies the weakest attackable pawn from an array of pawns
         //[param pawn_arr] Array of pawns to evaluate
