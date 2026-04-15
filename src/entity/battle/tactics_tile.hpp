@@ -41,7 +41,8 @@ namespace tog {
 
     public:
         //Resource for tile raycasting
-        rl::resource::preload::packed_scene<tog::TacticsTileRaycast> m_tactics_tile_raycast_scene{tog::path::resource::battle::tactics_tile_raycast};
+        //rl::resource::preload::packed_scene<tog::TacticsTileRaycast> m_tactics_tile_raycast_scene{tog::path::resource::battle::tactics_tile_raycast};
+        godot::Ref<godot::PackedScene> m_tactics_tile_raycast_scene;
         //Whether the tile is reachable
         bool m_reachable = false;
         //Whether the tile is attackable

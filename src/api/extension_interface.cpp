@@ -2,8 +2,13 @@
 #include <gdextension_interface.h>
 #include "main.hpp"
 
+#include "entity/battle/cursor_service.hpp"
+#include "entity/battle/expertise.hpp"
 #include "entity/battle/input_capture.hpp"
 #include "entity/battle/input_capture_service.hpp"
+#include "entity/battle/stats.hpp"
+#include "entity/battle/tactics_arena.hpp"
+#include "entity/battle/tactics_arena_service.hpp"
 #include "entity/battle/tactics_camera.hpp"
 #include "entity/battle/tactics_camera_movement_service.hpp"
 #include "entity/battle/tactics_camera_panning_service.hpp"
@@ -11,11 +16,29 @@
 #include "entity/battle/tactics_camera_service.hpp"
 #include "entity/battle/tactics_camera_zoom_service.hpp"
 #include "entity/battle/tactics_controls.hpp"
+#include "entity/battle/tactics_controls_camera_service.hpp"
+#include "entity/battle/tactics_controls_input_service.hpp"
+#include "entity/battle/tactics_controls_selection_service.hpp"
+#include "entity/battle/tactics_controls_service.hpp"
+#include "entity/battle/tactics_level.hpp"
+#include "entity/battle/tactics_opponent.hpp"
+#include "entity/battle/tactics_opponent_service.hpp"
 #include "entity/battle/tactics_participant.hpp"
+#include "entity/battle/tactics_participant_combat_service.hpp"
+#include "entity/battle/tactics_participant_service.hpp"
+#include "entity/battle/tactics_participant_turn_service.hpp"
 #include "entity/battle/tactics_pawn.hpp"
+#include "entity/battle/tactics_pawn_animation_service.hpp"
+#include "entity/battle/tactics_pawn_combat_service.hpp"
+#include "entity/battle/tactics_pawn_hud_service.hpp"
+#include "entity/battle/tactics_pawn_movement_service.hpp"
+#include "entity/battle/tactics_pawn_service.hpp"
+#include "entity/battle/tactics_pawn_sprite.hpp"
 #include "entity/battle/tactics_player.hpp"
+#include "entity/battle/tactics_player_service.hpp"
 #include "entity/battle/tactics_tile.hpp"
 #include "entity/battle/tactics_tile_raycast.hpp"
+#include "entity/battle/tactics_ui_service.hpp"
 
 #include "entity/camera.hpp"
 #include "entity/character/character.hpp"
@@ -53,6 +76,7 @@
 #include <godot_cpp/core/class_db.hpp>
 
 #include <type_traits>
+
 
 
 namespace rl {
@@ -103,8 +127,13 @@ namespace rl {
         godot::ClassDB::register_class<console>();
 
         //Battle
+        godot::ClassDB::register_class<tog::CursorService>();
+        godot::ClassDB::register_class<tog::Expertise>();
         godot::ClassDB::register_class<tog::InputCapture>();
         godot::ClassDB::register_class<tog::InputCaptureService>();
+        godot::ClassDB::register_class<tog::Stats>();
+        godot::ClassDB::register_class<tog::TacticsArena>();
+        godot::ClassDB::register_class<tog::TacticsArenaService>();
         godot::ClassDB::register_class<tog::TacticsCamera>();
         godot::ClassDB::register_class<tog::TacticsCameraMovementService>();
         godot::ClassDB::register_class<tog::TacticsCameraPanningService>();
@@ -112,11 +141,29 @@ namespace rl {
         godot::ClassDB::register_class<tog::TacticsCameraService>();
         godot::ClassDB::register_class<tog::TacticsCameraZoomService>();
         godot::ClassDB::register_class<tog::TacticsControls>();
+        godot::ClassDB::register_class<tog::TacticsControlsCameraService>();
+        godot::ClassDB::register_class<tog::TacticsControlsInputService>();
+        godot::ClassDB::register_class<tog::TacticsControlsSelectionService>();
+        godot::ClassDB::register_class<tog::TacticsControlsService>();
+        godot::ClassDB::register_class<tog::TacticsLevel>();
         godot::ClassDB::register_abstract_class<tog::TacticsParticipant>();
+        godot::ClassDB::register_class<tog::TacticsOpponent>();
+        godot::ClassDB::register_class<tog::TacticsOpponentService>();
+        godot::ClassDB::register_class<tog::TacticsParticipantCombatService>();
+        godot::ClassDB::register_class<tog::TacticsParticipantService>();
+        godot::ClassDB::register_class<tog::TacticsParticipantTurnService>();
         godot::ClassDB::register_class<tog::TacticsPawn>();
-        //godot::ClassDB::register_class<tog::TacticsPlayer>(true);
-        //godot::ClassDB::register_class<tog::TacticsTile>();
+        godot::ClassDB::register_class<tog::TacticsPawnAnimationService>();
+        godot::ClassDB::register_class<tog::TacticsPawnCombatService>();
+        godot::ClassDB::register_class<tog::TacticsPawnHudService>();
+        godot::ClassDB::register_class<tog::TacticsPawnMovementService>();
+        godot::ClassDB::register_class<tog::TacticsPawnService>();
+        godot::ClassDB::register_class<tog::TacticsPawnSprite>();
+        godot::ClassDB::register_class<tog::TacticsPlayer>();
+        godot::ClassDB::register_class<tog::TacticsPlayerService>();
+        godot::ClassDB::register_class<tog::TacticsTile>();
         godot::ClassDB::register_class<tog::TacticsTileRaycast>();
+        godot::ClassDB::register_class<tog::TacticsUIService>();
 
         //Resources
         //battle

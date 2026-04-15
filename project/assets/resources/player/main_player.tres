@@ -1,6 +1,6 @@
-[gd_resource type="CharacterState" format=3]
+[gd_resource type="CharacterState" format=3 uid="uid://dachilblcxw4t"]
 
-[ext_resource type="Texture2D" path="res://assets/art/character_tilesets/character_set_1.png" id="1_8r2fb"]
+[ext_resource type="Texture2D" uid="uid://csrr4m3iosnhe" path="res://assets/art/character_tilesets/character_set_1.png" id="1_8r2fb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8r2fb"]
 atlas = ExtResource("1_8r2fb")

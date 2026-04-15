@@ -4,6 +4,8 @@
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
 
+#include "godot_cpp/classes/ref_counted.hpp"
+
 namespace tog {
 
     inline static constexpr int DELTA_SMOOTHING = 8;
@@ -16,9 +18,8 @@ namespace tog {
     class TacticsCamera;
 
     //Service class for handling camera movement in tactical view
-    //TODO: not a singleton, convert it back to regular class
-    class TacticsCameraMovementService : public godot::Object {
-        GDCLASS(TacticsCameraMovementService, godot::Object);
+    class TacticsCameraMovementService : public godot::RefCounted {
+        GDCLASS(TacticsCameraMovementService, godot::RefCounted);
     public:
         TacticsCameraMovementService() = default;
         TacticsCameraMovementService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);

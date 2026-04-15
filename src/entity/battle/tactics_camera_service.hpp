@@ -43,7 +43,7 @@ namespace tog {
     public:
         tog::TacticsCameraResource*         m_tactics_camera_resource = nullptr;
         tog::TacticsControlsResource*        m_tactics_control_resource = nullptr;
-        tog::TacticsCameraMovementService*  m_tactics_camera_movement_service = nullptr;
+        godot::Ref<TacticsCameraMovementService> m_tactics_camera_movement_service = nullptr;
         tog::TacticsCameraZoomService*      m_tactics_zoom_service = nullptr;
         tog::TacticsCameraRotationService*  m_tactics_camera_rotation_service = nullptr;
         tog::TacticsCameraPanningService*   m_tactics_camera_panning_service = nullptr;

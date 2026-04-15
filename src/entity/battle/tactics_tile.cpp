@@ -5,11 +5,13 @@
 #include "util/scene.hpp"
 
 tog::TacticsTile::TacticsTile() {
+    auto resource_loader = godot::ResourceLoader::get_singleton();
     m_hover_material = make_colored_material(godot::Color::html("#FFFFFF3F"));
     m_reachable_material = make_colored_material(godot::Color::html("#008fdbBF"));
     m_hover_reachable_material = make_colored_material(godot::Color::html("#0aa9ffBF"));
     m_attackable_material = make_colored_material(godot::Color::html("#d10000BF"));
     m_hover_attackable_material = make_colored_material(godot::Color::html("#ff4242BF"));
+    m_tactics_tile_raycast_scene = resource_loader->load(tog::path::resource::battle::tactics_tile_raycast);
 }
 
 void tog::TacticsTile::_process(double p_delta) {
@@ -65,7 +67,7 @@ void tog::TacticsTile::reset_markers() {
 
 void tog::TacticsTile::configure_tile() {
     m_hover = false;
-    const auto node = m_tactics_tile_raycast_scene.instantiate();
+    const auto node = m_tactics_tile_raycast_scene->instantiate();
     attach_child_to_parent(this, node);
     reset_markers();
 }
