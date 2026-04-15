@@ -6,7 +6,6 @@
 #include "tactics_arena.hpp"
 
 #include "resources/battle/tactics_camera_resource.hpp"
-#include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/resource_loader.hpp"
 
