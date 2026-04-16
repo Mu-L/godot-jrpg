@@ -14,25 +14,29 @@ void tog::TacticsControls::_ready() {
 
     m_tactics_pawn = nullptr;
 
-    m_input_capture = get_node<tog::InputCapture>(tog::constants::node::name::BattleTest::InputCapture);
+    m_input_capture = godot::Object::cast_to<tog::InputCapture>(get_node_or_null(tog::constants::node::name::BattleTest::InputCapture));
+
 
     m_tactics_control_service = memnew(tog::TacticsControlsService(m_tactics_control_resource, m_tactics_camera_resource, m_tactics_participant_resource, m_tactics_arena_resource, m_input_capture));
     m_tactics_control_service->setup(this);
 
+    /*
     //Connect action buttons to their respective methods
     for (godot::String action : m_tactics_control_resource->m_actions.keys()) {
         godot::String value = m_tactics_control_resource->m_actions[action];
         this->get_action(action)->connect(tog::node::signal::BaseButton::pressed, godot::Callable(this, value));
     }
+    */
+
 }
 
 void tog::TacticsControls::_physics_process(double p_delta) {
     //Handle physics-based processing
-    m_tactics_control_service->physics_process(p_delta, this);
+    //m_tactics_control_service->physics_process(p_delta, this);
 }
 
 void tog::TacticsControls::_input(const godot::Ref<godot::InputEvent>& p_event) {
-    m_tactics_control_service->handle_input(p_event);
+    //m_tactics_control_service->handle_input(p_event);
 }
 
 void tog::TacticsControls::set_cursor_shape_to_move() {

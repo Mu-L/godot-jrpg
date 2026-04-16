@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cp3g1xea6l2ia"]
+
+[node name="InputCapture" type="InputCapture" unique_id=1945727326]

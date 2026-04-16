@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bsfblv238b0w"]
+
+[ext_resource type="PackedScene" uid="uid://cp3g1xea6l2ia" path="res://scenes/tactics_battle/tactics_input_capture.tscn" id="1_nhqn0"]
+
+[node name="TacticsControls" type="TacticsControls" unique_id=59907860]
+
+[node name="InputCapture" parent="." unique_id=1945727326 instance=ExtResource("1_nhqn0")]
