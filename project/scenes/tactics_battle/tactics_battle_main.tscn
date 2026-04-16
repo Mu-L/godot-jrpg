@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://c8cqx5k2334js"]
 
+[ext_resource type="PackedScene" uid="uid://bbgqews3ukj0v" path="res://scenes/tactics_battle/tactics_camera.tscn" id="1_sphpf"]
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_yv8w7"]
 
 [node name="TacticsBattleMain" type="Node" unique_id=478292851]
 
 [node name="Camera" type="Node3D" parent="." unique_id=1746608023]
+
+[node name="TacticsCamera" parent="Camera" unique_id=1015809716 instance=ExtResource("1_sphpf")]
 
 [node name="UI" type="Control" parent="." unique_id=207890119]
 layout_mode = 3

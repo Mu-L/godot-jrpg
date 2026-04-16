@@ -4,6 +4,7 @@
 #include "util/engine.hpp"
 
 void tog::TacticsCamera::_ready() {
+
     auto resource_loader = godot::ResourceLoader::get_singleton();
     m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
     m_tactics_control_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
@@ -15,7 +16,7 @@ void tog::TacticsCamera::_ready() {
 
     //Initialize camera service
     m_tactics_camera_service = tog::TacticsCameraService::reset(m_tactics_camera_resource, m_tactics_control_resource);
-    assertion(m_tactics_camera_service, "Tactics Camera Service static object did not initalize ");
+    //assertion(m_tactics_camera_service, "Tactics Camera Service static object did not initalize ");
     //Set up camera service
     m_tactics_camera_service->setup(this, m_camera);
     //Set the initial boundary center
@@ -26,6 +27,7 @@ void tog::TacticsCamera::_ready() {
         m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_rotate_camera, callable_mp(this, &tog::TacticsCamera::rotate_camera));
         m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_move_camera, callable_mp(this, &tog::TacticsCamera::move_camera));
     }
+
 }
 
 void tog::TacticsCamera::_process(double p_delta) {

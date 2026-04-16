@@ -7,15 +7,22 @@
 tog::TacticsCameraService * tog::TacticsCameraService::get() { return m_static_inst; }
 
 tog::TacticsCameraService * tog::TacticsCameraService::reset() {
-    delete m_static_inst;
+    cleanup();
     m_static_inst = memnew(TacticsCameraService);
     return m_static_inst;
 }
 
 tog::TacticsCameraService * tog::TacticsCameraService::reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
-    delete m_static_inst;
+    cleanup();
     m_static_inst = memnew(TacticsCameraService(camera_resource, control_resource));
     return m_static_inst;
+}
+
+void tog::TacticsCameraService::cleanup() {
+    if (m_static_inst) {
+        godot::memdelete(m_static_inst);
+        m_static_inst = nullptr;
+    }
 }
 
 void tog::TacticsCameraService::setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera) {

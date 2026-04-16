@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbgqews3ukj0v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nv54o"]
+
+[node name="TacticsCamera" type="TacticsCamera" unique_id=1015809716]
+collision_layer = 8
+collision_mask = 8
+
+[node name="TwistPivot" type="Node3D" parent="." unique_id=222083580]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot" unique_id=591024230]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot" unique_id=1117979168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366206082]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_nv54o")

@@ -27,7 +27,7 @@ namespace tog {
         static tog::TacticsCameraService* get();
         static tog::TacticsCameraService* reset();
         static tog::TacticsCameraService* reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource);
-        static inline void cleanup() { delete m_static_inst; }
+        static inline void cleanup();
 
         void setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera);
         void process(float delta, tog::TacticsCamera* tactics_camera);
@@ -35,7 +35,7 @@ namespace tog {
     private:
         TacticsCameraService() { m_static_inst = this; }
         TacticsCameraService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource);
-        ~TacticsCameraService() override { delete m_static_inst; m_static_inst = nullptr; };
+        ~TacticsCameraService() override { m_static_inst = nullptr; };
 
     protected:
         void static _bind_methods() {}
