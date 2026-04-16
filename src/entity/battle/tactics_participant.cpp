@@ -39,11 +39,11 @@ void tog::TacticsParticipant::configure(const godot::Ref<tog::TacticsCameraResou
 }
 
 bool tog::TacticsParticipant::is_configured(godot::Node3D* parent) {
-    m_tactics_participant_service->is_configured(parent);
+    return m_tactics_participant_service->is_configured(parent);
 }
 
 bool tog::TacticsParticipant::can_act(godot::Node3D* parent) {
-    m_tactics_participant_service->can_act(parent);
+    return m_tactics_participant_service->can_act(parent);
 }
 
 void tog::TacticsParticipant::reset_turn(godot::Node3D* parent) {

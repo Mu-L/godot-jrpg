@@ -12,16 +12,16 @@ tog::TacticsCameraService * tog::TacticsCameraService::reset() {
     return m_static_inst;
 }
 
-tog::TacticsCameraService * tog::TacticsCameraService::reset(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource) {
+tog::TacticsCameraService * tog::TacticsCameraService::reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
     delete m_static_inst;
     m_static_inst = memnew(TacticsCameraService(camera_resource, control_resource));
     return m_static_inst;
 }
 
 void tog::TacticsCameraService::setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera) {
-    if (!m_tactics_camera_resource) {
+    if (m_tactics_camera_resource.is_null()) {
         assertion(false, "TacticsCamera needs a CameraResource (T Cam)");
-    } else if (!m_tactics_control_resource) {
+    } else if (m_tactics_control_resource.is_null()) {
         assertion(false, "TacticsControls needs a ControlResource");
     } else {
         m_tactics_camera_resource->m_target_fov = camera->get_fov();
@@ -56,7 +56,7 @@ void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics
     m_tactics_zoom_service->apply_zoom_smoothing(tactics_camera, delta);
 }
 
-tog::TacticsCameraService::TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource) {
+tog::TacticsCameraService::TacticsCameraService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
     //point the static ptr to the current initialized object
     m_static_inst = this;
     //set the resources
@@ -64,4 +64,7 @@ tog::TacticsCameraService::TacticsCameraService(TacticsCameraResource* camera_re
     m_tactics_control_resource = control_resource;
     //initialize the "Tactics Camera Movement" sub-system
     m_tactics_camera_movement_service = memnew(TacticsCameraMovementService(camera_resource, control_resource));
+    m_tactics_zoom_service = memnew(TacticsCameraZoomService(camera_resource));
+    m_tactics_camera_rotation_service = memnew(TacticsCameraRotationService(camera_resource, control_resource));
+    m_tactics_camera_panning_service = memnew(TacticsCameraPanningService(camera_resource));
 }

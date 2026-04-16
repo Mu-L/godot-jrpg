@@ -11,12 +11,12 @@ namespace tog {
     class TacticsCamera;
 
     //Service class for handling camera rotation in tactical view
-    class TacticsCameraRotationService : public godot::Object {
-        GDCLASS(TacticsCameraRotationService, godot::Object);
+    class TacticsCameraRotationService : public godot::RefCounted {
+        GDCLASS(TacticsCameraRotationService, godot::RefCounted);
 
     public:
         TacticsCameraRotationService() = default;
-        TacticsCameraRotationService(tog::TacticsCameraResource* camera_resource, tog::TacticsControlsResource* control_resource);
+        TacticsCameraRotationService(const godot::Ref<tog::TacticsCameraResource>& camera_resource, const godot::Ref<tog::TacticsControlsResource>& control_resource);
         ~TacticsCameraRotationService() override = default;
 
         //Handles free look camera rotation
@@ -61,8 +61,8 @@ namespace tog {
         const int m_MIN_VERT_ROT = 20;
         const int m_FREE_LOOK_ROT_FACTOR = 20;
 
-        tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
-        tog::TacticsControlsResource* m_tactics_control_resource = nullptr;
+        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
+        godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
     };
 
 }

@@ -22,7 +22,7 @@ namespace tog {
         GDCLASS(TacticsCameraMovementService, godot::RefCounted);
     public:
         TacticsCameraMovementService() = default;
-        TacticsCameraMovementService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
+        TacticsCameraMovementService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource);
         ~TacticsCameraMovementService() override = default;
 
         //Moves the camera based on input and applies boundary constraints
@@ -36,8 +36,8 @@ namespace tog {
         void static _bind_methods() {}
 
     private:
-        TacticsCameraResource* m_tactics_camera_resource = nullptr;
-        TacticsControlsResource* m_tactics_control_resource = nullptr;
+        godot::Ref<TacticsCameraResource> m_tactics_camera_resource;
+        godot::Ref<TacticsControlsResource> m_tactics_control_resource;
     };
 
 }

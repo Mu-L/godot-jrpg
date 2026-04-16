@@ -1,10 +1,17 @@
 #include "tactics_camera.hpp"
 
+#include "godot_cpp/classes/resource_loader.hpp"
+#include "util/engine.hpp"
+
 void tog::TacticsCamera::_ready() {
+    auto resource_loader = godot::ResourceLoader::get_singleton();
+    m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
+    m_tactics_control_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
+
     //Get respective nodes
-    m_t_pivot = this->get_node<godot::Node3D>(tog::node::name::BattleTest::TwistPivot);
-    m_p_pivot = this->get_node<godot::Node3D>(tog::node::name::BattleTest::PitchPivot);
-    m_camera = this->get_node<godot::Camera3D>(tog::node::name::BattleTest::Camera3D);
+    m_t_pivot = godot::Object::cast_to<godot::Node3D>(this->get_node_or_null(tog::node::name::BattleTest::TwistPivot));
+    m_p_pivot = godot::Object::cast_to<godot::Node3D>(this->get_node_or_null(tog::node::name::BattleTest::PitchPivot));
+    m_camera = godot::Object::cast_to<godot::Camera3D>(this->get_node_or_null(tog::node::name::BattleTest::Camera3D));
 
     //Initialize camera service
     m_tactics_camera_service = tog::TacticsCameraService::reset(m_tactics_camera_resource, m_tactics_control_resource);
@@ -15,12 +22,14 @@ void tog::TacticsCamera::_ready() {
     m_tactics_camera_resource->m_boundry_center = get_global_position();
 
     //Connect signals
-    rl::signal<tog::node::signal::TacticsCameraResource::called_rotate_camera>::connect<tog::TacticsCameraResource>(m_tactics_camera_resource) <=> signal_callback(this, rotate_camera);
-    rl::signal<tog::node::signal::TacticsCameraResource::called_move_camera>::connect<tog::TacticsCameraResource>(m_tactics_camera_resource) <=> signal_callback(this, move_camera);
+    if (not rl::engine::editor_active()) {
+        m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_rotate_camera, callable_mp(this, &tog::TacticsCamera::rotate_camera));
+        m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_move_camera, callable_mp(this, &tog::TacticsCamera::move_camera));
+    }
 }
 
 void tog::TacticsCamera::_process(double p_delta) {
-    m_tactics_camera_service->process(static_cast<float>(p_delta), this);
+    //m_tactics_camera_service->process(static_cast<float>(p_delta), this);
 }
 
 void tog::TacticsCamera::move_camera(float h, float v, bool joystick, float delta) {

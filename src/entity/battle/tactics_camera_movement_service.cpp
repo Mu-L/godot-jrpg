@@ -1,7 +1,7 @@
 #include "tactics_camera_movement_service.hpp"
 #include "util/utility_vec.hpp"
 
-tog::TacticsCameraMovementService::TacticsCameraMovementService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource) {
+tog::TacticsCameraMovementService::TacticsCameraMovementService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
     m_tactics_camera_resource = camera_resource;
     m_tactics_control_resource = control_resource;
 }

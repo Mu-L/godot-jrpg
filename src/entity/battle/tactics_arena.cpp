@@ -20,11 +20,11 @@ void tog::TacticsArena::process_surrounding_tiles(tog::TacticsTile* root_tile, f
 }
 
 godot::Array tog::TacticsArena::get_pathfinding_tilestack(tog::TacticsTile* to) {
-    m_tactics_arena_service->get_pathfinding_tilestack(to);
+    return m_tactics_arena_service->get_pathfinding_tilestack(to);
 }
 
 tog::TacticsTile* tog::TacticsArena::get_nearest_target_adjacent_tile(tog::TacticsPawn* tactics_pawn, godot::Array target_pawns) {
-    m_tactics_arena_service->get_nearest_target_adjacent_tile(tactics_pawn, target_pawns);
+    return m_tactics_arena_service->get_nearest_target_adjacent_tile(tactics_pawn, target_pawns);
 }
 
 tog::TacticsPawn* tog::TacticsArena::get_weakest_attackable_pawn(godot::Array pawns) {

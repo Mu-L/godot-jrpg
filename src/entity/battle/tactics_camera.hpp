@@ -49,9 +49,9 @@ namespace tog {
 
     public:
         //Resource containing camera attributes and signals
-        tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
+        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Resource containing control settings
-        tog::TacticsControlsResource* m_tactics_control_resource = nullptr;
+        godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
         //Service handling camera operations
         inline static tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
         //Node for horizontal rotation

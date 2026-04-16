@@ -9,12 +9,12 @@ namespace tog {
     class TacticsCamera;
 
     //Service class for handling camera panning in tactical view
-    class TacticsCameraPanningService : public godot::Object {
-        GDCLASS(TacticsCameraPanningService, godot::Object);
+    class TacticsCameraPanningService : public godot::RefCounted {
+        GDCLASS(TacticsCameraPanningService, godot::RefCounted);
 
     public:
         TacticsCameraPanningService() = default;
-        TacticsCameraPanningService(tog::TacticsCameraResource* tactics_camera) : m_tactics_camera_resource(tactics_camera) {};
+        TacticsCameraPanningService(const godot::Ref<tog::TacticsCameraResource>& tactics_camera) : m_tactics_camera_resource(tactics_camera) {};
         ~TacticsCameraPanningService() override = default;
 
         //Checks if the cursor is near the screen edge for edge panning
@@ -34,7 +34,7 @@ namespace tog {
         void static _bind_methods() {}
 
     private:
-        tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
+        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
 
     };
 

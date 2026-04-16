@@ -26,7 +26,7 @@ namespace tog {
     public:
         static tog::TacticsCameraService* get();
         static tog::TacticsCameraService* reset();
-        static tog::TacticsCameraService* reset(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
+        static tog::TacticsCameraService* reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource);
         static inline void cleanup() { delete m_static_inst; }
 
         void setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera);
@@ -34,19 +34,19 @@ namespace tog {
 
     private:
         TacticsCameraService() { m_static_inst = this; }
-        TacticsCameraService(TacticsCameraResource* camera_resource, TacticsControlsResource* control_resource);
+        TacticsCameraService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource);
         ~TacticsCameraService() override { delete m_static_inst; m_static_inst = nullptr; };
 
     protected:
         void static _bind_methods() {}
 
     public:
-        tog::TacticsCameraResource*         m_tactics_camera_resource = nullptr;
-        tog::TacticsControlsResource*        m_tactics_control_resource = nullptr;
-        godot::Ref<TacticsCameraMovementService> m_tactics_camera_movement_service = nullptr;
-        tog::TacticsCameraZoomService*      m_tactics_zoom_service = nullptr;
-        tog::TacticsCameraRotationService*  m_tactics_camera_rotation_service = nullptr;
-        tog::TacticsCameraPanningService*   m_tactics_camera_panning_service = nullptr;
+        godot::Ref<tog::TacticsCameraResource>          m_tactics_camera_resource;
+        godot::Ref<tog::TacticsControlsResource>        m_tactics_control_resource;
+        godot::Ref<TacticsCameraMovementService>        m_tactics_camera_movement_service;
+        godot::Ref<tog::TacticsCameraZoomService>       m_tactics_zoom_service;
+        godot::Ref<tog::TacticsCameraRotationService>   m_tactics_camera_rotation_service;
+        godot::Ref<tog::TacticsCameraPanningService>    m_tactics_camera_panning_service;
     private:
         static inline tog::TacticsCameraService* m_static_inst = nullptr;
 

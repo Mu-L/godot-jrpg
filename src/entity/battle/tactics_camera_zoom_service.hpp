@@ -11,12 +11,12 @@ namespace tog {
     class TacticsCamera;
 
     //Service class for handling camera zoom in tactical view
-    class TacticsCameraZoomService : public godot::Object {
-        GDCLASS(TacticsCameraZoomService, godot::Object);
+    class TacticsCameraZoomService : public godot::RefCounted {
+        GDCLASS(TacticsCameraZoomService, godot::RefCounted);
 
     public:
         TacticsCameraZoomService() = default;
-        explicit TacticsCameraZoomService(tog::TacticsCameraResource* camera_resource) { m_tactics_camera_resource = camera_resource; }
+        explicit TacticsCameraZoomService(const godot::Ref<tog::TacticsCameraResource>& camera_resource) { m_tactics_camera_resource = camera_resource; }
         ~TacticsCameraZoomService() override = default;
 
         //Adjust the target FOV for zooming
@@ -31,7 +31,7 @@ namespace tog {
 
     private:
         const int m_DELTA_SMOOTHING = 10;
-        tog::TacticsCameraResource* m_tactics_camera_resource = nullptr;
+        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
     };
 
 }
