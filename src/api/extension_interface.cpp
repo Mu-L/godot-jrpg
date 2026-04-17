@@ -6,6 +6,7 @@
 #include "entity/battle/expertise.hpp"
 #include "entity/battle/input_capture.hpp"
 #include "entity/battle/input_capture_service.hpp"
+#include "entity/battle/input_hints.hpp"
 #include "entity/battle/stats.hpp"
 #include "entity/battle/tactics_arena.hpp"
 #include "entity/battle/tactics_arena_service.hpp"
@@ -131,6 +132,7 @@ namespace rl {
         godot::ClassDB::register_class<tog::Expertise>();
         godot::ClassDB::register_class<tog::InputCapture>();
         godot::ClassDB::register_class<tog::InputCaptureService>();
+        godot::ClassDB::register_class<tog::InputHints>();
         godot::ClassDB::register_class<tog::Stats>();
         godot::ClassDB::register_class<tog::TacticsArena>();
         godot::ClassDB::register_class<tog::TacticsArenaService>();

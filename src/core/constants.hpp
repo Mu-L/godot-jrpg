@@ -51,7 +51,9 @@ namespace tog::inline constants {
             }
 
             namespace Control {
-                constexpr inline auto gui_input   { "gui_input" };
+                constexpr inline auto gui_input         { "gui_input" };
+                constexpr inline auto mouse_entered     { "mouse_entered" };
+                constexpr inline auto mouse_exited      { "mouse_exited" };
             }
 
             namespace TacticsParticipantResource {
