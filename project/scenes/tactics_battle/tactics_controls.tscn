@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bsfblv238b0w"]
 
 [ext_resource type="PackedScene" uid="uid://cp3g1xea6l2ia" path="res://scenes/tactics_battle/tactics_input_capture.tscn" id="1_nhqn0"]
-[ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="2_rg8i3"]
 [ext_resource type="Texture2D" uid="uid://okt4a4tnxjp5" path="res://assets/art/tactics_battle/controls-ui.png" id="3_h43wf"]
 
 [node name="TacticsControls" type="TacticsControls" unique_id=59907860]
@@ -11,15 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="BackgroundImage" type="TextureRect" parent="." unique_id=37295779]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rg8i3")
+mouse_filter = 2
 
 [node name="InputCapture" parent="." unique_id=1945727326 instance=ExtResource("1_nhqn0")]
 
@@ -29,6 +20,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.472
 anchor_bottom = 0.457
+mouse_filter = 2
 
 [node name="ControllerHints" type="TextureRect" parent="Hints" unique_id=1918925984]
 unique_name_in_owner = true
@@ -38,3 +30,55 @@ mouse_filter = 0
 mouse_default_cursor_shape = 7
 texture = ExtResource("3_h43wf")
 stretch_mode = 4
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=619227267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="HBox" unique_id=1338361398]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Actions" type="VBoxContainer" parent="HBox" unique_id=294394937]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Move" type="Button" parent="HBox/Actions" unique_id=1995139479]
+custom_minimum_size = Vector2(196, 64)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Move"
+
+[node name="Attack" type="Button" parent="HBox/Actions" unique_id=1033527855]
+custom_minimum_size = Vector2(196, 64)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Attack"
+
+[node name="Wait" type="Button" parent="HBox/Actions" unique_id=94032032]
+custom_minimum_size = Vector2(196, 64)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Wait"
+
+[node name="Cancel" type="Button" parent="HBox/Actions" unique_id=1100266585]
+custom_minimum_size = Vector2(196, 64)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Cancel"

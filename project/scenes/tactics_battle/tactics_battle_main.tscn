@@ -2,8 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bbgqews3ukj0v" path="res://scenes/tactics_battle/tactics_camera.tscn" id="1_sphpf"]
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_yv8w7"]
+[ext_resource type="PackedScene" uid="uid://bsfblv238b0w" path="res://scenes/tactics_battle/tactics_controls.tscn" id="3_u5oko"]
 
-[node name="TacticsBattleMain" type="Node" unique_id=478292851]
+[node name="TacticsBattleMain" type="TacticsMain" unique_id=709718288]
+
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=1138788188]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yv8w7")
 
 [node name="Camera" type="Node3D" parent="." unique_id=1746608023]
 
@@ -16,15 +25,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="BackgroundImage" type="TextureRect" parent="UI" unique_id=1138788188]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_yv8w7")
 
 [node name="MapSelector" type="VBoxContainer" parent="UI" unique_id=1312755786]
 layout_mode = 1
@@ -47,3 +47,7 @@ text = "Battle"
 custom_minimum_size = Vector2(360, 64)
 layout_mode = 2
 text = "Back"
+
+[node name="TacticsControls" parent="." unique_id=59907860 instance=ExtResource("3_u5oko")]
+
+[node name="World" type="Node3D" parent="." unique_id=555156651]

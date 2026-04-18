@@ -16,6 +16,14 @@ namespace tog::inline constants {
                 constexpr inline auto HomeScene         { "res://scenes/ui/home_scene.tscn" };
             }
 
+            namespace Battle {
+
+                namespace Level {
+                    constexpr inline auto TestLevel     { "res://assets/maps/level/test_level.tscn" };
+                }
+
+            }
+
         }
 
         namespace resource {
@@ -30,7 +38,6 @@ namespace tog::inline constants {
 
             namespace battle {
                 constexpr inline auto tactics_tile_raycast          { "res://assets/resources/battle/tactics_tile_raycast.tscn" };
-
                 constexpr inline auto tactics_arena_resource        { "res://assets/resources/battle/tactics_arena_resource.tres" };
                 constexpr inline auto tactics_camera_resource       { "res://assets/resources/battle/tactics_camera_resource.tres" };
                 constexpr inline auto tactics_control_resource      { "res://assets/resources/battle/tactics_controls_resource.tres" };
@@ -149,6 +156,8 @@ namespace tog::inline constants {
                 constexpr inline auto NameLabel         { "CharacterUI/NameLabel" };
                 constexpr inline auto Stats             { "Expertise/Stats" };
                 constexpr inline auto Stats_            { "%Stats" };
+                constexpr inline auto World             { "World" };
+                constexpr inline auto Battle_Button     { "UI/MapSelector/Battle" };
                 constexpr inline auto AnimationTree     { "AnimationTree" };
                 constexpr inline auto Playback          { "Parameters/Playback" };
                 constexpr inline auto Tile              { "Tile" };
