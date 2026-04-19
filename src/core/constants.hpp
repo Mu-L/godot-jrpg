@@ -161,7 +161,7 @@ namespace tog::inline constants {
                 constexpr inline auto World             { "World" };
                 constexpr inline auto Battle_Button     { "UI/MapSelector/Battle" };
                 constexpr inline auto AnimationTree     { "AnimationTree" };
-                constexpr inline auto Playback          { "Parameters/Playback" };
+                constexpr inline auto Playback          { "parameters/playback" };
                 constexpr inline auto Tile              { "Tile" };
                 constexpr inline auto Tiles             { "Tiles" };
                 constexpr inline auto InputCapture      { "InputCapture" };

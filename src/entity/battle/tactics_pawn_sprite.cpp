@@ -14,17 +14,17 @@ void tog::TacticsPawnSprite::_ready() {
 }
 
 void tog::TacticsPawnSprite::setup(tog::Stats* stats_node, godot::String expertise) {
-    auto playback = m_animation_tree->get_node<godot::AnimationNodeStateMachinePlayback>(tog::node::name::BattleTest::Playback);
+    auto playback = godot::Object::cast_to<godot::AnimationNodeStateMachinePlayback>(m_animation_tree->get(tog::node::name::BattleTest::Playback));
 
     if (playback) {
         m_animator = playback;
     } else {
-        assertion(false, "Playback node not found");
         return;
     }
 
     m_animator->start("IDLE");
     m_animation_tree->set_active(true);
+    //todo: fix the image loading
     auto loaded_sprite_image = godot::Image::load_from_file(stats_node->m_sprite);
     if (!loaded_sprite_image->is_empty()) {
         this->set_texture(godot::ImageTexture::create_from_image(loaded_sprite_image));

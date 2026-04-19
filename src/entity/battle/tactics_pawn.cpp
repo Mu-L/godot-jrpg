@@ -17,7 +17,7 @@ void tog::TacticsPawn::_ready() {
 }
 
 void tog::TacticsPawn::_physics_process(double p_delta) {
-    m_tactics_pawn_service->process(this, p_delta);
+    //m_tactics_pawn_service->process(this, static_cast<float>(p_delta));
 }
 
 bool tog::TacticsPawn::center() {
