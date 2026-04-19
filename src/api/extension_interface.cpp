@@ -150,7 +150,7 @@ namespace rl {
         godot::ClassDB::register_class<tog::TacticsControlsService>();
         godot::ClassDB::register_class<tog::TacticsLevel>();
         godot::ClassDB::register_class<tog::TacticsMain>();
-        godot::ClassDB::register_abstract_class<tog::TacticsParticipant>();
+        godot::ClassDB::register_class<tog::TacticsParticipant>();
         godot::ClassDB::register_class<tog::TacticsOpponent>();
         godot::ClassDB::register_class<tog::TacticsOpponentService>();
         godot::ClassDB::register_class<tog::TacticsParticipantCombatService>();

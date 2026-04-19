@@ -43,7 +43,8 @@ namespace tog {
     protected:
         static void _bind_methods() {
             //Signal emitted when a turn is skipped
-            rl::signal_binding<TacticsParticipantResource, tog::node::signal::TacticsParticipantResource::called_skip_turn>::add<>();
+            //rl::signal_binding<TacticsParticipantResource, tog::node::signal::TacticsParticipantResource::called_skip_turn>::add<>();
+            ADD_SIGNAL(godot::MethodInfo(tog::node::signal::TacticsParticipantResource::called_skip_turn));
         }
 
     public:

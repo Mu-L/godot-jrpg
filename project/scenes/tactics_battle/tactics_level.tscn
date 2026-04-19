@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://crhpgehtsd5ak"]
+
+[ext_resource type="PackedScene" uid="uid://dwbmgds45ep4o" path="res://scenes/tactics_battle/tactics_arena.tscn" id="1_02npj"]
+
+[node name="TacticsLevel" type="TacticsLevel" unique_id=1493526680]
+
+[node name="TacticsArena" parent="." unique_id=2099571231 instance=ExtResource("1_02npj")]
+unique_name_in_owner = true
+
+[node name="TacticsParticipant" type="TacticsParticipant" parent="." unique_id=1358276421]
+
+[node name="TacticsPlayer" type="TacticsPlayer" parent="TacticsParticipant" unique_id=1152430651]
+unique_name_in_owner = true
+
+[node name="TacticsOpponent" type="TacticsOpponent" parent="TacticsParticipant" unique_id=2063120413]
+unique_name_in_owner = true

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b74vh8sp86qfc"]
 
 [ext_resource type="Texture2D" uid="uid://ikx3tkqyvwhn" path="res://assets/art/ui/main_menu_background.png" id="1_rui7c"]
-[ext_resource type="Texture2D" uid="uid://b5xueyngjp0p5" path="res://assets/art/character_tilesets/character_set_3.png" id="2_cyx2i"]
+[ext_resource type="Texture2D" uid="uid://ddins8ufywou0" path="res://assets/art/character_tilesets/character_set_2.png" id="2_cyx2i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86thw"]
 atlas = ExtResource("2_cyx2i")
-region = Rect2(341, 0, 341, 512)
+region = Rect2(682, 0, 341, 512)
 
 [node name="HomeScene" type="HomeController" unique_id=1052583600]
 
@@ -54,7 +54,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "Kakara"
+text = "Becky"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,7 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "11"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -111,7 +111,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "14"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -130,7 +130,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "10"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -149,7 +149,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "10"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -168,7 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "14"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -187,7 +187,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "10"
+text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -383,7 +383,7 @@ offset_left = 512.0
 offset_top = 644.0
 offset_right = 768.0
 offset_bottom = 708.0
-text = "Kakara"
+text = "Becky"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -438,6 +438,7 @@ offset_bottom = 1080.0
 alignment = 1
 
 [node name="BattleButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=736387377]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -445,6 +446,7 @@ size_flags_vertical = 4
 text = "Battle"
 
 [node name="InventoryButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=557987738]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -452,6 +454,7 @@ size_flags_vertical = 4
 text = "Inventory"
 
 [node name="SpellsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=1484910593]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -459,6 +462,7 @@ size_flags_vertical = 4
 text = "Spells"
 
 [node name="CraftingButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=647462218]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -466,6 +470,7 @@ size_flags_vertical = 4
 text = "Crafting"
 
 [node name="JobsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=285002353]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -473,6 +478,7 @@ size_flags_vertical = 4
 text = "Jobs"
 
 [node name="ExcaliberButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=1920293116]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -480,6 +486,7 @@ size_flags_vertical = 4
 text = "Excaliber"
 
 [node name="SettingsButton" type="Button" parent="SceneControl/OptionsContainer" unique_id=980816738]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6

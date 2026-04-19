@@ -1,9 +1,11 @@
 #pragma once
 
+#include "entity/battle/tactics_main.hpp"
 #include "resources/character/character_state.hpp"
 #include "godot_cpp/classes/node.hpp"
 #include "godot_cpp/classes/label.hpp"
 #include "godot_cpp/classes/texture_rect.hpp"
+#include "singletons/console.hpp"
 
 namespace tog {
 
@@ -21,7 +23,10 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        //display character stats loaded from resource
         void display_character_info();
+        //load the "tactics_battle" feature upon click
+        void on_battle_button_press();
 
     private:
         godot::Label* m_name_value{nullptr};
@@ -35,6 +40,9 @@ namespace tog {
         godot::Label* m_main_char_name{nullptr};
         godot::TextureRect* m_main_char_image{nullptr};
         godot::Ref<tog::CharacterState> m_main_player_state{};
+        rl::Console<godot::RichTextLabel>* m_console{ rl::console::get() };
+        tog::TacticsMain* m_tactics_battle_entry;
+
     };
 
 }

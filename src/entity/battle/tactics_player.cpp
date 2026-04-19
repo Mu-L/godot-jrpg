@@ -1,6 +1,7 @@
 #include "tactics_player.hpp"
 
 #include "tactics_player_service.hpp"
+#include "util/engine.hpp"
 
 void tog::TacticsPlayer::_ready() {
     //call the parent ready function
@@ -16,7 +17,9 @@ void tog::TacticsPlayer::_ready() {
 
 void tog::TacticsPlayer::_physics_process(double p_delta) {
     //Toggle the display of enemy stats
-    m_tactics_player_service->toggle_enemy_stats(get_node_or_null("../TacticsOpponent"));
+    if (not rl::engine::editor_active()) {
+        m_tactics_player_service->toggle_enemy_stats(get_node_or_null("../" + godot::String(tog::node::name::BattleTest::TacticsOpponent)));
+    }
 }
 
 bool tog::TacticsPlayer::is_pawn_configured() {

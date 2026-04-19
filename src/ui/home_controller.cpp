@@ -5,6 +5,8 @@
 #include "godot_cpp/classes/resource_loader.hpp"
 #include <godot_cpp/classes/label.hpp>
 
+#include "godot_cpp/classes/scene_tree.hpp"
+
 
 tog::HomeController::HomeController() {
     //load resource into
@@ -25,18 +27,30 @@ void tog::HomeController::_ready() {
     m_main_char_image   = get_node<godot::TextureRect>(tog::node::name::HomeScene::MainPlayerImage);
     //display_character_info
     display_character_info();
+
+    //grab button and bind signal to it
+    auto* button = get_node<godot::Button>(tog::node::name::HomeScene::BattleButton);
+    button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &HomeController::on_battle_button_press));
+
 }
 
 void tog::HomeController::display_character_info() {
     //update values of the nodes with their respective related character metadata
-    m_name_value->      set_text(m_main_player_state->get_name());
-    m_main_char_name->  set_text(m_main_player_state->get_name());
-    m_main_char_image-> set_texture(m_main_player_state->get_image());
-    m_level_value->     set_text(godot::String::num_int64(m_main_player_state->get_level()));
-    m_hp_value->    set_text(godot::String::num_int64(m_main_player_state->get_hp()));
-    m_shinsu_value->set_text(godot::String::num_int64(m_main_player_state->get_shinsu()));
-    m_attack_value->set_text(godot::String::num_int64(m_main_player_state->get_attack()));
+    m_name_value->          set_text(m_main_player_state->get_name());
+    m_main_char_name->      set_text(m_main_player_state->get_name());
+    m_main_char_image->     set_texture(m_main_player_state->get_image());
+    m_level_value->         set_text(godot::String::num_int64(m_main_player_state->get_level()));
+    m_hp_value->            set_text(godot::String::num_int64(m_main_player_state->get_hp()));
+    m_shinsu_value->        set_text(godot::String::num_int64(m_main_player_state->get_shinsu()));
+    m_attack_value->        set_text(godot::String::num_int64(m_main_player_state->get_attack()));
     m_defense_value->       set_text(godot::String::num_int64(m_main_player_state->get_defense()));
     m_magic_power_value->   set_text(godot::String::num_int64(m_main_player_state->get_magic_power()));
     m_spirit_power_value->  set_text(godot::String::num_int64(m_main_player_state->get_spirit_power()));
+}
+
+void tog::HomeController::on_battle_button_press() {
+    //godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
+    //load saved scene
+    m_console->print("Loading Tactics Battle..... ");
+    this->get_tree()->change_scene_to_file(tog::path::scene::Battle::Level::TacticsBattleMain);
 }

@@ -8,6 +8,7 @@
 #include "resources/battle/tactics_camera_resource.hpp"
 
 #include "godot_cpp/classes/resource_loader.hpp"
+#include "util/engine.hpp"
 
 void tog::TacticsLevel::_ready() {
     auto resource_loader = godot::ResourceLoader::get_singleton();
@@ -16,15 +17,15 @@ void tog::TacticsLevel::_ready() {
     m_tactics_controls_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
 
     //Initialize node references
-    m_tactics_participant = godot::Object::cast_to<tog::TacticsParticipant>(get_node_or_null(tog::node::name::BattleTest::TacticsParticipant));
-    m_tactics_player = godot::Object::cast_to<tog::TacticsPlayer>(get_node_or_null(tog::node::name::BattleTest::TacticsPlayer));
-    m_tactics_opponent = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
-    m_tactics_arena = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null(tog::node::name::BattleTest::TacticsArena));
+    m_tactics_participant   = godot::Object::cast_to<tog::TacticsParticipant>(get_node_or_null(tog::node::name::BattleTest::TacticsParticipant));
+    m_tactics_player        = godot::Object::cast_to<tog::TacticsPlayer>(get_node_or_null(tog::node::name::BattleTest::TacticsPlayer));
+    m_tactics_opponent      = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
+    m_tactics_arena         = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null(tog::node::name::BattleTest::TacticsArena));
 
     //Configure arena tiles
-    m_tactics_arena->configure_tiles();
+    //m_tactics_arena->configure_tiles();
     //Configure participant with camera and UI control
-    m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
+    //m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
 
     //Update camera boundary radius if necessary
     if (m_tactics_camera_resource->m_boundary_radius != m_camera_boundary_radius) {
@@ -34,14 +35,16 @@ void tog::TacticsLevel::_ready() {
 }
 
 void tog::TacticsLevel::_physics_process(double p_delta) {
-    switch (m_turn_stage){
-        case 0:
-            //Initialize turn
-            init_turn();
-        case 1:
-            //Handle ongoing turn
-            handle_turn(p_delta);
-        default: ;
+    if (not rl::engine::editor_active()) {
+        switch (m_turn_stage){
+            case 0:
+                //Initialize turn
+                init_turn();
+            case 1:
+                //Handle ongoing turn
+                handle_turn(p_delta);
+            default: ;
+        }
     }
 }
 

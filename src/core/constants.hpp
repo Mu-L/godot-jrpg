@@ -19,7 +19,8 @@ namespace tog::inline constants {
             namespace Battle {
 
                 namespace Level {
-                    constexpr inline auto TestLevel     { "res://assets/maps/level/test_level.tscn" };
+                    constexpr inline auto TestLevel         { "res://assets/maps/level/test_level.tscn" };
+                    constexpr inline auto TacticsBattleMain { "res://scenes/tactics_battle/tactics_battle_main.tscn" };
                 }
 
             }
@@ -135,6 +136,7 @@ namespace tog::inline constants {
                 constexpr inline auto SpiritPowerValue  { "%SpiritPowerValue" };
                 constexpr inline auto MainPlayer        { "%MainPlayer" };
                 constexpr inline auto MainPlayerImage   { "%MainPlayerImage" };
+                constexpr inline auto BattleButton      { "%BattleButton" };
             }
 
             namespace RayCasting {
@@ -163,10 +165,10 @@ namespace tog::inline constants {
                 constexpr inline auto Tile              { "Tile" };
                 constexpr inline auto Tiles             { "Tiles" };
                 constexpr inline auto InputCapture      { "InputCapture" };
-                constexpr inline auto TacticsArena      { "%TacticsArena" };
-                constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };
-                constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };
-                constexpr inline auto TacticsParticipant{ "%TacticsParticipant" };
+                constexpr inline auto TacticsArena      { "%TacticsArena" };        //good
+                constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };       //good
+                constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };     //good
+                constexpr inline auto TacticsParticipant{ "%TacticsParticipant" };  //good
             }
 
 

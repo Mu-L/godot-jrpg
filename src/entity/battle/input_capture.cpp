@@ -2,7 +2,6 @@
 
 void tog::InputCapture::_ready() {
     //todo: load the input capture resource
-    //m_input_capture_resource = godot::ResourceLoader::get_singleton()->load(tog::path::resource::battle::input_capture);
     m_input_capture_service = memnew(InputCaptureService(m_input_capture_resource));
 }
 

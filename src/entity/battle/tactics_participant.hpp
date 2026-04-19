@@ -40,7 +40,9 @@ namespace tog {
         );
 
         //todo: the "is_configrued" function should be virtual because it will be used by TacticsPlayer and TacticsOpponent
-        virtual bool is_pawn_configured() = 0;
+        virtual bool is_pawn_configured() {
+            return false;
+        };
 
         //Checks if the participant is properly configured
         //@param parent: The parent node of the participant
@@ -60,7 +62,9 @@ namespace tog {
         void skip_turn();
 
     protected:
-        static void _bind_methods() {}
+        static void _bind_methods() {
+            godot::ClassDB::bind_method(godot::D_METHOD("skip_turn"), &TacticsParticipant::skip_turn);
+        }
 
     public:
         //Resource containing participant data and configurations

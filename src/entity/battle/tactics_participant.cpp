@@ -18,7 +18,8 @@ void tog::TacticsParticipant::_ready() {
     m_tactics_participant_resource = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
     m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
     m_tactics_controls_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
-    m_tactics_arena = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null(tog::node::name::BattleTest::TacticsArena));
+
+    m_tactics_arena = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null("../" + godot::String(tog::node::name::BattleTest::TacticsArena)));
     m_tactics_player = godot::Object::cast_to<tog::TacticsPlayer>(get_node_or_null(tog::node::name::BattleTest::TacticsPlayer));
     m_tactics_opponent = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
 
@@ -27,7 +28,7 @@ void tog::TacticsParticipant::_ready() {
     m_tactics_participant_service->setup(this);
 
     //Connect the skip_turn signal to the skip_turn method
-    this->connect(tog::node::signal::TacticsParticipantResource::called_skip_turn, callable_mp(this, &tog::TacticsParticipant::skip_turn));
+    m_tactics_participant_resource->connect(tog::node::signal::TacticsParticipantResource::called_skip_turn, callable_mp(this, &tog::TacticsParticipant::skip_turn));
 }
 
 void tog::TacticsParticipant::act(float delta, bool is_player, godot::Node3D* parent) {
