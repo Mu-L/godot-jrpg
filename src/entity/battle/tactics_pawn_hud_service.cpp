@@ -2,7 +2,11 @@
 
 void tog::TacticsPawnHudService::update_character_health(const tog::TacticsPawn* tactics_pawn) {
     godot::Label3D* health_label = tactics_pawn->get_node<godot::Label3D>(tog::node::name::BattleTest::HealthLabel);
-    health_label->set_text(godot::String(godot::String::num_int64(tactics_pawn->m_stats_node->m_current_health) + "/" + godot::String::num_int64(tactics_pawn->m_stats_node->m_max_health)));
+    if ( tactics_pawn->m_stats_node ) {
+        health_label->set_text(godot::String(godot::String::num_int64(tactics_pawn->m_stats_node->m_current_health) + "/" + godot::String::num_int64(tactics_pawn->m_stats_node->m_max_health)));
+    } else {
+        health_label->set_text(godot::String("100/100"));
+    }
 }
 
 void tog::TacticsPawnHudService::tint_when_unable_to_act(tog::TacticsPawn* tactics_pawn) {

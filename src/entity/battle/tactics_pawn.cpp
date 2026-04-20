@@ -17,7 +17,7 @@ void tog::TacticsPawn::_ready() {
 }
 
 void tog::TacticsPawn::_physics_process(double p_delta) {
-    //m_tactics_pawn_service->process(this, static_cast<float>(p_delta));
+    m_tactics_pawn_service->process(this, static_cast<float>(p_delta));
 }
 
 bool tog::TacticsPawn::center() {
@@ -35,7 +35,7 @@ tog::TacticsTile* tog::TacticsPawn::get_tile() const {
 }
 
 bool tog::TacticsPawn::is_alive() {
-    return m_stats_node->m_current_health > 0;
+    return m_stats_node ? m_stats_node->m_current_health > 0 : true;
 }
 
 bool tog::TacticsPawn::can_pawn_move() {

@@ -24,13 +24,13 @@ void tog::TacticsPawnSprite::setup(tog::Stats* stats_node, godot::String experti
 
     m_animator->start("IDLE");
     m_animation_tree->set_active(true);
-    //todo: fix the image loading
-    auto loaded_sprite_image = godot::Image::load_from_file(stats_node->m_sprite);
-    if (!loaded_sprite_image->is_empty()) {
-        this->set_texture(godot::ImageTexture::create_from_image(loaded_sprite_image));
+    if (stats_node) {
+        auto loaded_sprite_image = godot::Image::load_from_file(stats_node->m_sprite);
+        if (!loaded_sprite_image->is_empty()) {
+            this->set_texture(godot::ImageTexture::create_from_image(loaded_sprite_image));
+        }
+        m_character_ui_name_label->set_text(!stats_node->m_override_name.is_empty() ? stats_node->m_override_name : stats_node->m_expertise);
     }
-
-    m_character_ui_name_label->set_text(!stats_node->m_override_name.is_empty() ? stats_node->m_override_name : stats_node->m_expertise);
 }
 
 void tog::TacticsPawnSprite::start_animator(godot::Vector3 move_direction, bool is_jumping) {
@@ -43,7 +43,7 @@ void tog::TacticsPawnSprite::start_animator(godot::Vector3 move_direction, bool 
 
 void tog::TacticsPawnSprite::rotate_sprite(const godot::Basis& basis) {
     //Get forward vector of the camera (looking down the negative Z-axis)
-    auto camera_forward = get_viewport()->get_camera_3d()->get_global_basis().get_column(2);
+    auto camera_forward = get_global_basis().get_column(2);
     //Measure how much the pawn faces towards or away from camera
     float scalar = basis.get_column(2).dot(camera_forward);
     //Determine if the sprite should be flipped horizontally

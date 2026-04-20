@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crhpgehtsd5ak"]
 
 [ext_resource type="PackedScene" uid="uid://dwbmgds45ep4o" path="res://scenes/tactics_battle/tactics_arena.tscn" id="1_02npj"]
+[ext_resource type="PackedScene" uid="uid://miid05e76wso" path="res://scenes/tactics_battle/tactics_pawn.tscn" id="2_hfsae"]
 
 [node name="TacticsLevel" type="TacticsLevel" unique_id=1493526680]
 
@@ -11,6 +12,8 @@ unique_name_in_owner = true
 
 [node name="TacticsPlayer" type="TacticsPlayer" parent="TacticsParticipant" unique_id=1152430651]
 unique_name_in_owner = true
+
+[node name="Pawn" parent="TacticsParticipant/TacticsPlayer" unique_id=1024928148 instance=ExtResource("2_hfsae")]
 
 [node name="TacticsOpponent" type="TacticsOpponent" parent="TacticsParticipant" unique_id=2063120413]
 unique_name_in_owner = true
