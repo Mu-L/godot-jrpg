@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dsgcoemewcn5g"]
+
+[node name="Expertise" type="Expertise" unique_id=1884333348]
+
+[node name="Stats" type="Stats" parent="." unique_id=1238431862]
+
+[node name="Skills" type="Node" parent="." unique_id=1768389333]
