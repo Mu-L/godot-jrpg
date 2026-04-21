@@ -3,7 +3,7 @@
 
 void tog::Expertise::_ready() {
     m_stats = godot::Object::cast_to<tog::Stats>(get_node_or_null(tog::constants::node::name::BattleTest::Stats_));
-    //m_stats->import_stats(m_starting_stats);
+    m_stats->import_stats(m_starting_stats);
 }
 
 void tog::Expertise::_bind_methods() {

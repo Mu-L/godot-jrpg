@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dsgcoemewcn5g"]
 
+[ext_resource type="StatsResource" uid="uid://bq5sd81ikvg5g" path="res://assets/resources/battle/knight_stats_resource.tres" id="1_1gqv7"]
+
 [node name="Expertise" type="Expertise" unique_id=1884333348]
+m_starting_stats = ExtResource("1_1gqv7")
 
 [node name="Stats" type="Stats" parent="." unique_id=1238431862]
 

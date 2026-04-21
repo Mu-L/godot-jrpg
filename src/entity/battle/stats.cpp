@@ -1,6 +1,6 @@
 #include "stats.hpp"
 
-void tog::Stats::import_stats(const godot::Ref<tog::StatsResource>& stats_resource) {
+void tog::Stats::import_stats(godot::Ref<tog::StatsResource>& stats_resource) {
     m_override_name = stats_resource->get_override_name();
     m_expertise = stats_resource->get_expertise();
     m_level = stats_resource->get_level();

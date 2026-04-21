@@ -1,7 +1,9 @@
 [gd_resource type="StatsResource" format=3 uid="uid://bq5sd81ikvg5g"]
 
 [resource]
-override_name = "Knight_Name"
+override_name = "Abi"
 expertise = "Knight"
+strategy = 2
+sprite_path = "res://assets/art/tactics_battle/bam.png"
 max_health = 50
 attack_power = 20

@@ -8,6 +8,10 @@ namespace tog::inline constants {
 
     namespace path {
 
+        namespace asset {
+            constexpr inline auto BamSprite         { "res://assets/art/tactics_battle/bam.png" };
+        }
+
         namespace scene {
 
             namespace ui {
@@ -157,7 +161,7 @@ namespace tog::inline constants {
                 constexpr inline auto HealthLabel       { "Character/CharacterUI/HealthLabel" };
                 constexpr inline auto NameLabel         { "CharacterUI/NameLabel" };
                 constexpr inline auto Stats             { "Expertise/Stats" };
-                constexpr inline auto Stats_            { "%Stats" };
+                constexpr inline auto Stats_            { "Stats" };
                 constexpr inline auto World             { "World" };
                 constexpr inline auto Battle_Button     { "UI/MapSelector/Battle" };
                 constexpr inline auto AnimationTree     { "AnimationTree" };

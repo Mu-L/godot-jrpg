@@ -16,7 +16,7 @@ namespace tog {
         ~Stats() override = default;
 
         //Initialize stats from a StatsResource
-        void import_stats(const godot::Ref<tog::StatsResource>& stats_resource);
+        void import_stats(godot::Ref<tog::StatsResource>& stats_resource);
         //Provided a health operation as a parameter (e.g. "-2", "1"), adds the value to current health.
         //As a consequence, this function serves for both damage and healing.
         void apply_to_current_health(int value);
