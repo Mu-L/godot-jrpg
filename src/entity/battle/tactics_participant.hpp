@@ -41,7 +41,7 @@ namespace tog {
 
         //todo: the "is_configrued" function should be virtual because it will be used by TacticsPlayer and TacticsOpponent
         virtual bool is_pawn_configured() {
-            return false;
+            return true;
         };
 
         //Checks if the participant is properly configured

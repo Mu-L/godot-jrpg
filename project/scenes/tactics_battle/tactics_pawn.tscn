@@ -178,10 +178,12 @@ target_position = Vector3(0, -2.1, 0)
 
 [node name="Character" type="TacticsPawnSprite" parent="." unique_id=685106140]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602, 0)
+modulate = Color(0.5, 0.5, 0.5, 1)
 billboard = 1
 alpha_cut = 2
 texture = ExtResource("1_s0s6d")
 vframes = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Character" unique_id=1172486843]
 libraries/ = SubResource("AnimationLibrary_ofaov")
@@ -192,6 +194,7 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="CharacterUI" type="Node3D" parent="Character" unique_id=233133737]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.602, 0)
+visible = false
 
 [node name="NameLabel" type="Label3D" parent="Character/CharacterUI" unique_id=909199677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)

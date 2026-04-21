@@ -3,6 +3,7 @@
 #include "godot_cpp/classes/packed_scene.hpp"
 #include "godot_cpp/classes/resource_loader.hpp"
 #include "singletons/console.hpp"
+#include "util/utility.hpp"
 
 void tog::TacticsMain::_ready() {
     rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
@@ -26,7 +27,7 @@ void tog::TacticsMain::_ready() {
 void tog::TacticsMain::on_battle_button_pressed() {
     rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
     m_console->print("button exist");
-    //load_level("test");
+    load_level();
 }
 
 void tog::TacticsMain::unload_level() {
@@ -36,9 +37,11 @@ void tog::TacticsMain::unload_level() {
     m_level_instance = nullptr;
 }
 
-void tog::TacticsMain::load_level(godot::String level_name) {
+void tog::TacticsMain::load_level() {
     unload_level();
     godot::Ref<godot::PackedScene> level = godot::ResourceLoader::get_singleton()->load(tog::path::scene::Battle::Level::TestLevel);
-    m_world_node->add_child(level->instantiate());
+    //m_world_node->add_child(level->instantiate());
+    const auto node = level->instantiate();
+    attach_child_to_parent(m_world_node, node);
     godot::Object::cast_to<godot::Control>(m_battle_button->get_parent())->set_visible(false);
 }

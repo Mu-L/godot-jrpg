@@ -31,7 +31,7 @@ void tog::TacticsPawn::show_pawn_stats(bool v) {
 }
 
 tog::TacticsTile* tog::TacticsPawn::get_tile() const {
-    return rl::gdcast<TacticsTile>(get_node<godot::RayCast3D>(tog::node::name::BattleTest::Tile)->get_collider());
+    return godot::Object::cast_to<tog::TacticsTile>(get_node<godot::RayCast3D>(tog::node::name::BattleTest::Tile)->get_collider());
 }
 
 bool tog::TacticsPawn::is_alive() {

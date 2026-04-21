@@ -32,7 +32,7 @@ void tog::TacticsArenaService::reset_all_tile_markers(tog::TacticsArena* tactics
 }
 
 void tog::TacticsArenaService::configure_tiles(tog::TacticsArena* tactics_arena) {
-    TacticsTile* node = tactics_arena->get_node<tog::TacticsTile>(tog::node::name::BattleTest::Tiles);
+    auto* node = tactics_arena->get_node<godot::Node3D>(tog::node::name::BattleTest::Tiles);
     node->set_visible(true);
     tiles_into_static_bodies(node);
 }

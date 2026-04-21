@@ -23,7 +23,7 @@ namespace tog {
 
         void unload_level();
 
-        void load_level(godot::String level_name);
+        void load_level();
 
     protected:
         void static _bind_methods() {

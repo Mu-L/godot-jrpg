@@ -23,7 +23,7 @@ namespace tog::inline constants {
             namespace Battle {
 
                 namespace Level {
-                    constexpr inline auto TestLevel         { "res://assets/maps/level/test_level.tscn" };
+                    constexpr inline auto TestLevel         { "res://scenes/tactics_battle/tactics_level.tscn" };
                     constexpr inline auto TacticsBattleMain { "res://scenes/tactics_battle/tactics_battle_main.tscn" };
                 }
 
@@ -172,7 +172,7 @@ namespace tog::inline constants {
                 constexpr inline auto TacticsArena      { "%TacticsArena" };        //good
                 constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };       //good
                 constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };     //good
-                constexpr inline auto TacticsParticipant{ "%TacticsParticipant" };  //good
+                constexpr inline auto TacticsParticipant{ "TacticsParticipant" };  //good
             }
 
 

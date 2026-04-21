@@ -66,6 +66,8 @@ void tog::TacticsTile::reset_markers() {
 }
 
 void tog::TacticsTile::configure_tile() {
+    //tog::path::resource::battle::tactics_tile_raycast
+    // auto* resource_loader = godot::ResourceLoader::get_singleton();
     m_hover = false;
     const auto node = m_tactics_tile_raycast_scene->instantiate();
     attach_child_to_parent(this, node);

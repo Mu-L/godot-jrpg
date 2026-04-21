@@ -22,10 +22,12 @@ void tog::TacticsLevel::_ready() {
     m_tactics_opponent      = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
     m_tactics_arena         = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null(tog::node::name::BattleTest::TacticsArena));
 
-    //Configure arena tiles
-    //m_tactics_arena->configure_tiles();
-    //Configure participant with camera and UI control
-    //m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
+    if (not rl::engine::editor_active()) {
+        //Configure arena tiles
+        m_tactics_arena->configure_tiles();
+        //Configure participant with camera and UI control
+        m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
+    }
 
     //Update camera boundary radius if necessary
     if (m_tactics_camera_resource->m_boundary_radius != m_camera_boundary_radius) {
@@ -40,9 +42,11 @@ void tog::TacticsLevel::_physics_process(double p_delta) {
             case 0:
                 //Initialize turn
                 init_turn();
+                break;
             case 1:
                 //Handle ongoing turn
                 handle_turn(p_delta);
+                break;
             default: ;
         }
     }
