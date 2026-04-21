@@ -52,5 +52,5 @@ void tog::HomeController::on_battle_button_press() {
     //godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
     //load saved scene
     m_console->print("Loading Tactics Battle..... ");
-    this->get_tree()->change_scene_to_file(tog::path::scene::Battle::Level::TacticsBattleMain);
+    this->get_tree()->change_scene_to_file(tog::path::scene::Battle::TacticsBattleMain);
 }

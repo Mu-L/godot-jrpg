@@ -24,8 +24,10 @@ namespace tog::inline constants {
 
                 namespace Level {
                     constexpr inline auto TestLevel         { "res://scenes/tactics_battle/tactics_level.tscn" };
-                    constexpr inline auto TacticsBattleMain { "res://scenes/tactics_battle/tactics_battle_main.tscn" };
                 }
+
+                constexpr inline auto TacticsTileRaycast { "res://scenes/tactics_battle/tactics_tile_raycast.tscn" };
+                constexpr inline auto TacticsBattleMain { "res://scenes/tactics_battle/tactics_battle_main.tscn" };
 
             }
 
@@ -42,7 +44,7 @@ namespace tog::inline constants {
             }
 
             namespace battle {
-                constexpr inline auto tactics_tile_raycast          { "res://assets/resources/battle/tactics_tile_raycast.tscn" };
+                constexpr inline auto tactics_tile_raycast          { "res://assets/resources/battle/tactics_tile_raycast.tscn" }; //probably can delete
                 constexpr inline auto tactics_arena_resource        { "res://assets/resources/battle/tactics_arena_resource.tres" };
                 constexpr inline auto tactics_camera_resource       { "res://assets/resources/battle/tactics_camera_resource.tres" };
                 constexpr inline auto tactics_control_resource      { "res://assets/resources/battle/tactics_controls_resource.tres" };
