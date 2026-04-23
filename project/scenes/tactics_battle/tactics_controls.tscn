@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://okt4a4tnxjp5" path="res://assets/art/tactics_battle/controls-ui.png" id="3_h43wf"]
 
 [node name="TacticsControls" type="TacticsControls" unique_id=59907860]
-custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,7 +19,6 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.472
 anchor_bottom = 0.457
-mouse_filter = 2
 
 [node name="ControllerHints" type="TextureRect" parent="Hints" unique_id=1918925984]
 unique_name_in_owner = true
