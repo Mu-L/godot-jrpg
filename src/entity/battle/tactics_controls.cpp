@@ -7,27 +7,30 @@
 
 void tog::TacticsControls::_ready() {
     const auto resource_loader = godot::ResourceLoader::get_singleton();
-    m_tactics_control_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
-    m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
-    m_tactics_participant_resource = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
-    m_tactics_arena_resource = resource_loader->load(tog::path::resource::battle::tactics_arena_resource);
+    m_tactics_control_resource      = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
+    m_tactics_camera_resource       = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
+    m_tactics_participant_resource  = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
+    m_tactics_arena_resource        = resource_loader->load(tog::path::resource::battle::tactics_arena_resource);
 
     m_tactics_pawn = nullptr;
 
     m_input_capture = godot::Object::cast_to<tog::InputCapture>(get_node_or_null(tog::constants::node::name::BattleTest::InputCapture));
 
-
     m_tactics_control_service = memnew(tog::TacticsControlsService(m_tactics_control_resource, m_tactics_camera_resource, m_tactics_participant_resource, m_tactics_arena_resource, m_input_capture));
     m_tactics_control_service->setup(this);
 
-    /*
     //Connect action buttons to their respective methods
-    for (godot::String action : m_tactics_control_resource->m_actions.keys()) {
-        godot::String value = m_tactics_control_resource->m_actions[action];
-        this->get_action(action)->connect(tog::node::signal::BaseButton::pressed, godot::Callable(this, value));
-    }
-    */
+    auto* attack_button = this->get_node<godot::Button>(tog::node::name::BattleTest::AttackButton);
+    attack_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_attack));
 
+    auto* move_button = this->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton);
+    move_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_move));
+
+    auto* wait_button = this->get_node<godot::Button>(tog::node::name::BattleTest::WaitButton);
+    wait_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_wait));
+
+    auto* cancel_button = this->get_node<godot::Button>(tog::node::name::BattleTest::CancelButton);
+    wait_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_cancel));
 }
 
 void tog::TacticsControls::_physics_process(double p_delta) {
@@ -50,13 +53,6 @@ void tog::TacticsControls::set_cursor_shape_to_arrow() {
 void tog::TacticsControls::move_camera(float delta) {
     //todo: verify this function does not exist
     //m_tactics_control_service->move_camera(delta);
-}
-
-godot::Button* tog::TacticsControls::get_action(const godot::String& action) {
-    if (action == "") {
-        return get_node<godot::Button>(tog::node::name::BattleTest::Actions);
-    }
-    return get_node<godot::Button>(tog::node::name::BattleTest::Actions)->get_node<godot::Button>(action);
 }
 
 bool tog::TacticsControls::is_mouse_hovering_ui_elem() {

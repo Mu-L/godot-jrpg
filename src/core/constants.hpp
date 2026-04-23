@@ -151,9 +151,12 @@ namespace tog::inline constants {
             }
 
             namespace BattleTest {
-                constexpr inline auto Attack            { "%Actions/Attack" };
-                constexpr inline auto Move              { "%Actions/Move" };
-                constexpr inline auto Actions           { "%Actions" };
+                constexpr inline auto AttackButton      { "%Actions/Attack" };  //good
+                constexpr inline auto MoveButton        { "%Actions/Move" };    //good
+                constexpr inline auto WaitButton        { "%Actions/Wait" };    //good
+                constexpr inline auto CancelButton      { "%Actions/Cancel" };  //good
+                constexpr inline auto Actions           { "%Actions" };         //good
+
                 constexpr inline auto ControllerHints   { "%ControllerHints" };
                 constexpr inline auto TwistPivot        { "TwistPivot" };
                 constexpr inline auto PitchPivot        { "TwistPivot/PitchPivot" };
@@ -170,11 +173,13 @@ namespace tog::inline constants {
                 constexpr inline auto Playback          { "parameters/playback" };
                 constexpr inline auto Tile              { "Tile" };
                 constexpr inline auto Tiles             { "Tiles" };
+
                 constexpr inline auto InputCapture      { "InputCapture" };
                 constexpr inline auto TacticsArena      { "%TacticsArena" };        //good
                 constexpr inline auto TacticsPlayer     { "%TacticsPlayer" };       //good
                 constexpr inline auto TacticsOpponent   { "%TacticsOpponent" };     //good
-                constexpr inline auto TacticsParticipant{ "TacticsParticipant" };  //good
+                constexpr inline auto TacticsParticipant{ "TacticsParticipant" };   //good
+                constexpr inline auto BackgroundImage   { "BackgroundImage" };      //good
             }
 
 

@@ -22,7 +22,7 @@ void tog::TacticsUIService::set_actions_menu_visibility(bool v, tog::TacticsPawn
     //todo: change to an line
     if (!tactics_controls->get_node<godot::VBoxContainer>(tog::node::name::BattleTest::Actions)->is_visible()) {
         //Focus on Move action if menu wasn't visible
-        tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::Move)->grab_focus();
+        tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton)->grab_focus();
     }
 
     //Show menu if pawn can act
@@ -31,11 +31,11 @@ void tog::TacticsUIService::set_actions_menu_visibility(bool v, tog::TacticsPawn
     if (!tactics_pawn) { return; }
 
     //Update action button states based on pawn's capabilities
-    if ( godot::Button* move_button = tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::Move); move_button ) {
+    if ( godot::Button* move_button = tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton); move_button ) {
         move_button->set_disabled( !tactics_pawn->m_tactics_pawn_resource->m_can_move );
     }
 
-    if ( godot::Button* attack_button = tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::Attack); attack_button ) {
+    if ( godot::Button* attack_button = tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton); attack_button ) {
         attack_button->set_disabled( !tactics_pawn->m_tactics_pawn_resource->m_can_attack );
     }
 }

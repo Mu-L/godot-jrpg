@@ -1,9 +1,10 @@
 #pragma once
 
 #include "tactics_level.hpp"
+#include "util/bind.hpp"
 #include "godot_cpp/classes/button.hpp"
 #include "godot_cpp/classes/node3d.hpp"
-#include "util/bind.hpp"
+#include "godot_cpp/classes/texture_rect.hpp"
 
 namespace tog {
 
@@ -37,6 +38,9 @@ namespace tog {
         godot::Node3D*      m_world_node = nullptr;
         //Reference to the demo map button
         godot::Button*      m_battle_button = nullptr;
+        //reference to the background image node
+        godot::TextureRect* m_background_image = nullptr;
+
     };
 
 }

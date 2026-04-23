@@ -27,6 +27,7 @@ inline float distance_without_y(godot::Vector3 a, godot::Vector3 b) {
 //											  > CollisionShape3D
 //												...
 //Useful for configuring walkable tiles as efficiently as possible
+/*
 inline void tiles_into_static_bodies(godot::Node3D* tiles) {
 
     for (auto& variant : tiles->get_children()) {
@@ -62,6 +63,54 @@ inline void tiles_into_static_bodies(godot::Node3D* tiles) {
         temp_body->queue_free();
     }
 
+}
+*/
+
+inline void tiles_into_static_bodies(godot::Node3D* tiles) {
+    const godot::Array children = tiles->get_children(); // snapshot
+
+    for (int i = 0; i < children.size(); ++i) {
+        auto* mesh_node = godot::Object::cast_to<godot::MeshInstance3D>(children[i]);
+        if (!mesh_node) {
+            continue;
+        }
+
+        mesh_node->create_trimesh_collision();
+
+        // Safer than assuming child(0) forever.
+        auto* temp_body = godot::Object::cast_to<godot::StaticBody3D>(
+            mesh_node->get_child(mesh_node->get_child_count() - 1)
+        );
+        if (!temp_body) {
+            continue;
+        }
+
+        auto* temp_shape = godot::Object::cast_to<godot::CollisionShape3D>(temp_body->get_child(0));
+        if (!temp_shape) {
+            continue;
+        }
+
+        auto* tile_static_body = memnew(tog::TacticsTile);
+        tile_static_body->set_name(temp_body->get_name());
+
+        // Add the replacement parent first, then place it where the mesh was.
+        tiles->add_child(tile_static_body);
+        tile_static_body->set_global_transform(mesh_node->get_global_transform());
+
+        // Move collision shape off the temp body.
+        temp_shape->reparent(tile_static_body, true);
+
+        // Detach and discard the generated temp body.
+        mesh_node->remove_child(temp_body);
+        temp_body->queue_free();
+
+        // Reparent the mesh correctly.
+        mesh_node->reparent(tile_static_body, true);
+        mesh_node->set_transform(godot::Transform3D()); // local identity under tile_static_body
+
+        tile_static_body->configure_tile();
+        tile_static_body->set_process(true);
+    }
 }
 
 

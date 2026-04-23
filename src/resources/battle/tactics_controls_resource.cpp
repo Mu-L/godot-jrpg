@@ -3,13 +3,7 @@
 #include "entity/battle/tactics_pawn.hpp"
 #include "entity/battle/tactics_player.hpp"
 
-tog::TacticsControlsResource::TacticsControlsResource() {
-    m_actions["Move"] = "player_wants_to_move";
-    m_actions["Wait"] = "player_wants_to_wait";
-    m_actions["Cancel"] = "player_wants_to_cancel";
-    m_actions["Attack"] = "player_wants_to_attack";
-    m_actions["Debug_next_turn"] = "player_wants_to_skip_turn";
-}
+tog::TacticsControlsResource::TacticsControlsResource() {}
 
 void tog::TacticsControlsResource::set_actions_menu_visibility(bool visible, TacticsPawn* pawn) {
     this->emit_signal(tog::node::signal::TacticsControlResource::called_set_actions_menu_visibility, visible, pawn);

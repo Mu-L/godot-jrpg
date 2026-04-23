@@ -50,8 +50,6 @@ namespace tog {
         bool m_is_joystick{false};
         //property - indicates whether the input hints are folded
         bool m_input_hints_folded{false};
-        //dictionary of available actions and their corresponding methods
-        godot::Dictionary m_actions;
     };
 
 }

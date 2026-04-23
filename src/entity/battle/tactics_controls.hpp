@@ -36,8 +36,6 @@ namespace tog {
         void set_cursor_shape_to_arrow();
         //Moves the camera based on input
         void move_camera(float delta);
-        //Retrieves an action button node
-        godot::Button* get_action(const godot::String& action = "");
         //Checks if the mouse is hovering over a UI element
         bool is_mouse_hovering_ui_elem();
         //Sets the visibility of the actions menu

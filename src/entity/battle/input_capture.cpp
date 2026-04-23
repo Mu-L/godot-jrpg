@@ -11,7 +11,7 @@ void tog::InputCapture::_input(const godot::Ref<godot::InputEvent>& p_event) {
 
 void tog::InputCapture::_process(double p_delta) {
     //debug
-    //project_mouse_position(1, false);
+    project_mouse_position(1, false);
 }
 
 void tog::InputCapture::_unhandled_input(const godot::Ref<godot::InputEvent> &p_event) {
