@@ -4,15 +4,19 @@
 #include "resources/battle/input_capture_resource.hpp"
 #include "util/utility_vec.hpp"
 
-tog::TacticsCameraService * tog::TacticsCameraService::get() { return m_static_inst; }
+tog::TacticsCameraService* tog::TacticsCameraService::get() { return m_static_inst; }
 
-tog::TacticsCameraService * tog::TacticsCameraService::reset() {
+tog::TacticsCameraService* tog::TacticsCameraService::reset() {
+    rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
+    m_console->print("called tog::TacticsCameraService::reset()");
     cleanup();
     m_static_inst = memnew(TacticsCameraService);
     return m_static_inst;
 }
 
-tog::TacticsCameraService * tog::TacticsCameraService::reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
+tog::TacticsCameraService* tog::TacticsCameraService::reset(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
+    rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
+    m_console->print("called tog::TacticsCameraService::reset(camera_resource, control_resource)");
     cleanup();
     m_static_inst = memnew(TacticsCameraService(camera_resource, control_resource));
     return m_static_inst;
@@ -26,6 +30,7 @@ void tog::TacticsCameraService::cleanup() {
 }
 
 void tog::TacticsCameraService::setup(tog::TacticsCamera* tactics_camera, godot::Camera3D* camera) {
+    m_console->print("called tog::TacticsCameraService::setup()");
     if (m_tactics_camera_resource.is_null()) {
         assertion(false, "TacticsCamera needs a CameraResource (T Cam)");
     } else if (m_tactics_control_resource.is_null()) {
@@ -37,6 +42,7 @@ void tog::TacticsCameraService::setup(tog::TacticsCamera* tactics_camera, godot:
 }
 
 void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics_camera) {
+    m_console->print("called tog::TacticsCameraService::process()");
     m_tactics_camera_rotation_service->check_free_look_activation(delta, tactics_camera);
 
     if (m_tactics_camera_resource->m_in_free_look) {
@@ -64,6 +70,7 @@ void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics
 }
 
 tog::TacticsCameraService::TacticsCameraService(const godot::Ref<TacticsCameraResource>& camera_resource, const godot::Ref<TacticsControlsResource>& control_resource) {
+    m_console->print("TacticsCameraService Constructed" );
     //point the static ptr to the current initialized object
     m_static_inst = this;
     //set the resources

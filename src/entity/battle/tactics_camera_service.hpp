@@ -10,6 +10,7 @@
 
 #include "godot_cpp/classes/object.hpp"
 #include "godot_cpp/classes/camera3d.hpp"
+#include "singletons/console.hpp"
 
 namespace tog {
 
@@ -49,6 +50,7 @@ namespace tog {
         godot::Ref<tog::TacticsCameraPanningService>    m_tactics_camera_panning_service;
     private:
         static inline tog::TacticsCameraService* m_static_inst = nullptr;
+        rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
 
     };
 

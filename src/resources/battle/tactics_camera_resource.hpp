@@ -88,9 +88,9 @@ namespace tog {
         //Flag to indicate if camera is rotating
         inline static bool m_is_rotating = false;
         //Vertical pitch rotation
-        inline static int m_x_rotation = 0;
+        inline static int m_x_rotation = -30;
         //Horizontal twist rotation
-        inline static int m_y_rotation = 0;
+        inline static int m_y_rotation = -45;
         //Roll rotation
         inline static int m_z_rotation = 0;
         //Current mouse position
