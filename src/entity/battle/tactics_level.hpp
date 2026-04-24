@@ -45,8 +45,8 @@ namespace tog {
         tog::TacticsParticipant*                    m_tactics_participant;
         tog::TacticsPlayer*                         m_tactics_player;
         tog::TacticsOpponent*                       m_tactics_opponent;
-        int                                         m_turn_stage = 0;
         float                                       m_camera_boundary_radius = 10.0f;
+        int                                         m_turn_stage = 0;
     };
 
 }

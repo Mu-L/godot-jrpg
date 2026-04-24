@@ -2,7 +2,6 @@
 
 #include "core/constants.hpp"
 #include "entity/battle/tactics_pawn.hpp"
-#include "util/bind.hpp"
 #include "godot_cpp/classes/resource.hpp"
 
 namespace tog {
@@ -41,16 +40,9 @@ namespace tog {
         void skip_turn();
 
     protected:
-        static void _bind_methods() {
-            //Signal emitted when a turn is skipped
-            //rl::signal_binding<TacticsParticipantResource, tog::node::signal::TacticsParticipantResource::called_skip_turn>::add<>();
-            ADD_SIGNAL(godot::MethodInfo(tog::node::signal::TacticsParticipantResource::called_skip_turn));
-        }
+        static void _bind_methods();
 
     public:
-        //The current stage of the participant's turn
-        int m_stage = 0;
-
         //The currently active pawn
         tog::TacticsPawn* m_tactics_pawn = nullptr;
 
@@ -59,6 +51,9 @@ namespace tog {
 
         //The node containing the target pawns
         godot::Node* m_targets = nullptr;
+
+        //The current stage of the participant's turn
+        int m_stage = 0;
 
         //Flag to control the display of opponent stats
         bool m_display_opponent_stats = false;

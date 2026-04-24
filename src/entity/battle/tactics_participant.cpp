@@ -15,13 +15,13 @@
 
 void tog::TacticsParticipant::_ready() {
     godot::ResourceLoader* resource_loader = godot::ResourceLoader::get_singleton();
-    m_tactics_participant_resource = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
-    m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
-    m_tactics_controls_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
+    m_tactics_participant_resource  = resource_loader->load(tog::path::resource::battle::tactics_participant_resource);
+    m_tactics_camera_resource       = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
+    m_tactics_controls_resource     = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
 
-    m_tactics_arena = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null("../" + godot::String(tog::node::name::BattleTest::TacticsArena)));
-    m_tactics_player = godot::Object::cast_to<tog::TacticsPlayer>(get_node_or_null(tog::node::name::BattleTest::TacticsPlayer));
-    m_tactics_opponent = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
+    m_tactics_arena     = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null("../" + godot::String(tog::node::name::BattleTest::TacticsArena)));
+    m_tactics_player    = godot::Object::cast_to<tog::TacticsPlayer>(get_node_or_null(tog::node::name::BattleTest::TacticsPlayer));
+    m_tactics_opponent  = godot::Object::cast_to<tog::TacticsOpponent>(get_node_or_null(tog::node::name::BattleTest::TacticsOpponent));
 
     //Initialize the service with necessary resources
     m_tactics_participant_service = memnew(tog::TacticsParticipantService(m_tactics_participant_resource, m_tactics_camera_resource, m_tactics_controls_resource));

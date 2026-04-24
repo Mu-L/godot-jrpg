@@ -36,23 +36,11 @@ namespace tog {
         void configure_tile();
 
     protected:
-
         static void _bind_methods() {}
 
     public:
         //Resource for tile raycasting
-        //rl::resource::preload::packed_scene<tog::TacticsTileRaycast> m_tactics_tile_raycast_scene{tog::path::resource::battle::tactics_tile_raycast};
         godot::Ref<godot::PackedScene> m_tactics_tile_raycast_scene;
-        //Whether the tile is reachable
-        bool m_reachable = false;
-        //Whether the tile is attackable
-        bool m_attackable = false;
-        //Whether the tile is being hovered over
-        bool m_hover = false;
-        //Pathfinding starting point - used by [TacticsArena]
-        tog::TacticsTile* m_path_finding_root_tile{};
-        //The distance to cover. Used by [TacticsArena]
-        float m_path_finding_distance{};
         //Material for hover state
         godot::Ref<godot::StandardMaterial3D> m_hover_material{};
         //Material for reachable state
@@ -63,7 +51,16 @@ namespace tog {
         godot::Ref<godot::StandardMaterial3D> m_attackable_material{};
         //Material for hover and attackable state
         godot::Ref<godot::StandardMaterial3D> m_hover_attackable_material{};
-
+        //Pathfinding starting point - used by [TacticsArena]
+        tog::TacticsTile* m_path_finding_root_tile{};
+        //The distance to cover. Used by [TacticsArena]
+        float m_path_finding_distance{};
+        //Whether the tile is reachable
+        bool m_reachable = false;
+        //Whether the tile is attackable
+        bool m_attackable = false;
+        //Whether the tile is being hovered over
+        bool m_hover = false;
     };
 
 }

@@ -64,23 +64,23 @@ namespace tog {
 
     public:
         //Resource containing control-related data and settings
-        godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
+        godot::Ref<tog::TacticsControlsResource>    m_tactics_control_resource;
         //Resource containing camera-related data and settings
-        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
+        godot::Ref<tog::TacticsCameraResource>      m_tactics_camera_resource;
         //Resource containing participant-related data and settings
         godot::Ref<tog::TacticsParticipantResource> m_tactics_participant_resource;
         //Resource containing arena-related data and settings
-        godot::Ref<tog::TacticsArenaResource> m_tactics_arena_resource;
-        //Currently selected pawn
-        tog::TacticsPawn* m_tactics_pawn = nullptr;
+        godot::Ref<tog::TacticsArenaResource>       m_tactics_arena_resource;
         //Service handling control logic
-        godot::Ref<tog::TacticsControlsService> m_tactics_control_service;
+        godot::Ref<tog::TacticsControlsService>     m_tactics_control_service;
         //Texture for Xbox controller layout
-        godot::Ref<godot::Texture2D> m_layout_xbox_texture;
+        godot::Ref<godot::Texture2D>                m_layout_xbox_texture;
         //Texture for PC controls layout
-        godot::Ref<godot::Texture2D> m_layout_pc_texture;
+        godot::Ref<godot::Texture2D>                m_layout_pc_texture;
+        //Currently selected pawn
+        tog::TacticsPawn*                           m_tactics_pawn{nullptr};
         //Node for capturing mouse clicks
-        tog::InputCapture* m_input_capture;
+        tog::InputCapture*                          m_input_capture{nullptr};
 
     };
 
