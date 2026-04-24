@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tactics_participant.hpp"
+#include "singletons/console.hpp"
 
 namespace tog {
 
@@ -46,6 +47,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
         //Service handling player-specific logic and operations
         godot::Ref<tog::TacticsPlayerService> m_tactics_player_service;
     };

@@ -49,6 +49,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
         //Resource containing participant data and configurations
         godot::Ref<tog::TacticsParticipantResource> m_tactics_participant_resource;
         //Resource for camera-related data and configurations

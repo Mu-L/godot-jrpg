@@ -11,6 +11,7 @@
 #include "util/engine.hpp"
 
 void tog::TacticsLevel::_ready() {
+    m_console->print("called tog::TacticsLevel::_ready()");
     auto resource_loader = godot::ResourceLoader::get_singleton();
 
     m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
@@ -23,9 +24,9 @@ void tog::TacticsLevel::_ready() {
     m_tactics_arena         = godot::Object::cast_to<tog::TacticsArena>(get_node_or_null(tog::node::name::BattleTest::TacticsArena));
 
     if (not rl::engine::editor_active()) {
-        //Configure arena tiles
+        //Configure arena tiles to be usable
         m_tactics_arena->configure_tiles();
-        //Configure participant with camera and UI control
+        //Configures the TacticsParticipant's "TacticsParticipantService" with the shared tactics_camera and tactics_controls resource
         m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
     }
 
@@ -33,52 +34,60 @@ void tog::TacticsLevel::_ready() {
     if (m_tactics_camera_resource->m_boundary_radius != m_camera_boundary_radius) {
         m_tactics_camera_resource->m_boundary_radius = m_camera_boundary_radius;
     }
-
+    m_console->print("finished tog::TacticsLevel::_ready()");
 }
 
 void tog::TacticsLevel::_physics_process(double p_delta) {
     if (not rl::engine::editor_active()) {
         switch (m_turn_stage){
             case 0:
-                //Initialize turn
+                //Checks whether both the player and opponent are configured via the participant subsystem
+                m_console->print("Initialization Turn");
                 init_turn();
                 break;
             case 1:
                 //Handle ongoing turn
+                m_console->print("handle_turn(p_delta) called");
                 handle_turn(p_delta);
                 break;
-            default: ;
+            default:
+                break;
         }
     }
 }
 
 void tog::TacticsLevel::init_turn() {
+    m_console->print("called tog::TacticsLevel::init_turn()");
     if ( m_tactics_participant->is_configured(m_tactics_player) && m_tactics_participant->is_configured(m_tactics_opponent) ) {
         //Move to turn handling stage if both player and opponent are configured
         m_turn_stage = 1;
     }
+    m_console->print("finished tog::TacticsLevel::init_turn()");
 }
 
 void tog::TacticsLevel::handle_turn(float delta) {
+    m_console->print("called tog::TacticsLevel::handle_turn()");
 
-    if (m_tactics_participant->can_act(m_tactics_player)) {
+    if (m_tactics_participant->can_act(m_tactics_player)) { //check if the player is acting
 
-        if ( !m_tactics_participant->is_configured(m_tactics_player) ) {
-            m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
+        if ( !m_tactics_participant->is_configured(m_tactics_player) ) {    //check if player is configured
+            m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);   //configure the player
         }
-        m_tactics_participant->act(delta, true, m_tactics_player);
+        m_tactics_participant->act(delta, true, m_tactics_player);  //tactics_player takes it run
 
-    } else if (m_tactics_participant->can_act(m_tactics_opponent)) {
+    } else if (m_tactics_participant->can_act(m_tactics_opponent)) { //check if the player is acting
 
-        if ( !m_tactics_participant->is_configured(m_tactics_opponent) ) {
-            m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);
+        if ( !m_tactics_participant->is_configured(m_tactics_opponent) ) {  //check if opponent is configured
+            m_tactics_participant->configure(m_tactics_camera_resource, m_tactics_controls_resource);   //configure the opponent
         }
-        m_tactics_participant->act(delta, false, m_tactics_opponent);
+
+        m_tactics_participant->act(delta, false, m_tactics_opponent);   //tactics_opponent takes it run
 
     } else {
-
+        //reset the turn state
         m_tactics_player->reset_turn(m_tactics_player);
         m_tactics_opponent->reset_turn(m_tactics_opponent);
-
     }
+
+    m_console->print("finished tog::TacticsLevel::handle_turn()");
 }

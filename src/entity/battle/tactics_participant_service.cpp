@@ -30,10 +30,10 @@ void tog::TacticsParticipantService::setup(tog::TacticsParticipant* tactics_part
 
 void tog::TacticsParticipantService::act(float delta, bool is_player, godot::Node3D* parent, tog::TacticsParticipant* tactics_participant) {
     if (is_player) {
-        tog::TacticsPlayer* player = godot::Object::cast_to<tog::TacticsPlayer>(parent);
+        auto* player    = godot::Object::cast_to<tog::TacticsPlayer>(parent);
         m_tactics_participant_turn_service->handle_player_turn(delta, player, tactics_participant);
     } else {
-        tog::TacticsOpponent* opponent = godot::Object::cast_to<tog::TacticsOpponent>(parent);
+        auto* opponent  = godot::Object::cast_to<tog::TacticsOpponent>(parent);
         m_tactics_participant_turn_service->handle_opponent_turn(delta, opponent, tactics_participant);
     }
 }

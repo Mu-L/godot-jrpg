@@ -1,12 +1,15 @@
 #pragma once
 
-#include "tactics_level.hpp"
+#include "singletons/console.hpp"
 #include "util/bind.hpp"
+
 #include "godot_cpp/classes/button.hpp"
 #include "godot_cpp/classes/node3d.hpp"
 #include "godot_cpp/classes/texture_rect.hpp"
 
 namespace tog {
+
+    class TacticsLevel;
 
     //A placeholder script that is meant to be replaced by your own level loader system
     class TacticsMain : public godot::Node {

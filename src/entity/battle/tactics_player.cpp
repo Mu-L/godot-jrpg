@@ -23,6 +23,7 @@ void tog::TacticsPlayer::_physics_process(double p_delta) {
 }
 
 bool tog::TacticsPlayer::is_pawn_configured() {
+    m_console->print("called tog::TacticsPlayer::is_pawn_configured()");
     return m_tactics_player_service->is_pawn_configured(this);
 }
 

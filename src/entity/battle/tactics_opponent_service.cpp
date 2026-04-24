@@ -8,7 +8,7 @@
 bool tog::TacticsOpponentService::is_pawn_configured(tog::TacticsOpponent* tactics_opponent) {
     for (const godot::Variant& variant : tactics_opponent->get_children()) {
         auto* pawn = godot::Object::cast_to<tog::TacticsPawn>(variant);
-        if (!pawn->center())    return false;
+        if (pawn && !pawn->center())    return false;
     }
     return true;
 }

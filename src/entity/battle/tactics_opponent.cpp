@@ -12,6 +12,7 @@ void tog::TacticsOpponent::_ready() {
 }
 
 bool tog::TacticsOpponent::is_pawn_configured() {
+    m_console->print("calling tog::TacticsOpponent::is_pawn_configured()");
     return m_tactics_opponent_service->is_pawn_configured(this);
 }
 
