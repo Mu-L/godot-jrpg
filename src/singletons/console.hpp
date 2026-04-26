@@ -97,6 +97,20 @@ namespace rl {
             m_logger->info(format_str, std::forward<TArgs>(args)...);
         }
 
+        template <typename... TArgs>
+        void critical(fmt::format_string<TArgs...> format_str, TArgs&&... args) {
+            if (m_stop.load(std::memory_order_relaxed) || m_logger == nullptr)
+                return;
+            m_logger->critical(format_str, std::forward<TArgs>(args)...);
+        }
+
+        template <typename... TArgs>
+        void warn(fmt::format_string<TArgs...> format_str, TArgs&&... args) {
+            if (m_stop.load(std::memory_order_relaxed) || m_logger == nullptr)
+                return;
+            m_logger->warn(format_str, std::forward<TArgs>(args)...);
+        }
+
     protected:
         static void _bind_methods() {}
 

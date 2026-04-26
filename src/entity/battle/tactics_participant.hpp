@@ -1,6 +1,8 @@
 #pragma once
 
 #include "godot_cpp/classes/node3d.hpp"
+#include "singletons/console.hpp"
+#include "util/io.hpp"
 
 namespace tog {
 
@@ -41,6 +43,7 @@ namespace tog {
 
         //todo: the "is_configrued" function should be virtual because it will be used by TacticsPlayer and TacticsOpponent
         virtual bool is_pawn_configured() {
+            m_console->critical( "called tog::TacticsParticipant::is_pawn_configured() - SHOULD NOT BE HERE");
             return false;
         };
 
@@ -81,6 +84,7 @@ namespace tog {
         tog::TacticsPlayer* m_tactics_player = nullptr;
         //Reference to the TacticsOpponent node
         tog::TacticsOpponent* m_tactics_opponent = nullptr;
+        rl::Console<godot::RichTextLabel>*  m_console{ rl::console::get() };
 
     };
 

@@ -36,4 +36,10 @@ namespace tog {
         return mat;
     }
 
+    static std::string to_std_string(const godot::StringName& name) {
+        godot::String godot_string = name;                  // StringName -> String
+        godot::CharString utf8 = godot_string.utf8();       // String -> UTF-8 buffer
+        return std::string{utf8.get_data()};             // UTF-8 buffer -> std::string
+    }
+
 }

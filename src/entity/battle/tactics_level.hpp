@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "singletons/console.hpp"
 #include "godot_cpp/classes/rich_text_label.hpp"
 
@@ -38,7 +39,7 @@ namespace tog {
         void static _bind_methods() {};
 
     private:
-        rl::Console<godot::RichTextLabel>*          m_console{rl::console::get() };
+        rl::Console<godot::RichTextLabel>*  m_console{ rl::console::get() };
         godot::Ref<tog::TacticsCameraResource>      m_tactics_camera_resource;
         godot::Ref<tog::TacticsControlsResource>    m_tactics_controls_resource;
         tog::TacticsArena*                          m_tactics_arena;

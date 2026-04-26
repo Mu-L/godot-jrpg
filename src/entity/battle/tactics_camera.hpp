@@ -3,6 +3,7 @@
 #include "tactics_camera_service.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
+#include "singletons/console.hpp"
 
 #include "godot_cpp/classes/character_body3d.hpp"
 #include "godot_cpp/core/class_db.hpp"
@@ -49,17 +50,18 @@ namespace tog {
 
     public:
         //Resource containing camera attributes and signals
-        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
+        godot::Ref<tog::TacticsCameraResource>      m_tactics_camera_resource;
         //Resource containing control settings
-        godot::Ref<tog::TacticsControlsResource> m_tactics_control_resource;
-        //Service handling camera operations
-        inline static tog::TacticsCameraService* m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
+        godot::Ref<tog::TacticsControlsResource>    m_tactics_control_resource;
         //Node for horizontal rotation
-        godot::Node3D* m_t_pivot = nullptr;
+        godot::Node3D*                              m_t_pivot = nullptr;
         //Node for vertical rotation
-        godot::Node3D* m_p_pivot = nullptr;
+        godot::Node3D*                              m_p_pivot = nullptr;
         //Main camera node
-        godot::Camera3D* m_camera = nullptr;
+        godot::Camera3D*                            m_camera = nullptr;
+        //Service handling camera operations
+        inline static tog::TacticsCameraService*    m_tactics_camera_service = nullptr; //holds reference to the static object that manages the service
+        rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
     };
 
 }

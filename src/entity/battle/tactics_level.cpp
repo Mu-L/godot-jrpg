@@ -38,22 +38,24 @@ void tog::TacticsLevel::_ready() {
 }
 
 void tog::TacticsLevel::_physics_process(double p_delta) {
+    m_console->print("called tog::TacticsLevel::_physics_process");
     if (not rl::engine::editor_active()) {
         switch (m_turn_stage){
             case 0:
                 //Checks whether both the player and opponent are configured via the participant subsystem
-                m_console->print("Initialization Turn");
+                m_console->print("Initialization Starting Turn...");
                 init_turn();
                 break;
             case 1:
                 //Handle ongoing turn
-                m_console->print("handle_turn(p_delta) called");
+                m_console->print("Handle Player/Opponent Pawn Turn...");
                 handle_turn(p_delta);
                 break;
             default:
                 break;
         }
     }
+    m_console->print("finished tog::TacticsLevel::_physics_process");
 }
 
 void tog::TacticsLevel::init_turn() {

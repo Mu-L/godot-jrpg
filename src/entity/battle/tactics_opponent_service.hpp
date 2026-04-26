@@ -5,6 +5,7 @@
 #include "resources/battle/tactics_controls_resource.hpp"
 
 #include "godot_cpp/classes/ref_counted.hpp"
+#include "singletons/console.hpp"
 
 namespace tog {
 
@@ -60,6 +61,7 @@ namespace tog {
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
         //Reference to the TacticsArena node
         tog::TacticsArena* m_tactics_arena = nullptr;
+        rl::Console<godot::RichTextLabel>* m_console{rl::console::get() };
     };
 
 }

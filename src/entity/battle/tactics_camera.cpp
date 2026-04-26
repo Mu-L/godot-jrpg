@@ -4,7 +4,7 @@
 #include "util/engine.hpp"
 
 void tog::TacticsCamera::_ready() {
-
+    m_console->print("called tog::TacticsCamera::_ready()");
     auto resource_loader = godot::ResourceLoader::get_singleton();
     m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
     m_tactics_control_resource = resource_loader->load(tog::path::resource::battle::tactics_control_resource);
@@ -26,8 +26,9 @@ void tog::TacticsCamera::_ready() {
     if (not rl::engine::editor_active()) {
         m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_rotate_camera, callable_mp(this, &tog::TacticsCamera::rotate_camera));
         m_tactics_camera_resource->connect(tog::node::signal::TacticsCameraResource::called_move_camera, callable_mp(this, &tog::TacticsCamera::move_camera));
+        m_console->print("bounded called_rotate_camera & called_move_camera signals");
     }
-
+    m_console->print("finished tog::TacticsCamera::_ready()");
 }
 
 void tog::TacticsCamera::_process(double p_delta) {

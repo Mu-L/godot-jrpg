@@ -44,7 +44,8 @@ void tog::TacticsParticipantService::configure(const godot::Ref<tog::TacticsCame
 }
 
 bool tog::TacticsParticipantService::is_configured(godot::Node3D* parent) {
-    tog::TacticsParticipant* participant = godot::Object::cast_to<tog::TacticsParticipant>(parent);
+    m_console->print( "called tog::TacticsParticipant::is_configured() for node: {}", to_std_string(parent->get_name()) );
+    auto* participant = godot::Object::cast_to<tog::TacticsParticipant>(parent);
     return participant ? participant->is_pawn_configured() : false;
 }
 
