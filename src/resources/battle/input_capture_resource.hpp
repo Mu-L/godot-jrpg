@@ -1,12 +1,18 @@
 #pragma once
 
+#include "core/constants.hpp"
 #include "util/bind.hpp"
 #include "godot_cpp/classes/resource.hpp"
 
 namespace tog {
 
     //Mapping
-    inline constexpr const char* CAMERA_PAN_KEYS[] = {"camera_left", "camera_right", "camera_forward", "camera_backwards"};
+    inline constexpr const char* CAMERA_PAN_KEYS[] = {
+        tog::node::signal::TacticsCaptureResource::camera_left,
+        tog::node::signal::TacticsCaptureResource::camera_right,
+        tog::node::signal::TacticsCaptureResource::camera_forward,
+        tog::node::signal::TacticsCaptureResource::camera_backward,
+    };
     //The maximum length for the ray used in mouse cursor position casting
     inline static constexpr int RAY_LENGTH = 10000;
     //Deadzone for controller input to prevent unintended movement from small inputs

@@ -38,38 +38,30 @@ void tog::TacticsLevel::_ready() {
 }
 
 void tog::TacticsLevel::_physics_process(double p_delta) {
-    m_console->print("called tog::TacticsLevel::_physics_process");
     if (not rl::engine::editor_active()) {
         switch (m_turn_stage){
             case 0:
                 //Checks whether both the player and opponent are configured via the participant subsystem
-                m_console->print("Initialization Starting Turn...");
                 init_turn();
                 break;
             case 1:
                 //Handle ongoing turn
-                m_console->print("Handle Player/Opponent Pawn Turn...");
                 handle_turn(p_delta);
                 break;
             default:
                 break;
         }
     }
-    m_console->print("finished tog::TacticsLevel::_physics_process");
 }
 
 void tog::TacticsLevel::init_turn() {
-    m_console->print("called tog::TacticsLevel::init_turn()");
     if ( m_tactics_participant->is_configured(m_tactics_player) && m_tactics_participant->is_configured(m_tactics_opponent) ) {
         //Move to turn handling stage if both player and opponent are configured
         m_turn_stage = 1;
     }
-    m_console->print("finished tog::TacticsLevel::init_turn()");
 }
 
 void tog::TacticsLevel::handle_turn(float delta) {
-    m_console->print("called tog::TacticsLevel::handle_turn()");
-
     if (m_tactics_participant->can_act(m_tactics_player)) { //check if the player is acting
 
         if ( !m_tactics_participant->is_configured(m_tactics_player) ) {    //check if player is configured
@@ -91,5 +83,4 @@ void tog::TacticsLevel::handle_turn(float delta) {
         m_tactics_opponent->reset_turn(m_tactics_opponent);
     }
 
-    m_console->print("finished tog::TacticsLevel::handle_turn()");
 }

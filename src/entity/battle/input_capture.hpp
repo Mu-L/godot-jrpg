@@ -4,6 +4,7 @@
 #include "godot_cpp/classes/node3d.hpp"
 #include "godot_cpp/classes/input_event.hpp"
 #include "resources/battle/input_capture_resource.hpp"
+#include "singletons/console.hpp"
 
 namespace tog {
 
@@ -28,8 +29,9 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
-        godot::Ref<tog::InputCaptureResource> m_input_capture_resource;
-        godot::Ref<tog::InputCaptureService> m_input_capture_service;
+        godot::Ref<tog::InputCaptureResource>   m_input_capture_resource;
+        godot::Ref<tog::InputCaptureService>    m_input_capture_service;
+        rl::Console<godot::RichTextLabel>*      m_console{ rl::console::get() };
     };
 
 }

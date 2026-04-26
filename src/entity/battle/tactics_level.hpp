@@ -39,14 +39,14 @@ namespace tog {
         void static _bind_methods() {};
 
     private:
-        rl::Console<godot::RichTextLabel>*  m_console{ rl::console::get() };
+        rl::Console<godot::RichTextLabel>*          m_console{ rl::console::get() };
         godot::Ref<tog::TacticsCameraResource>      m_tactics_camera_resource;
         godot::Ref<tog::TacticsControlsResource>    m_tactics_controls_resource;
         tog::TacticsArena*                          m_tactics_arena;
         tog::TacticsParticipant*                    m_tactics_participant;
         tog::TacticsPlayer*                         m_tactics_player;
         tog::TacticsOpponent*                       m_tactics_opponent;
-        float                                       m_camera_boundary_radius = 10.0f;
+        float                                        m_camera_boundary_radius = 10.0f;
         int                                         m_turn_stage = 0;
     };
 

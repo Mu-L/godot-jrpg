@@ -34,6 +34,7 @@ namespace tog {
         void _ready() override;
         //Process camera service
         void _process(double p_delta) override;
+
         //Moves the camera based on input
         void move_camera(float h, float v, bool joystick, float delta);
         //Rotates the camera
@@ -53,9 +54,9 @@ namespace tog {
         godot::Ref<tog::TacticsCameraResource>      m_tactics_camera_resource;
         //Resource containing control settings
         godot::Ref<tog::TacticsControlsResource>    m_tactics_control_resource;
-        //Node for horizontal rotation
+        //Node for horizontal rotation - effectively yaw around the vertical axis
         godot::Node3D*                              m_t_pivot = nullptr;
-        //Node for vertical rotation
+        //Node for vertical rotation - the “look down/look up” part of the camera rig.
         godot::Node3D*                              m_p_pivot = nullptr;
         //Main camera node
         godot::Camera3D*                            m_camera = nullptr;

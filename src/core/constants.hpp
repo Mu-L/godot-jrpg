@@ -90,6 +90,16 @@ namespace tog::inline constants {
                 constexpr inline auto called_set_cursor_shape_to_arrow     { "called_set_cursor_shape_to_arrow" };
             }
 
+            namespace TacticsCaptureResource {
+                constexpr inline auto camera_left           { "camera_left" };
+                constexpr inline auto camera_right          { "camera_right" };
+                constexpr inline auto camera_forward        { "camera_forward" };
+                constexpr inline auto camera_backward       { "camera_backward" };
+                constexpr inline auto camera_rotate_right   { "camera_rotate_right" };
+                constexpr inline auto camera_rotate_left    { "camera_rotate_left" };
+                constexpr inline auto camera_free_look      { "camera_free_look" };
+            }
+
             namespace TacticsPawnResource {
                 constexpr inline auto pawn_moved    { "pawn_moved" };
                 constexpr inline auto pawn_attacked { "pawn_attacked" };

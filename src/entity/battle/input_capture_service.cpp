@@ -14,20 +14,22 @@
 #include "godot_cpp/classes/physics_ray_query_parameters3d.hpp"
 #include "godot_cpp/classes/viewport.hpp"
 #include "godot_cpp/classes/world3d.hpp"
+#include "util/utility.hpp"
 
 void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>& event) {
     //recast to an InputEventMouseButton object and check if pressed
     if (godot::Ref<godot::InputEventMouseButton> mouse_button_event{event}; mouse_button_event.is_valid()) {
         //check if any mouse button is pressed at all
         if (mouse_button_event->is_pressed()) {
+            //m_console->print("Mouse Button Event: {}", to_std_string(mouse_button_event->get_name()) );
             //if the "free look" option is toggled
             if (mouse_button_event->is_action("camera_free_look")) {
+                m_console->print("Mouse Button Action: {} is pressed", "camera_free_look");
                 m_input_capture_resource->m_free_look_pressed = true;
                 if (!tog::TacticsCameraResource::m_is_rotating) {
                     tog::TacticsCameraResource::m_in_free_look = true;
                 }
             }
-
             if (const auto button{mouse_button_event->get_button_index()}; button == godot::MouseButton::MOUSE_BUTTON_WHEEL_UP) {
                 tog::TacticsCamera::m_tactics_camera_service->m_tactics_zoom_service->zoom_camera(-tog::TacticsCameraResource::m_zoom_speed);
             } else if (button == godot::MouseButton::MOUSE_BUTTON_WHEEL_DOWN) {
@@ -36,12 +38,14 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
         } else {
             //free look toggle
             if (mouse_button_event->is_action_released("camera_free_look")) {
+                m_console->print("Mouse Button Action: {} is released", "camera_free_look");
                 m_input_capture_resource->m_free_look_pressed = false;
             }
         }
     }
 
     if (godot::Ref<godot::InputEventMouseMotion> mouse_motion_event{event}; mouse_motion_event.is_valid()) {
+        //m_console->print("Mouse Motion Event: {}", to_std_string(mouse_motion_event->get_name()) );
         //free_look motion capture
         if (tog::TacticsCameraResource::m_in_free_look) {
             tog::TacticsCameraResource::m_twist_input = -mouse_motion_event->get_relative().x * (FL_ROT_SPEED_DIVIDER * tog::TacticsCameraResource::m_rot_speed);
@@ -51,10 +55,12 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
         if (input_event_key->is_pressed()) {
             //keys
             if (input_event_key->is_action_pressed("camera_rotate_left")) {
+                m_console->print("Input Button Action: {} is pressed", "camera_rotate_left");
                 if (!tog::TacticsCameraResource::m_in_free_look) {
                     tog::TacticsCameraResource::m_y_rotation += -90;
                 }
             } else if (input_event_key->is_action_pressed("camera_rotate_right")) {
+                m_console->print("Input Button Action: {} is pressed", "camera_rotate_right");
                 if (!tog::TacticsCameraResource::m_in_free_look) {
                     tog::TacticsCameraResource::m_y_rotation += 90;
                 }
@@ -62,6 +68,7 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
             //camera pan direction (WASD)
             for (const auto action : CAMERA_PAN_KEYS) {
                 if (input_event_key->is_action(action)) {
+                    m_console->print("Input Button Action: {} is pressed", action);
                     m_input_capture_resource->m_cam_direction = godot::Input::get_singleton()->get_vector("camera_left", "camera_right", "camera_forward", "camera_backwards");
                     return;
                 }
@@ -71,6 +78,7 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
             for (const auto action : CAMERA_PAN_KEYS) {
                 if (input_event_key->is_action_released(action)) {
                     //Recalculate cam_direction after key release
+                    m_console->print("Input Button Action: {} is released", action);
                     m_input_capture_resource->m_cam_direction = godot::Input::get_singleton()->get_vector("camera_left", "camera_right", "camera_forward", "camera_backwards");
                     return;
                 }

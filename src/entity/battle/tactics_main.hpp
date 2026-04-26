@@ -29,6 +29,8 @@ namespace tog {
 
         void load_level();
 
+        void add_input_map_actions(const godot::StringName& action, godot::Key key, float deadzone = 0.2f);
+
     protected:
         void static _bind_methods() {
             rl::bind_member_function(TacticsMain, on_battle_button_pressed);
@@ -43,6 +45,7 @@ namespace tog {
         godot::Button*      m_battle_button = nullptr;
         //reference to the background image node
         godot::TextureRect* m_background_image = nullptr;
+        rl::Console<godot::RichTextLabel>*          m_console{ rl::console::get() };
 
     };
 

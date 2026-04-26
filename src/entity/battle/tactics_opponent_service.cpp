@@ -6,7 +6,6 @@
 #include "tactics_tile.hpp"
 
 bool tog::TacticsOpponentService::is_pawn_configured(tog::TacticsOpponent* tactics_opponent) {
-    m_console->print("tog::TacticsOpponentService::is_pawn_configured()");
     for (const godot::Variant& variant : tactics_opponent->get_children()) {
         auto* pawn = godot::Object::cast_to<tog::TacticsPawn>(variant);
         if (pawn && !pawn->center())    return false;

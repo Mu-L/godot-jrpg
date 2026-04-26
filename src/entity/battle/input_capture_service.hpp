@@ -2,6 +2,7 @@
 
 #include "input_capture.hpp"
 #include "resources/battle/input_capture_resource.hpp"
+#include "singletons/console.hpp"
 
 #include "godot_cpp/classes/collision_object3d.hpp"
 #include "godot_cpp/classes/input_event.hpp"
@@ -33,11 +34,11 @@ namespace tog {
         //void draw_debug_ray(godot::Vector3 from, godot::Vector3 to, godot::MeshInstance3D debug_ray_mesh, godot::Node3D parent);
 
     protected:
-
         void static _bind_methods() {}
 
     private:
-        godot::Ref<tog::InputCaptureResource> m_input_capture_resource;
+        godot::Ref<tog::InputCaptureResource>   m_input_capture_resource;
+        rl::Console<godot::RichTextLabel>*      m_console{ rl::console::get() };
     };
 
 }

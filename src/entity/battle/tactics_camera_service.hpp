@@ -45,7 +45,7 @@ namespace tog {
     public:
         godot::Ref<tog::TacticsCameraResource>          m_tactics_camera_resource;
         godot::Ref<tog::TacticsControlsResource>        m_tactics_control_resource;
-        godot::Ref<TacticsCameraMovementService>        m_tactics_camera_movement_service;
+        godot::Ref<tog::TacticsCameraMovementService>   m_tactics_camera_movement_service;
         godot::Ref<tog::TacticsCameraZoomService>       m_tactics_zoom_service;
         godot::Ref<tog::TacticsCameraRotationService>   m_tactics_camera_rotation_service;
         godot::Ref<tog::TacticsCameraPanningService>    m_tactics_camera_panning_service;
