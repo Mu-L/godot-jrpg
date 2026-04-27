@@ -21,10 +21,10 @@ void tog::InputHints::_ready() {
 }
 
 void tog::InputHints::_unhandled_input(const godot::Ref<godot::InputEvent>& p_event) {
-    if (p_event->is_action_pressed("controller_hints")) {
+    if (p_event->is_action_pressed(tog::node::signal::TacticsCaptureResource::controller_hints)) {
         //Unfold hints when action is pressed
         on_mouse_entered();
-    } else if (p_event->is_action_released("controller_hints")) {
+    } else if (p_event->is_action_released(tog::node::signal::TacticsCaptureResource::controller_hints)) {
         //Fold hints when action is released
         on_mouse_exited();
     }

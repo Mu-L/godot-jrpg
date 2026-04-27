@@ -29,7 +29,8 @@ namespace tog {
 
         void load_level();
 
-        void add_input_map_actions(const godot::StringName& action, godot::Key key, float deadzone = 0.2f);
+        void bind_key_to_action(const godot::StringName& action, godot::Key key, float deadzone = 0.2f);
+        void bind_mouse_button_to_action(const godot::StringName& action, godot::MouseButton mouse_button, float deadzone = 0.2f);
 
     protected:
         void static _bind_methods() {

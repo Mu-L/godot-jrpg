@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsfblv238b0w"]
 
 [ext_resource type="PackedScene" uid="uid://cp3g1xea6l2ia" path="res://scenes/tactics_battle/tactics_input_capture.tscn" id="1_nhqn0"]
-[ext_resource type="Texture2D" uid="uid://okt4a4tnxjp5" path="res://assets/art/tactics_battle/controls-ui.png" id="3_h43wf"]
+[ext_resource type="Texture2D" uid="uid://okt4a4tnxjp5" path="res://assets/art/tactics_battle/controls-ui.png" id="2_rg8i3"]
 
 [node name="TacticsControls" type="TacticsControls" unique_id=59907860]
 anchors_preset = 15
@@ -26,7 +26,7 @@ modulate = Color(1, 1, 1, 0.3)
 layout_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 7
-texture = ExtResource("3_h43wf")
+texture = ExtResource("2_rg8i3")
 stretch_mode = 4
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=619227267]

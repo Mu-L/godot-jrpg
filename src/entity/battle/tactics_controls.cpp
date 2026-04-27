@@ -35,11 +35,11 @@ void tog::TacticsControls::_ready() {
 
 void tog::TacticsControls::_physics_process(double p_delta) {
     //Handle physics-based processing
-    //m_tactics_control_service->physics_process(p_delta, this);
+    m_tactics_control_service->physics_process(p_delta, this);
 }
 
 void tog::TacticsControls::_input(const godot::Ref<godot::InputEvent>& p_event) {
-    //m_tactics_control_service->handle_input(p_event);
+    m_tactics_control_service->handle_input(p_event);
 }
 
 void tog::TacticsControls::set_cursor_shape_to_move() {

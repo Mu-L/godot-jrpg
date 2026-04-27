@@ -8,13 +8,14 @@ tog::TacticsUIService::TacticsUIService(const godot::Ref<tog::TacticsControlsRes
 }
 
 void tog::TacticsUIService::update_controller_hints(tog::TacticsControls* tactics_controls) {
+    //todo: texture loading does not working
     if (m_tactics_controls_resource->m_is_joystick) {
         //set to xbox controller layout
         //todo: change to a inline string var
-        tactics_controls->get_node<godot::TextureRect>(tog::node::name::BattleTest::ControllerHints)->set_texture(tactics_controls->m_layout_xbox_texture);
+        //tactics_controls->get_node<godot::TextureRect>(tog::node::name::BattleTest::ControllerHints)->set_texture(tactics_controls->m_layout_xbox_texture);
     } else {
         //set to pc layout
-        tactics_controls->get_node<godot::TextureRect>(tog::node::name::BattleTest::ControllerHints)->set_texture(tactics_controls->m_layout_pc_texture);
+        //tactics_controls->get_node<godot::TextureRect>(tog::node::name::BattleTest::ControllerHints)->set_texture(tactics_controls->m_layout_pc_texture);
     }
 }
 

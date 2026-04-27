@@ -6,6 +6,7 @@
 #include "util/utility.hpp"
 
 #include "godot_cpp/classes/input_event_key.hpp"
+#include "godot_cpp/classes/input_event_mouse_button.hpp"
 #include "godot_cpp/classes/input_map.hpp"
 #include "godot_cpp/classes/packed_scene.hpp"
 #include "godot_cpp/classes/resource_loader.hpp"
@@ -25,12 +26,17 @@ void tog::TacticsMain::_ready() {
     m_battle_button->grab_focus();
 
     //add actions to input map
-    add_input_map_actions(tog::node::signal::TacticsCaptureResource::camera_left, godot::KEY_A);
-    add_input_map_actions(tog::node::signal::TacticsCaptureResource::camera_right, godot::KEY_D);
-    add_input_map_actions(tog::node::signal::TacticsCaptureResource::camera_forward, godot::KEY_W);
-    add_input_map_actions(tog::node::signal::TacticsCaptureResource::camera_backward, godot::KEY_S);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_left, godot::KEY_A);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_right, godot::KEY_D);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_forward, godot::KEY_W);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_backward, godot::KEY_S);
 
-    add_input_map_actions(tog::node::signal::TacticsCaptureResource::camera_free_look, godot::KEY_BACKSLASH);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_rotate_left, godot::KEY_Q);
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::camera_rotate_right, godot::KEY_E);
+
+    bind_key_to_action(tog::node::signal::TacticsCaptureResource::controller_hints, godot::KEY_BACKSLASH);
+
+    bind_mouse_button_to_action(tog::node::signal::TacticsCaptureResource::camera_free_look, godot::MOUSE_BUTTON_MIDDLE);
 }
 
 void tog::TacticsMain::on_battle_button_pressed() {
@@ -53,7 +59,7 @@ void tog::TacticsMain::load_level() {
     m_background_image->set_visible(false);
 }
 
-void tog::TacticsMain::add_input_map_actions(const godot::StringName &action, godot::Key key, float deadzone) {
+void tog::TacticsMain::bind_key_to_action(const godot::StringName &action, godot::Key key, float deadzone) {
     godot::InputMap* input_map = godot::InputMap::get_singleton();
 
     //create mapping for incoming action
@@ -73,4 +79,24 @@ void tog::TacticsMain::add_input_map_actions(const godot::StringName &action, go
         input_map->action_add_event(action, event);
     }
 
+}
+
+void tog::TacticsMain::bind_mouse_button_to_action(const godot::StringName &action, godot::MouseButton mouse_button, float deadzone) {
+    godot::InputMap* input_map = godot::InputMap::get_singleton();
+    //create mapping for incoming action
+    if ( !input_map->has_action(action) ) {
+        m_console->print("action created in InputMap {}", to_std_string(action));
+        input_map->add_action(action, deadzone);
+    }
+
+    //create event model to be passed to
+    godot::Ref<godot::InputEventMouseButton> event;
+    event.instantiate();
+    event->set_button_index(mouse_button);
+
+    //bind event key to action
+    if ( !input_map->action_has_event(action, event) ) {
+        m_console->print("event has bound to action {}", to_std_string(action));
+        input_map->action_add_event(action, event);
+    }
 }
