@@ -63,15 +63,15 @@ void tog::InputCaptureService::process_input(const godot::Ref<godot::InputEvent>
 
         if (input_event_key->is_pressed()) {
 
-            //keys
+            //when the "rotation" keys are pressed
             if ( input_event_key->is_action_pressed(tog::node::signal::TacticsCaptureResource::camera_rotate_left) ) {
-                m_console->print("Input Button Action: {} is pressed", "camera_rotate_left");
                 if (!tog::TacticsCameraResource::m_in_free_look) {
+                    m_console->print("Input Button Action: {} is pressed", "camera_rotate_left");
                     tog::TacticsCameraResource::m_y_rotation += -90;
                 }
             } else if (input_event_key->is_action_pressed(tog::node::signal::TacticsCaptureResource::camera_rotate_right)) {
-                m_console->print("Input Button Action: {} is pressed", "camera_rotate_right");
                 if (!tog::TacticsCameraResource::m_in_free_look) {
+                    m_console->print("Input Button Action: {} is pressed", "camera_rotate_right");
                     tog::TacticsCameraResource::m_y_rotation += 90;
                 }
             }

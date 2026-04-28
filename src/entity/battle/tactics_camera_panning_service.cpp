@@ -10,9 +10,7 @@ bool tog::TacticsCameraPanningService::is_cursor_near_edge(tog::TacticsCamera* t
 }
 
 void tog::TacticsCameraPanningService::wasd_pan(float delta, tog::TacticsCamera* tactics_camera, godot::Vector2 input_dir) {
-    float h_value = static_cast<float>(input_dir.x);
-    float v_value = static_cast<float>(-input_dir.y);
-    do_pan(h_value, v_value, delta, tactics_camera);
+    do_pan(static_cast<float>(input_dir.x), static_cast<float>(-input_dir.y), delta, tactics_camera);
 }
 
 void tog::TacticsCameraPanningService::edge_pan(float delta, tog::TacticsCamera* tactics_camera) {

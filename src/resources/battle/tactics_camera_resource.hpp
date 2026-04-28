@@ -10,7 +10,8 @@
 namespace tog {
 
     //Delay before panning starts
-    inline static constexpr float PANNING_DELAY = 0.95f;
+    //inline static constexpr float PANNING_DELAY = 0.95f;
+    inline static constexpr float PANNING_DELAY = 0.0f;
     //Timeout for free look mode
     inline static constexpr float FREE_LOOK_TIMEOUT = 0.05;
 
@@ -38,11 +39,10 @@ namespace tog {
         }
 
     public:
-        //MOVEMENT
         //Movement speed of the camera
-        int m_move_speed{};
+        int m_move_speed{10};
         //Rotation speed of the camera
-        inline static float m_rot_speed = 10/10.f;
+        inline static float m_rot_speed = 10;
         //Smoothing factor for camera movement
         float m_smoothing = 0.1f;
         //Target velocity for camera movement

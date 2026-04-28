@@ -34,7 +34,7 @@ namespace tog {
         void static _bind_methods() {}
 
     private:
-        godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
+        godot::Ref<tog::TacticsCameraResource>  m_tactics_camera_resource;
 
     };
 

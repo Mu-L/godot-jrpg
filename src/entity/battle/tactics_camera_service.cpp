@@ -43,20 +43,32 @@ void tog::TacticsCameraService::setup(tog::TacticsCamera* tactics_camera, godot:
 
 void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics_camera) {
     m_tactics_camera_rotation_service->check_free_look_activation(delta, tactics_camera);
+
     if ( m_tactics_camera_resource->m_in_free_look ) {
+
         m_tactics_camera_rotation_service->free_look(delta, tactics_camera->m_t_pivot, tactics_camera->m_p_pivot);
+        m_console->print("Called m_tactics_camera_rotation_service->free_look()");
+
     } else if ( !m_tactics_camera_resource->m_is_snapping_to_quad ) {
+
         m_tactics_camera_rotation_service->rotate_camera(delta, tactics_camera->m_t_pivot, tactics_camera->m_p_pivot);
+        //m_console->print("Called m_tactics_camera_rotation_service->rotate_camera()");
+
     }
 
     godot::Vector2 input_dir = tog::InputCaptureResource::m_cam_direction;
-    if ( input_dir != godot::Vector2(0,0) ) {
+
+    //input_dir != godot::Vector2(0,0)
+    if ( !input_dir.is_equal_approx(godot::Vector2(0,0)) ) {
         m_tactics_camera_panning_service->wasd_pan(delta, tactics_camera, input_dir);
+        m_console->print("Called  m_tactics_camera_panning_service->wasd_pan()");
     } else if ( m_tactics_camera_panning_service->is_cursor_near_edge(tactics_camera) && (!m_tactics_control_resource->m_is_joystick) ) {
         m_tactics_camera_panning_service->edge_pan(delta, tactics_camera);
+        m_console->print("Called  m_tactics_camera_panning_service->edge_pan()");
     } else {
         m_tactics_camera_resource->m_panning_timer = 0.0f;
         m_tactics_camera_movement_service->stabilize_camera(delta, tactics_camera);
+        //m_console->print("Called  m_tactics_camera_movement_service->stabilize_camera()");
     }
 
     if ( tactics_camera->get_velocity().length() < tog::MIN_VELOCITY ) {

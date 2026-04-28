@@ -36,11 +36,12 @@ void tog::TacticsCamera::_process(double p_delta) {
 }
 
 void tog::TacticsCamera::move_camera(float h, float v, bool joystick, float delta) {
+    m_console->print("Called tog::TacticsCamera::move_camera(h:{}, v:{}, joystick:{}, delta:{})", h, v, joystick, delta);
     m_tactics_camera_service->m_tactics_camera_movement_service->move_camera(h, v, joystick, delta, this);
 }
 
 void tog::TacticsCamera::rotate_camera(float delta, int twist) {
-    m_console->print("Rotated Camera");
+    m_console->print("Called tog::TacticsCamera::rotate_camera(delta:{}, twist:{})", delta, twist);
     m_tactics_camera_resource->m_is_rotating = true;
     m_tactics_camera_service->m_tactics_camera_rotation_service->add_angle_to_horizontal_rotation(twist);
     m_tactics_camera_service->m_tactics_camera_rotation_service->rotate_camera(delta, m_t_pivot, m_p_pivot);

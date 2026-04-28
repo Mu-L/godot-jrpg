@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tactics_camera.hpp"
+#include "singletons/console.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
 
@@ -36,6 +37,7 @@ namespace tog {
         void static _bind_methods() {}
 
     private:
+        rl::Console<godot::RichTextLabel>*      m_console{ rl::console::get() };
         godot::Ref<TacticsCameraResource> m_tactics_camera_resource;
         godot::Ref<TacticsControlsResource> m_tactics_control_resource;
     };
