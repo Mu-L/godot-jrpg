@@ -8,11 +8,9 @@ tog::TacticsCameraMovementService::TacticsCameraMovementService(const godot::Ref
 
 void tog::TacticsCameraMovementService::move_camera(float h, float v, bool joystick, float delta, TacticsCamera* camera) {
     if (m_tactics_camera_resource->m_target || (h == 0 && v == 0)) {
-        m_console->print("returned from tog::TacticsCameraMovementService::move_camera()");
         return;
     }
 
-    m_console->print("calculate new position tog::TacticsCameraMovementService::move_camera()");
     const double angle = godot::Math::atan2(-h, v) + camera->m_t_pivot->get_rotation().y;
     godot::Vector3 dir = get_forward_vector3().rotated(get_up_vector3(), angle);
 
@@ -27,18 +25,15 @@ void tog::TacticsCameraMovementService::move_camera(float h, float v, bool joyst
                                                     m_tactics_camera_resource->m_smoothing * DELTA_SMOOTHING * delta));
 
     if (camera->get_velocity().length() > MIN_THRESHOLD) {
-        m_console->print("camera->get_velocity().length() > MIN_THRESHOLD");
         godot::Vector3 new_position = camera->get_global_position() + camera->get_velocity() * delta;
         godot::Vector3 distance_from_center = new_position - m_tactics_camera_resource->m_boundry_center;
 
         //clamp position to the boundry if exceeding
         if (distance_from_center.length() > m_tactics_camera_resource->m_boundary_radius) {
-            m_console->print("distance_from_center.length() > m_tactics_camera_resource->m_boundary_radius");
             godot::Vector3 clamped_position = m_tactics_camera_resource->m_boundry_center + distance_from_center.normalized() * m_tactics_camera_resource->m_boundary_radius;
             camera->set_global_position(clamped_position);
             camera->set_velocity(get_zero_vector3());
         } else {
-            m_console->print("camera->move_and_slide()");
             camera->move_and_slide();
         }
 

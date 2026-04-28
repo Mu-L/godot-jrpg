@@ -60,7 +60,7 @@ namespace tog {
         //Minimum zoom level (closest)
         float m_min_zoom = 1.0f;
         //Maximum zoom level (farthest)
-        float m_max_zoom = 10.0f;
+        float m_max_zoom = 65.0f;
         //Current Field of View
         float m_current_fov = 50.0f;
         //Target Field of View for smooth transition
@@ -68,7 +68,7 @@ namespace tog {
 
         //PANNING
         //Radius of the boundary for camera movement
-        float m_boundary_radius = 10.0f;
+        float m_boundary_radius = 15.0f;
         //Center point of the boundary
         godot::Vector3 m_boundry_center = { 0, 0, 0 };
         //Threshold for edge panning in pixels
