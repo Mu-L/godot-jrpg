@@ -58,6 +58,8 @@ void tog::TacticsLevel::init_turn() {
     if ( m_tactics_participant->is_configured(m_tactics_player) && m_tactics_participant->is_configured(m_tactics_opponent) ) {
         //Move to turn handling stage if both player and opponent are configured
         m_turn_stage = 1;
+    } else {
+        //m_console->critical("pawn cannot start the turn");
     }
 }
 

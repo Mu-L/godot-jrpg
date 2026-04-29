@@ -74,6 +74,7 @@ namespace tog {
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Reference to the TacticsControlsInputService
         godot::Ref<tog::TacticsControlsInputService> m_tactics_controls_input_service;
+        rl::Console<godot::RichTextLabel>*          m_console{ rl::console::get() };
 
     };
 

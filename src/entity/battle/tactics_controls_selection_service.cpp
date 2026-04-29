@@ -43,6 +43,7 @@ void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const
 }
 
 godot::PhysicsBody3D* tog::TacticsControlsSelectionService::select_hovered_pawn(tog::TacticsControls* tactics_controls) {
+    m_console->critical("calling tog::TacticsControlsSelectionService::select_hovered_pawn()");
     tog::TacticsPawn* pawn = rl::gdcast<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
     tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (rl::gdcast<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
 

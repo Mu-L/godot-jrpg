@@ -23,7 +23,6 @@ void tog::TacticsPlayerService::toggle_enemy_stats(godot::Node* opponent_node) {
 bool tog::TacticsPlayerService::is_pawn_configured(tog::TacticsPlayer* player) {
     for (const godot::Variant& variant : player->get_children()) {
         if (auto* pawn{godot::Object::cast_to<tog::TacticsPawn>(variant)}; (pawn && !pawn->center()) ) {
-            //m_console->warn( "PAWN {} IS NOT CONFIGURED", to_std_string(pawn->get_name()) );
             return false;
         }
     }

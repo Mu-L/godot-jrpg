@@ -1,5 +1,13 @@
 # TODO
 
+# Problems
+* The zoom in and zoom out is kinda slow
+* when moving the camera via wsad/edge- it does not seem to respect the square boundary, its more of a cross
+* free look does not reset after unclicking it
+* 
+
+
+
 ### Stats / Resource Monitoring
 * print resource usage (fps, frametime, object count, etc) in UI labels.
 * truncate console text output once it exceeds ~1024 lines.
