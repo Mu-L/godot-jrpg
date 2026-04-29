@@ -26,10 +26,10 @@ void tog::TacticsUIService::set_actions_menu_visibility(bool v, tog::TacticsPawn
         tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton)->grab_focus();
     }
 
+    //Exit if no pawn is provided
+    if (!tactics_pawn) return;
     //Show menu if pawn can act
     tactics_controls->get_node<godot::VBoxContainer>(tog::node::name::BattleTest::Actions)->set_visible(v && tactics_pawn->can_act());
-    //Exit if no pawn is provided
-    if (!tactics_pawn) { return; }
 
     //Update action button states based on pawn's capabilities
     if ( godot::Button* move_button = tactics_controls->get_node<godot::Button>(tog::node::name::BattleTest::MoveButton); move_button ) {

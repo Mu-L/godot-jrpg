@@ -23,7 +23,7 @@ void tog::TacticsArenaService::setup(tog::TacticsArena* tactics_arena) {
 }
 
 void tog::TacticsArenaService::reset_all_tile_markers(tog::TacticsArena* tactics_arena) {
-    godot::TypedArray<godot::Node> tiles_nodes = tactics_arena->get_node<tog::TacticsTile>(tog::node::name::BattleTest::Tiles)->get_children();
+    godot::TypedArray<godot::Node> tiles_nodes = tactics_arena->get_node<godot::Node3D>(tog::node::name::BattleTest::Tiles)->get_children();
     for (godot::Variant& variant : tiles_nodes) {
         if (auto tile_node = godot::Object::cast_to<tog::TacticsTile>(variant); tile_node) {
             tile_node->reset_markers();
@@ -118,13 +118,12 @@ tog::TacticsPawn* tog::TacticsArenaService::get_weakest_attackable_pawn(godot::A
 }
 
 void tog::TacticsArenaService::mark_hover_tile(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_tile) {
-    m_console->print("Called tog::TacticsArenaService::mark_hover_tile()");
     for ( const godot::Variant& variant : tactics_arena->get_node<godot::Node3D>(tog::node::name::BattleTest::Tiles)->get_children() ) {
         auto* tile = godot::Object::cast_to<tog::TacticsTile>(variant);
         tile->m_hover = false;
     }
     if (tactics_tile) {
-
+        m_console->print("Marked Tile as hovered");
         tactics_tile->m_hover = true;
     }
 }

@@ -32,7 +32,8 @@ bool tog::TacticsPlayerService::is_pawn_configured(tog::TacticsPlayer* player) {
 void tog::TacticsPlayerService::show_available_pawn_actions() {
     m_tactics_controls_resource->set_actions_menu_visibility(true, m_tactics_participant_resource->m_tactics_pawn);
     m_tactics_arena->reset_all_tile_markers();
-    m_tactics_arena->mark_hover_tile(m_tactics_participant_resource->m_tactics_pawn->get_tile());
+    if (m_tactics_participant_resource->m_tactics_pawn)
+        m_tactics_arena->mark_hover_tile(m_tactics_participant_resource->m_tactics_pawn->get_tile());
 }
 
 void tog::TacticsPlayerService::show_available_movements() {
@@ -60,9 +61,10 @@ void tog::TacticsPlayerService::display_attackable_pawns() {
 }
 
 void tog::TacticsPlayerService::move_pawn() {
-    tog::TacticsPawn* pawn = m_tactics_participant_resource->m_tactics_pawn;
-    m_tactics_controls_resource->set_actions_menu_visibility(false , pawn);
-    if ( pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack.is_empty() ) {
-        m_tactics_participant_resource->m_stage = (!pawn->can_act()) ? tog::STAGE::SELECT_PAWN : tog::STAGE::SHOW_ACTION;
+    if (tog::TacticsPawn* pawn = m_tactics_participant_resource->m_tactics_pawn; pawn) {
+        m_tactics_controls_resource->set_actions_menu_visibility(false , pawn);
+        if ( pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack.is_empty() ) {
+            m_tactics_participant_resource->m_stage = (!pawn->can_act()) ? tog::STAGE::SELECT_PAWN : tog::STAGE::SHOW_ACTION;
+        }
     }
 }

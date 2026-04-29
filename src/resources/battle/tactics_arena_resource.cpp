@@ -5,12 +5,12 @@ void tog::TacticsArenaResource::reset_all_tile_markers() {
 }
 
 godot::Array tog::TacticsArenaResource::get_pathfinding_tilestack(tog::TacticsTile* tile) {
-    this->emit_signal(tog::node::signal::TacticsArenaResource::called_get_pathfinding_tilestack);
+    this->emit_signal(tog::node::signal::TacticsArenaResource::called_get_pathfinding_tilestack, tile);
     return m_path_tiles_stack;
 }
 
 void tog::TacticsArenaResource::mark_hover_tile(tog::TacticsTile* tile) {
-    this->emit_signal(tog::node::signal::TacticsArenaResource::called_mark_hover_tile);
+    this->emit_signal(tog::node::signal::TacticsArenaResource::called_mark_hover_tile, tile);
 }
 
 void tog::TacticsArenaResource::_bind_methods() {

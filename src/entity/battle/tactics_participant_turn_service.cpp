@@ -13,26 +13,36 @@ void tog::TacticsParticipantTurnService::handle_player_turn(float delta, tog::Ta
     }
 
     m_tactics_controls_resource->move_camera(delta);
-    m_tactics_controls_resource->set_actions_menu_visibility((m_tactics_participant_resource->m_stage < tog::STAGE::MAX_STAGES), m_tactics_participant_resource->m_tactics_pawn);
+    if (m_tactics_participant_resource->m_tactics_pawn)
+        m_tactics_controls_resource->set_actions_menu_visibility((m_tactics_participant_resource->m_stage < tog::STAGE::MAX_STAGES), m_tactics_participant_resource->m_tactics_pawn);
 
     switch (m_tactics_participant_resource->m_stage) {
         case tog::STAGE::SELECT_PAWN:
             m_tactics_controls_resource->select_pawn(tactics_player);
+            break;
         case tog::STAGE::SHOW_ACTION:
             tactics_player->show_avaliable_pawn_actions();
+            break;
         case tog::STAGE::SHOW_MOVEMENTS:
             tactics_player->show_avaliable_movements();
+            break;
         case tog::STAGE::SELECT_LOCATION:
             m_tactics_controls_resource->select_new_location();
+            break;
         case tog::STAGE::MOVE_PAWN:
             tactics_player->move_pawn();
+            break;
         case tog::STAGE::DISPLAY_TARGETS:
             tactics_player->display_attackable_targets();
+            break;
         case tog::STAGE::SELECT_ATTACK_TARGET:
             m_tactics_controls_resource->select_pawn_to_attack();
+            break;
         case tog::STAGE::ATTACK:
             tactics_participant->m_tactics_participant_service->m_tactics_combat_service->attack_pawn(delta, true);
-        default: ;
+            break;
+        default:
+            break;
     }
 }
 
@@ -47,15 +57,21 @@ void tog::TacticsParticipantTurnService::handle_opponent_turn(float delta, tog::
     switch (m_tactics_participant_resource->m_stage) {
         case tog::STAGE::SELECT_PAWN:
             tactics_opponent->choose_pawn();
+            break;
         case tog::STAGE::SHOW_ACTION:
             tactics_opponent->chase_nearest_enemy();
+            break;
         case tog::STAGE::SHOW_MOVEMENTS:
             tactics_opponent->is_pawn_done_moving();
+            break;
         case tog::STAGE::SELECT_LOCATION:
             tactics_opponent->choose_pawn_to_attack();
+            break;
         case tog::STAGE::MOVE_PAWN:
             tactics_participant->m_tactics_participant_service->m_tactics_combat_service->attack_pawn(delta, false);
-        default: ;
+            break;
+        default:
+            break;
     }
 
 }

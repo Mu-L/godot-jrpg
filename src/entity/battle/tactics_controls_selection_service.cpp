@@ -21,7 +21,7 @@ void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const
         tactics_controls->m_tactics_pawn->show_pawn_stats(false);
     }
 
-    tactics_controls->m_tactics_pawn = rl::gdcast<tog::TacticsPawn, godot::PhysicsBody3D>(select_hovered_pawn(tactics_controls));
+    tactics_controls->m_tactics_pawn = godot::Object::cast_to<tog::TacticsPawn>(select_hovered_pawn(tactics_controls));
     if ( tactics_controls->m_tactics_pawn ) {
         tactics_controls->m_tactics_pawn->show_pawn_stats(true);
     } else {
@@ -43,9 +43,8 @@ void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const
 }
 
 godot::PhysicsBody3D* tog::TacticsControlsSelectionService::select_hovered_pawn(tog::TacticsControls* tactics_controls) {
-    m_console->critical("calling tog::TacticsControlsSelectionService::select_hovered_pawn()");
-    tog::TacticsPawn* pawn = rl::gdcast<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
-    tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (rl::gdcast<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
+    tog::TacticsPawn* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
+    tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
 
     m_tactics_arena_resource->mark_hover_tile(tile);
 
@@ -61,14 +60,14 @@ godot::PhysicsBody3D* tog::TacticsControlsSelectionService::select_hovered_pawn(
 }
 
 tog::TacticsTile* tog::TacticsControlsSelectionService::select_hovered_tile(tog::TacticsControls* tactics_controls) {
-    tog::TacticsPawn* pawn = rl::gdcast<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
+    tog::TacticsPawn* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
     tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (rl::gdcast<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
     m_tactics_arena_resource->mark_hover_tile(tile);
     return tile;
 }
 
 void tog::TacticsControlsSelectionService::select_new_location(tog::TacticsControls* tactics_controls) {
-    tog::TacticsTile* tile = rl::gdcast<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls));
+    auto* tile = godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls));
     m_tactics_arena_resource->mark_hover_tile(tile);
     godot::Input* input_manager = godot::Input::get_singleton();
     if (input_manager->is_action_just_pressed("ui_accept") && tile && tile->m_reachable) {
@@ -87,7 +86,7 @@ void tog::TacticsControlsSelectionService::select_pawn_to_attack(tog::TacticsCon
     }
 
     tog::TacticsTile* tile = select_hovered_tile(tactics_controls);
-    m_tactics_participant_resource->m_attackable_pawn = (tile) ? rl::gdcast<tog::TacticsPawn>(tile->get_tile_occupier()) : nullptr;
+    m_tactics_participant_resource->m_attackable_pawn = (tile) ? godot::Object::cast_to<tog::TacticsPawn>(tile->get_tile_occupier()) : nullptr;
     if ( m_tactics_participant_resource->m_attackable_pawn ) {
         tactics_controls->set_actions_menu_visibility(true, m_tactics_participant_resource->m_attackable_pawn);
         m_tactics_participant_resource->m_attackable_pawn->show_pawn_stats(true);
