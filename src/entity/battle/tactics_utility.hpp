@@ -1,7 +1,6 @@
 #pragma once
 
 #include "godot_cpp/classes/collision_shape3d.hpp"
-#include "util/utility_vec.hpp"
 #include "godot_cpp/classes/mesh_instance3d.hpp"
 #include "godot_cpp/variant/vector3.hpp"
 
@@ -27,45 +26,6 @@ inline float distance_without_y(godot::Vector3 a, godot::Vector3 b) {
 //											  > CollisionShape3D
 //												...
 //Useful for configuring walkable tiles as efficiently as possible
-/*
-inline void tiles_into_static_bodies(godot::Node3D* tiles) {
-
-    for (auto& variant : tiles->get_children()) {
-        godot::MeshInstance3D* mesh_node{godot::Object::cast_to<godot::MeshInstance3D>(variant)};
-        if (!mesh_node) { continue; }
-
-        //Create StaticBody3D child with collision
-        mesh_node->create_trimesh_collision();
-
-        godot::StaticBody3D* temp_body = godot::Object::cast_to<godot::StaticBody3D>(mesh_node->get_child(0));
-        if (!temp_body) { continue; }
-
-        godot::CollisionShape3D* temp_shape = godot::Object::cast_to<godot::CollisionShape3D>(temp_body->get_child(0));
-        if (!temp_shape) { continue; }
-
-        tog::TacticsTile* tile_static_body = memnew(tog::TacticsTile);
-        tile_static_body->set_name(temp_body->get_name());
-        tile_static_body->set_transform(temp_body->get_transform());
-
-        //Move the generated collision shape onto the real tile
-        temp_body->remove_child(temp_shape);
-        tile_static_body->add_child(temp_shape);
-
-        //Reparent the mesh under the real tile
-        mesh_node->remove_child(temp_body);
-        mesh_node->set_position(get_zero_vector3());
-        tile_static_body->add_child(mesh_node);
-
-        tiles->add_child(tile_static_body);
-        tile_static_body->configure_tile();
-        tile_static_body->set_process(true);
-
-        temp_body->queue_free();
-    }
-
-}
-*/
-
 inline void tiles_into_static_bodies(godot::Node3D* tiles) {
     const godot::Array children = tiles->get_children(); // snapshot
 

@@ -29,6 +29,8 @@ void tog::TacticsParticipantService::setup(tog::TacticsParticipant* tactics_part
 }
 
 void tog::TacticsParticipantService::act(float delta, bool is_player, godot::Node3D* parent, tog::TacticsParticipant* tactics_participant) {
+    m_logger->no_spam_log(tog::debug::Topic::PARTICIPANT_TURN, is_player);
+    m_logger->no_spam_log(tog::debug::Topic::TURN_STAGE, m_tactics_participant_resource->m_stage);
     if (is_player) {
         auto* player    = godot::Object::cast_to<tog::TacticsPlayer>(parent);
         m_tactics_participant_turn_service->handle_player_turn(delta, player, tactics_participant);

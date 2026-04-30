@@ -1,6 +1,6 @@
 #pragma once
 
-#include "singletons/console.hpp"
+#include "tactics_debug.hpp"
 #include "godot_cpp/classes/node3d.hpp"
 #include "godot_cpp/classes/ref_counted.hpp"
 
@@ -78,7 +78,8 @@ namespace tog {
         godot::Ref<tog::TacticsParticipantTurnService> m_tactics_participant_turn_service;
         //Service handling combat-related logic
         godot::Ref<tog::TacticsParticipantCombatService> m_tactics_combat_service;
-        rl::Console<godot::RichTextLabel>*  m_console{ rl::console::get() };
+        //logger
+        tog::debug::Logger* m_logger { tog::debug::Logger::get() };
     };
 
 }

@@ -52,6 +52,7 @@ void tog::TacticsParticipantTurnService::handle_opponent_turn(float delta, tog::
 
     if (m_tactics_participant_resource->m_stage > 4) {
         m_tactics_participant_resource->m_stage = tog::STAGE::SELECT_PAWN;
+        
     }
 
     switch (m_tactics_participant_resource->m_stage) {

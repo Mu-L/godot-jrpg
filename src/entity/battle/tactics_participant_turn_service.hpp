@@ -1,5 +1,7 @@
 #pragma once
 
+#include "tactics_debug.hpp"
+
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_participant_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
@@ -64,6 +66,8 @@ namespace tog {
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Resource for control-related data and configurations
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
+        //logger
+        tog::debug::Logger* m_logger = 
     };
 
 }

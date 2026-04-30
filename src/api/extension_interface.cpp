@@ -21,6 +21,7 @@
 #include "entity/battle/tactics_controls_input_service.hpp"
 #include "entity/battle/tactics_controls_selection_service.hpp"
 #include "entity/battle/tactics_controls_service.hpp"
+#include "entity/battle/tactics_debug.hpp"
 #include "entity/battle/tactics_level.hpp"
 #include "entity/battle/tactics_main.hpp"
 #include "entity/battle/tactics_opponent.hpp"
@@ -84,19 +85,26 @@
 namespace rl {
 
     static inline console* console_singleton{ nullptr };
+    static inline tog::debug::Logger* logger_singleton{ nullptr };
 
     void initialize_static_objects() {
         //register static object to be looked up as a singleton
         console_singleton = memnew(console);
         rl::engine::get()->register_singleton("Console", console::get());
+
+        logger_singleton = memnew(tog::debug::Logger);
+        rl::engine::get()->register_singleton("Logger", tog::debug::Logger::get());
     }
 
     void teardown_static_objects() {
+        //delete the "TacticsCameraService" static object
+        tog::TacticsCameraService::cleanup();
+
+        rl::engine::get()->unregister_singleton("Logger");
+        memdelete(logger_singleton);
+
         rl::engine::get()->unregister_singleton("Console");
         memdelete(console_singleton);
-
-        //delete the "TacticsCameraService" static object
-       tog::TacticsCameraService::cleanup();
     }
 
     void initialize_extension_module(godot::ModuleInitializationLevel init_level) {
@@ -148,6 +156,7 @@ namespace rl {
         godot::ClassDB::register_class<tog::TacticsControlsInputService>();
         godot::ClassDB::register_class<tog::TacticsControlsSelectionService>();
         godot::ClassDB::register_class<tog::TacticsControlsService>();
+        godot::ClassDB::register_class<tog::debug::Logger>();
         godot::ClassDB::register_class<tog::TacticsLevel>();
         godot::ClassDB::register_class<tog::TacticsMain>();
         godot::ClassDB::register_class<tog::TacticsParticipant>();
