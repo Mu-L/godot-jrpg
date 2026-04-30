@@ -67,7 +67,7 @@ namespace tog {
         //Resource for control-related data and configurations
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
         //logger
-        tog::debug::Logger* m_logger = 
+        //tog::debug::Logger* m_logger =
     };
 
 }
