@@ -100,7 +100,12 @@ tog::TacticsTile* tog::TacticsArenaService::get_nearest_target_adjacent_tile(tog
         nearest_target = nearest_target->m_path_finding_root_tile;
     }
 
-    return (nearest_target) ? nearest_target : tactics_pawn->get_tile();
+    if (nearest_target) {
+        return nearest_target;
+    } else {
+        m_logger->no_spam_log(tog::debug::Topic::NEAREST_TARGET, tactics_pawn);
+        return tactics_pawn->get_tile();
+    }
 }
 
 tog::TacticsPawn* tog::TacticsArenaService::get_weakest_attackable_pawn(godot::Array tactics_pawns) {
@@ -123,7 +128,7 @@ void tog::TacticsArenaService::mark_hover_tile(tog::TacticsArena* tactics_arena,
         tile->m_hover = false;
     }
     if (tactics_tile) {
-        m_console->print("Marked Tile as hovered");
+        m_logger->log()->print("Marked Tile as hovered");
         tactics_tile->m_hover = true;
     }
 }

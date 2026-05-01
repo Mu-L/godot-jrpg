@@ -3,6 +3,7 @@
 #include "tactics_player.hpp"
 #include "tactics_opponent.hpp"
 #include "tactics_controls_input_service.hpp"
+#include "tactics_debug.hpp"
 #include "resources/battle/tactics_arena_resource.hpp"
 #include "resources/battle/tactics_camera_resource.hpp"
 #include "resources/battle/tactics_controls_resource.hpp"
@@ -74,7 +75,7 @@ namespace tog {
         godot::Ref<tog::TacticsCameraResource> m_tactics_camera_resource;
         //Reference to the TacticsControlsInputService
         godot::Ref<tog::TacticsControlsInputService> m_tactics_controls_input_service;
-        rl::Console<godot::RichTextLabel>*          m_console{ rl::console::get() };
+        tog::debug::Logger* m_logger { tog::debug::Logger::get() };
 
     };
 

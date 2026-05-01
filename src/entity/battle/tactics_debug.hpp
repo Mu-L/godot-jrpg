@@ -34,26 +34,29 @@ namespace tog::debug {
         GDCLASS(Logger, godot::Object);
     public:
         Logger();
+        ~Logger() override { m_static_inst = nullptr; }
 
-        ~Logger() override {
-            m_static_inst = nullptr;
-        }
+        static inline tog::debug::Logger* get() { return m_static_inst; }
 
-        static inline tog::debug::Logger* get() {
-            return m_static_inst;
-        }
+        auto* log() { return m_console; }
 
         void no_spam_log(const Topic topic, const godot::Variant &value);
 
     private:
+        //test if the value has changes since last run
         bool are_the_variants_equal(const godot::Variant& old_value, const godot::Variant& new_value);
-        std::string inspect_variant(const godot::Variant& value);
+        //get a string representation of the underlying value
+        std::string inspect_variant(const godot::Variant& value, const Topic topic);
 
     protected:
         static void _bind_methods() {}
+
     private:
+        //backend logger
         rl::Console<godot::RichTextLabel>*  m_console{ rl::console::get() };
+        //static object to hold lifetime
         static inline Logger* m_static_inst{ nullptr };
+        //log metadata
         std::flat_map<Topic, DebugEntry> debug_state;
     };
 

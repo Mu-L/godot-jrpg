@@ -1,9 +1,9 @@
 #pragma once
 
 #include "tactics_arena.hpp"
+#include "tactics_debug.hpp"
 #include "tactics_pawn.hpp"
 #include "resources/battle/tactics_arena_resource.hpp"
-#include "singletons/console.hpp"
 
 #include "godot_cpp/classes/ref_counted.hpp"
 
@@ -78,7 +78,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
-        rl::Console<godot::RichTextLabel>*    m_console{ rl::console::get() };
+        tog::debug::Logger* m_logger { tog::debug::Logger::get() };
         godot::Ref<tog::TacticsArenaResource> m_tactics_arena_resource;
 
     };

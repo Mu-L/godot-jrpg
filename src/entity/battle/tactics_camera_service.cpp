@@ -61,10 +61,8 @@ void tog::TacticsCameraService::process(float delta, tog::TacticsCamera* tactics
     //input_dir != godot::Vector2(0,0)
     if ( !input_dir.is_equal_approx(godot::Vector2(0,0)) ) {
         m_tactics_camera_panning_service->wasd_pan(delta, tactics_camera, input_dir);
-        m_console->print("Called  m_tactics_camera_panning_service->wasd_pan()");
     } else if ( m_tactics_camera_panning_service->is_cursor_near_edge(tactics_camera) && (!m_tactics_control_resource->m_is_joystick) ) {
         m_tactics_camera_panning_service->edge_pan(delta, tactics_camera);
-        m_console->print("Called  m_tactics_camera_panning_service->edge_pan()");
     } else {
         m_tactics_camera_resource->m_panning_timer = 0.0f;
         m_tactics_camera_movement_service->stabilize_camera(delta, tactics_camera);

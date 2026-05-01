@@ -4,6 +4,7 @@
 
 
 namespace tog::debug {
+
     Logger::Logger() {
         m_static_inst = this;
         debug_state = {
@@ -70,37 +71,30 @@ namespace tog::debug {
         };
     }
 
-    void Logger::no_spam_log(const Topic topic, const godot::Variant& value) {
+    void tog::debug::Logger::no_spam_log(const Topic topic, const godot::Variant& value) {
         //find if topic exist
-        if (auto it = debug_state.find(topic); it != debug_state.end()) {
+        if (const auto it = debug_state.find(topic); it != debug_state.end()) {
 
             //grab debug metadata
-            DebugEntry& entry = it->second;
+            auto&[m_old_value, m_message, m_has_old_value] = it->second;
 
             //check if we have old value or if the values are equal
-            if (entry.m_has_old_value && are_the_variants_equal(entry.m_old_value, value)) { return; }
-
-            //grab logger
-            rl::Console<godot::RichTextLabel>*   logger{ rl::console::get() };
+            if (m_has_old_value && are_the_variants_equal(m_old_value, value)) { return; }
 
             //update metadata
-            entry.m_old_value = value;
-            entry.m_has_old_value = true;
+            m_old_value = value;
+            m_has_old_value = true;
 
-            logger->print("{} {}", entry.m_message, inspect_variant(value));
-
-        } else {
-            return;
+            m_console->print("{} {}", m_message, inspect_variant(value, topic));
         }
-
     }
 
-    bool Logger::are_the_variants_equal(const godot::Variant &old_value, const godot::Variant &new_value) {
+    bool tog::debug::Logger::are_the_variants_equal(const godot::Variant &old_value, const godot::Variant &new_value) {
         if (old_value.get_type() != new_value.get_type()) { return false; }
         return old_value == new_value;
     }
 
-    std::string Logger::inspect_variant(const godot::Variant &value) {
+    std::string tog::debug::Logger::inspect_variant(const godot::Variant &value, const Topic topic) {
         switch (value.get_type()) {
             case godot::Variant::NIL: {
                 return "null";
@@ -108,7 +102,16 @@ namespace tog::debug {
             }
             case godot::Variant::BOOL: {
                 bool b = value;
-                return b ? "true" : "false";
+
+                switch (topic) {
+                    case Topic::PARTICIPANT_TURN:
+                        return b ? "Player" : "Opponent";
+                    case Topic::PLAYER_CAN_ACT:
+                        return b ? "-> YES" : "-> NO";
+                    default:
+                        return b ? "true" : "false";
+                        break;
+                }
                 break;
             }
             case godot::Variant::INT: {

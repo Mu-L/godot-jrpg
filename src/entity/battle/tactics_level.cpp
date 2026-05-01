@@ -11,7 +11,7 @@
 #include "util/engine.hpp"
 
 void tog::TacticsLevel::_ready() {
-    m_console->print("called tog::TacticsLevel::_ready()");
+    m_logger->log()->print("called tog::TacticsLevel::_ready()");
     auto resource_loader = godot::ResourceLoader::get_singleton();
 
     m_tactics_camera_resource = resource_loader->load(tog::path::resource::battle::tactics_camera_resource);
@@ -34,7 +34,7 @@ void tog::TacticsLevel::_ready() {
     if (m_tactics_camera_resource->m_boundary_radius != m_camera_boundary_radius) {
         m_tactics_camera_resource->m_boundary_radius = m_camera_boundary_radius;
     }
-    m_console->print("finished tog::TacticsLevel::_ready()");
+    m_logger->log()->print("finished tog::TacticsLevel::_ready()");
 }
 
 void tog::TacticsLevel::_physics_process(double p_delta) {
@@ -64,6 +64,7 @@ void tog::TacticsLevel::init_turn() {
 }
 
 void tog::TacticsLevel::handle_turn(float delta) {
+    m_logger->no_spam_log(tog::debug::Topic::PLAYER_CAN_ACT, m_tactics_participant->can_act(m_tactics_player));
     if (m_tactics_participant->can_act(m_tactics_player)) { //check if the player is acting
 
         if ( !m_tactics_participant->is_configured(m_tactics_player) ) {    //check if player is configured
