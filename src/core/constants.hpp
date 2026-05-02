@@ -100,6 +100,7 @@ namespace tog::inline constants {
                 constexpr inline auto camera_rotate_left    { "camera_rotate_left" };
                 constexpr inline auto camera_free_look      { "camera_free_look" };
                 constexpr inline auto controller_hints      { "controller_hints" };
+                constexpr inline auto ui_accept             { "ui_accept" };
             }
 
             namespace TacticsPawnResource {

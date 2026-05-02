@@ -31,6 +31,7 @@ namespace tog {
     private:
         //Reference to the TacticsControlsResource
         godot::Ref<tog::TacticsControlsResource> m_tactics_controls_resource;
+        tog::debug::Logger* m_logger = {tog::debug::Logger::get()};
     };
 
 }

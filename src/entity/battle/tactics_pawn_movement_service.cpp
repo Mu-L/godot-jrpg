@@ -10,9 +10,12 @@ void tog::TacticsPawnMovementService::look_at_direction(tog::TacticsPawn* tactic
 }
 
 void tog::TacticsPawnMovementService::move_along_path(tog::TacticsPawn* tactics_pawn, float delta) {
-    if (tactics_pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack.is_empty() || !tactics_pawn->m_tactics_pawn_resource->m_is_moving) {
+    if (tactics_pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack.is_empty() || !tactics_pawn->m_tactics_pawn_resource->m_can_move) {
         return;
     }
+
+    m_logger->log()->print("OKAY WE ARE READY TO MOVE");
+
     start_movement(tactics_pawn);
     if (tactics_pawn->m_tactics_pawn_resource->m_move_direction.length() > 0.5f) {
         perform_movement(tactics_pawn, delta);

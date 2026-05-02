@@ -57,6 +57,7 @@ namespace tog {
         static void _bind_methods() {}
 
     private:
+        tog::debug::Logger* m_logger{tog::debug::Logger::get()};
 
     };
 

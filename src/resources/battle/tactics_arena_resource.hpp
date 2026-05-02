@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/constants.hpp"
+#include "entity/battle/tactics_debug.hpp"
 #include "entity/battle/tactics_tile.hpp"
 #include "util/bind.hpp"
 
@@ -32,6 +33,7 @@ namespace tog {
         static void _bind_methods();
 
     public:
+        tog::debug::Logger* m_logger {tog::debug::Logger::get()};
         godot::Array m_path_tiles_stack;
 
     };

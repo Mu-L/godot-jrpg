@@ -5,7 +5,10 @@ void tog::TacticsArenaResource::reset_all_tile_markers() {
 }
 
 godot::Array tog::TacticsArenaResource::get_pathfinding_tilestack(tog::TacticsTile* tile) {
+    m_logger->log()->print("Called: godot::Array tog::TacticsArenaResource::get_pathfinding_tilestack(tog::TacticsTile* tile)");
+    m_logger->log()->print("size of m_path_tiles_stack BEFORE is {}", m_path_tiles_stack.size());
     this->emit_signal(tog::node::signal::TacticsArenaResource::called_get_pathfinding_tilestack, tile);
+    m_logger->log()->print("size of m_path_tiles_stack AFTER is {}", m_path_tiles_stack.size());
     return m_path_tiles_stack;
 }
 

@@ -37,6 +37,7 @@ void tog::TacticsMain::_ready() {
     bind_key_to_action(tog::node::signal::TacticsCaptureResource::controller_hints, godot::KEY_BACKSLASH);
 
     bind_mouse_button_to_action(tog::node::signal::TacticsCaptureResource::camera_free_look, godot::MOUSE_BUTTON_MIDDLE);
+    bind_mouse_button_to_action(tog::node::signal::TacticsCaptureResource::ui_accept, godot::MOUSE_BUTTON_LEFT);
 }
 
 void tog::TacticsMain::on_battle_button_pressed() {

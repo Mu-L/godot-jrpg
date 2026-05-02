@@ -14,31 +14,28 @@ tog::TacticsControlsSelectionService::TacticsControlsSelectionService(
 }
 
 void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const tactics_player, tog::TacticsControls* const tactics_controls) {
-    m_logger->log()->print("tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const tactics_player, tog::TacticsControls* const tactics_controls)");
     m_tactics_arena_resource->reset_all_tile_markers();
     if ( tactics_controls->m_tactics_pawn ) {
         m_tactics_controls_resource->set_actions_menu_visibility(false, m_tactics_participant_resource->m_tactics_pawn);
         tactics_controls->m_tactics_pawn->show_pawn_stats(false);
-        m_logger->log()->print("No Pawn Initally");
     }
 
     tactics_controls->m_tactics_pawn = godot::Object::cast_to<tog::TacticsPawn>(select_hovered_pawn(tactics_controls));
     if ( tactics_controls->m_tactics_pawn ) {
         tactics_controls->m_tactics_pawn->show_pawn_stats(true);
-        m_logger->log()->print("Found Pawn");
     } else {
-        m_logger->log()->print("Pawn still not found, returning");
         //return if pawn does not exist
         return;
     }
 
     //grab input manager
     godot::Input* input_manager = godot::Input::get_singleton();
-    if ( input_manager->is_action_just_pressed("ui_accept") && tactics_controls->m_tactics_pawn->can_act() ) {
+    if ( input_manager->is_action_just_pressed(tog::node::signal::TacticsCaptureResource::ui_accept) && tactics_controls->m_tactics_pawn->can_act() ) {
         //checks to see if the
         if ( tactics_controls->m_tactics_pawn->get_parent() == tactics_player ) {
             //i think you can cast up
             m_tactics_camera_resource->m_target = tactics_controls->m_tactics_pawn;
+            m_tactics_participant_resource->m_tactics_pawn = tactics_controls->m_tactics_pawn;
             m_tactics_controls_resource->set_actions_menu_visibility(true, m_tactics_participant_resource->m_tactics_pawn);
             m_tactics_participant_resource->m_stage = 1;
         }
@@ -55,8 +52,8 @@ godot::PhysicsBody3D* tog::TacticsControlsSelectionService::select_hovered_pawn(
 }
 
 tog::TacticsTile* tog::TacticsControlsSelectionService::select_hovered_tile(tog::TacticsControls* tactics_controls) {
-    tog::TacticsPawn* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
-    tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (rl::gdcast<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
+    auto* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
+    auto* tile = (pawn) ? (pawn->get_tile()) : (godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
     m_tactics_arena_resource->mark_hover_tile(tile);
     return tile;
 }
@@ -65,7 +62,7 @@ void tog::TacticsControlsSelectionService::select_new_location(tog::TacticsContr
     auto* tile = godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls));
     m_tactics_arena_resource->mark_hover_tile(tile);
     godot::Input* input_manager = godot::Input::get_singleton();
-    if (input_manager->is_action_just_pressed("ui_accept") && tile && tile->m_reachable) {
+    if (input_manager->is_action_just_pressed(tog::node::signal::TacticsCaptureResource::ui_accept) && tile && tile->m_reachable) {
         tactics_controls->m_tactics_pawn->m_tactics_pawn_resource->m_pathfinding_tile_stack = m_tactics_arena_resource->get_pathfinding_tilestack(tile);
         m_tactics_camera_resource->m_target = tile;
         m_tactics_participant_resource->m_stage = 4;
@@ -88,7 +85,7 @@ void tog::TacticsControlsSelectionService::select_pawn_to_attack(tog::TacticsCon
     }
 
     godot::Input* input_manager = godot::Input::get_singleton();
-    if (input_manager->is_action_just_pressed("ui_accept") && tile && tile->m_attackable) {
+    if (input_manager->is_action_just_pressed(tog::node::signal::TacticsCaptureResource::ui_accept) && tile && tile->m_attackable) {
         m_tactics_camera_resource->m_target = m_tactics_participant_resource->m_attackable_pawn;
         m_tactics_participant_resource->m_stage = 7;
     }

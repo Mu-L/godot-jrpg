@@ -1,5 +1,6 @@
 #pragma once
 
+#include "tactics_debug.hpp"
 #include "tactics_pawn_movement_service.hpp"
 #include "tactics_pawn_combat_service.hpp"
 #include "tactics_pawn_animation_service.hpp"
@@ -47,6 +48,7 @@ namespace tog {
         static void _bind_methods() {}
 
     public:
+        tog::debug::Logger* m_logger{tog::debug::Logger::get()};
         //Service for handling pawn movement
         godot::Ref<tog::TacticsPawnMovementService> m_tactics_pawn_movement_service;
         //Service for handling pawn combat
