@@ -93,14 +93,14 @@ namespace rl {
         rl::engine::get()->register_singleton("Console", console::get());
 
         logger_singleton = memnew(tog::debug::Logger);
-        rl::engine::get()->register_singleton("Logger", tog::debug::Logger::get());
+        //rl::engine::get()->register_singleton("Tactics_Logger", tog::debug::Logger::get());
     }
 
     void teardown_static_objects() {
         //delete the "TacticsCameraService" static object
         tog::TacticsCameraService::cleanup();
 
-        rl::engine::get()->unregister_singleton("Logger");
+        //rl::engine::get()->unregister_singleton("Tactics_Logger");
         memdelete(logger_singleton);
 
         rl::engine::get()->unregister_singleton("Console");

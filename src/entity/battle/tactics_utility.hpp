@@ -66,6 +66,7 @@ inline void tiles_into_static_bodies(godot::Node3D* tiles) {
 
         // Reparent the mesh correctly.
         mesh_node->reparent(tile_static_body, true);
+        mesh_node->set_name(tog::node::name::BattleTest::Tile);
         mesh_node->set_transform(godot::Transform3D()); // local identity under tile_static_body
 
         tile_static_body->configure_tile();

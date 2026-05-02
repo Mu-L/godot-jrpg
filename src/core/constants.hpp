@@ -49,6 +49,7 @@ namespace tog::inline constants {
                 constexpr inline auto tactics_camera_resource       { "res://assets/resources/battle/tactics_camera_resource.tres" };
                 constexpr inline auto tactics_control_resource      { "res://assets/resources/battle/tactics_controls_resource.tres" };
                 constexpr inline auto tactics_participant_resource  { "res://assets/resources/battle/tactics_participant_resource.tres" };
+                constexpr inline auto tactics_input_capture_resource{ "res://assets/resources/battle/tactics_input_capture_resource.tres" };
                 constexpr inline auto tactics_pawn                  { "res://assets/resources/battle/tactics_pawn_resource.tres" };
             }
 

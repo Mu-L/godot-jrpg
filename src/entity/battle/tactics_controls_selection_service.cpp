@@ -14,17 +14,20 @@ tog::TacticsControlsSelectionService::TacticsControlsSelectionService(
 }
 
 void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const tactics_player, tog::TacticsControls* const tactics_controls) {
+    m_logger->log()->print("tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const tactics_player, tog::TacticsControls* const tactics_controls)");
     m_tactics_arena_resource->reset_all_tile_markers();
-
     if ( tactics_controls->m_tactics_pawn ) {
         m_tactics_controls_resource->set_actions_menu_visibility(false, m_tactics_participant_resource->m_tactics_pawn);
         tactics_controls->m_tactics_pawn->show_pawn_stats(false);
+        m_logger->log()->print("No Pawn Initally");
     }
 
     tactics_controls->m_tactics_pawn = godot::Object::cast_to<tog::TacticsPawn>(select_hovered_pawn(tactics_controls));
     if ( tactics_controls->m_tactics_pawn ) {
         tactics_controls->m_tactics_pawn->show_pawn_stats(true);
+        m_logger->log()->print("Found Pawn");
     } else {
+        m_logger->log()->print("Pawn still not found, returning");
         //return if pawn does not exist
         return;
     }
@@ -43,20 +46,12 @@ void tog::TacticsControlsSelectionService::select_pawn(tog::TacticsPlayer* const
 }
 
 godot::PhysicsBody3D* tog::TacticsControlsSelectionService::select_hovered_pawn(tog::TacticsControls* tactics_controls) {
-    tog::TacticsPawn* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
-    tog::TacticsTile* tile = (pawn) ? (pawn->get_tile()) : (godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
+    auto* pawn = godot::Object::cast_to<tog::TacticsPawn>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(2, tactics_controls));
+    auto tile = (pawn) ? (pawn->get_tile()) : (godot::Object::cast_to<tog::TacticsTile>(m_tactics_controls_input_service->get_3d_canvas_mouse_position(1, tactics_controls)));
 
     m_tactics_arena_resource->mark_hover_tile(tile);
 
-    if (!pawn) {
-        if (tile) {
-            return rl::gdcast<godot::PhysicsBody3D>(tile->get_tile_occupier());
-        }
-    } else {
-        return pawn;
-    }
-
-    return nullptr;
+    return pawn ? pawn : ( tile ? godot::Object::cast_to<godot::PhysicsBody3D>(tile->get_tile_occupier()) : nullptr );
 }
 
 tog::TacticsTile* tog::TacticsControlsSelectionService::select_hovered_tile(tog::TacticsControls* tactics_controls) {

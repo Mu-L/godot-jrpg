@@ -127,10 +127,8 @@ void tog::TacticsArenaService::mark_hover_tile(tog::TacticsArena* tactics_arena,
         auto* tile = godot::Object::cast_to<tog::TacticsTile>(variant);
         tile->m_hover = false;
     }
-    if (tactics_tile) {
-        m_logger->log()->print("Marked Tile as hovered");
-        tactics_tile->m_hover = true;
-    }
+
+    if (tactics_tile) { tactics_tile->m_hover = true; }
 }
 
 void tog::TacticsArenaService::mark_reachable_tiles(tog::TacticsArena* tactics_arena, tog::TacticsTile* tactics_root_tile, float distance) {

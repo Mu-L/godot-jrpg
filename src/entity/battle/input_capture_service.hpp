@@ -1,8 +1,8 @@
 #pragma once
 
+#include "tactics_debug.hpp"
 #include "input_capture.hpp"
 #include "resources/battle/input_capture_resource.hpp"
-#include "singletons/console.hpp"
 
 #include "godot_cpp/classes/collision_object3d.hpp"
 #include "godot_cpp/classes/input_event.hpp"
@@ -38,7 +38,7 @@ namespace tog {
 
     private:
         godot::Ref<tog::InputCaptureResource>   m_input_capture_resource;
-        rl::Console<godot::RichTextLabel>*      m_console{ rl::console::get() };
+        tog::debug::Logger* m_logger { tog::debug::Logger::get() };
     };
 
 }

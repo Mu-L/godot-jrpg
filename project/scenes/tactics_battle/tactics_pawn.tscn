@@ -167,6 +167,8 @@ transitions = ["IDLE", "DAMAGE", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-104.265, -3.7725146)
 
 [node name="Pawn" type="TacticsPawn" unique_id=1024928148]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1194121888]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)
@@ -178,6 +180,7 @@ target_position = Vector3(0, -2.1, 0)
 
 [node name="Character" type="TacticsPawnSprite" parent="." unique_id=685106140]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602, 0)
+flip_h = true
 modulate = Color(0.5, 0.5, 0.5, 1)
 billboard = 1
 alpha_cut = 2
