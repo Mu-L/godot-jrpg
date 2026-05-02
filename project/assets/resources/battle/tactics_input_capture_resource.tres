@@ -1,0 +1,4 @@
+[gd_resource type="InputCaptureResource" format=3 uid="uid://bj36i8sav2ff6"]
+
+[resource]
+camera_zoom_speed = 0.1
