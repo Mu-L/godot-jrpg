@@ -58,7 +58,7 @@ namespace tog {
         //Duration of zoom transition
         float m_zoom_duration = 0.5f;
         //Minimum zoom level (closest)
-        float m_min_zoom = 1.0f;
+        float m_min_zoom = 10.0f;
         //Maximum zoom level (farthest)
         float m_max_zoom = 65.0f;
         //Current Field of View

@@ -12,9 +12,16 @@ void tog::TacticsParticipantTurnService::handle_player_turn(float delta, tog::Ta
         m_tactics_participant_resource->m_turn_just_started = false;
     }
 
+    const bool show_actions_menu =
+        m_tactics_participant_resource->m_stage == tog::STAGE::SHOW_ACTION ||
+        m_tactics_participant_resource->m_stage == tog::STAGE::SHOW_MOVEMENTS ||
+        m_tactics_participant_resource->m_stage == tog::STAGE::SELECT_LOCATION ||
+        m_tactics_participant_resource->m_stage == tog::STAGE::DISPLAY_TARGETS ||
+        m_tactics_participant_resource->m_stage == tog::STAGE::SELECT_ATTACK_TARGET;
+
     m_tactics_controls_resource->move_camera(delta);
     if (m_tactics_participant_resource->m_tactics_pawn)
-        m_tactics_controls_resource->set_actions_menu_visibility((m_tactics_participant_resource->m_stage < tog::STAGE::MAX_STAGES), m_tactics_participant_resource->m_tactics_pawn);
+        m_tactics_controls_resource->set_actions_menu_visibility(show_actions_menu, m_tactics_participant_resource->m_tactics_pawn);
 
     switch (m_tactics_participant_resource->m_stage) {
         case tog::STAGE::SELECT_PAWN:

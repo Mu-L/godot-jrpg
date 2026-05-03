@@ -70,22 +70,28 @@ void tog::TacticsControlsSelectionService::select_new_location(tog::TacticsContr
 }
 
 void tog::TacticsControlsSelectionService::select_pawn_to_attack(tog::TacticsControls* tactics_controls) {
+    m_logger->log()->print("tog::TacticsControlsSelectionService::select_pawn_to_attack(tog::TacticsControls* tactics_controls)");
     m_tactics_controls_resource->set_actions_menu_visibility(true, m_tactics_participant_resource->m_tactics_pawn);
 
     if (m_tactics_participant_resource->m_attackable_pawn) {
         m_tactics_controls_resource->set_actions_menu_visibility(false, m_tactics_participant_resource->m_attackable_pawn);
         m_tactics_participant_resource->m_attackable_pawn->show_pawn_stats(false);
+        m_logger->log()->print("Checking if pawn is attackable");
     }
 
     tog::TacticsTile* tile = select_hovered_tile(tactics_controls);
     m_tactics_participant_resource->m_attackable_pawn = (tile) ? godot::Object::cast_to<tog::TacticsPawn>(tile->get_tile_occupier()) : nullptr;
+    m_logger->log()->print("Okay I think we set it maybe!");
+
     if ( m_tactics_participant_resource->m_attackable_pawn ) {
+        m_logger->log()->print("OKAY ATTACKABLE PAWN SHOULD BE HERE");
         tactics_controls->set_actions_menu_visibility(true, m_tactics_participant_resource->m_attackable_pawn);
         m_tactics_participant_resource->m_attackable_pawn->show_pawn_stats(true);
     }
 
     godot::Input* input_manager = godot::Input::get_singleton();
     if (input_manager->is_action_just_pressed(tog::node::signal::TacticsCaptureResource::ui_accept) && tile && tile->m_attackable) {
+        m_logger->log()->print("Setting stage to attack");
         m_tactics_camera_resource->m_target = m_tactics_participant_resource->m_attackable_pawn;
         m_tactics_participant_resource->m_stage = 7;
     }

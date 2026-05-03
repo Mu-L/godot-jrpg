@@ -1,8 +1,8 @@
 #pragma once
 
+#include "entity/battle/tactics_debug.hpp"
 #include "util/bind.hpp"
 
-#include "godot_cpp/variant/dictionary.hpp"
 #include "godot_cpp/classes/resource.hpp"
 
 namespace tog {
@@ -46,6 +46,7 @@ namespace tog {
         static void _bind_methods();
 
     public:
+        tog::debug::Logger* m_logger { tog::debug::Logger::get() };
         //property - indicates whether the current input device is a joystick
         bool m_is_joystick{false};
         //property - indicates whether the input hints are folded

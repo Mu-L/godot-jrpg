@@ -55,8 +55,8 @@ void tog::TacticsArenaService::process_surrounding_tiles(tog::TacticsTile* tacti
             if ( !neighbor->m_path_finding_root_tile && (neighbor != tactics_root_tile) ) {
                 if (!neighbor->is_taken()) {
                     add_to_tiles_list(neighbor);
-                } else if (allies_on_map.size() > 0) {
-                    if (allies_on_map.has(neighbor)) {
+                } else if (!(allies_on_map.size() > 0)) {
+                    if (!(allies_on_map.has(neighbor))) {
                         add_to_tiles_list(neighbor);
                     }
                 }
@@ -149,9 +149,9 @@ void tog::TacticsArenaService::mark_attackable_tiles(tog::TacticsArena* tactics_
         auto* tile = godot::Object::cast_to<tog::TacticsTile>(variant);
 
         bool has_distance = (tile->m_path_finding_distance > 0);
-        bool reachable = (tile->m_path_finding_distance <= distance);;
+        bool reachable = (tile->m_path_finding_distance <= distance);
         bool is_root = (tile == tactics_root_tile);
 
-        tile->m_reachable = (has_distance && reachable) or is_root;
+        tile->m_attackable = (has_distance && reachable) or is_root;
     }
 }

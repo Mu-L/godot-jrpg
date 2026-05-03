@@ -30,7 +30,7 @@ void tog::TacticsControls::_ready() {
     wait_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_wait));
 
     auto* cancel_button = this->get_node<godot::Button>(tog::node::name::BattleTest::CancelButton);
-    wait_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_cancel));
+    cancel_button->connect(tog::node::signal::BaseButton::pressed, callable_mp(this, &TacticsControls::player_wants_to_cancel));
 }
 
 void tog::TacticsControls::_physics_process(double p_delta) {

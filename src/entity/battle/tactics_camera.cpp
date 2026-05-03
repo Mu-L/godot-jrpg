@@ -32,7 +32,9 @@ void tog::TacticsCamera::_ready() {
 }
 
 void tog::TacticsCamera::_process(double p_delta) {
-    m_tactics_camera_service->process(static_cast<float>(p_delta), this);
+    if (not rl::engine::editor_active()) {
+        m_tactics_camera_service->process(static_cast<float>(p_delta), this);
+    }
 }
 
 void tog::TacticsCamera::move_camera(float h, float v, bool joystick, float delta) {
